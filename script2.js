@@ -7,7 +7,7 @@ var file = [];
 var spaces;
 var file_name = "default.csv";
 var template = Handlebars.compile(document.querySelector('#template').innerHTML);
-document.querySelector('input').addEventListener('change', getFile)
+document.querySelector('input').addEventListener('change', getFile);
 
 //        function addAce(ele) {
 //            console.log(ele);
@@ -18,8 +18,6 @@ document.querySelector('input').addEventListener('change', getFile)
 
 function getBlank() {
     return {
-        passagenum:"",
-        questionnum:"",
         skill: "",
         level: "",
         questionname: "",
@@ -27,15 +25,20 @@ function getBlank() {
         topic: "",
         difficultylevel: "",
         passagetext: "",
-        questiontext: "",
-        answertext1: "",
-        answertext2: "",
-        answertext3: "",
-        answertext4: "",
-        answertext5: "",
-        answertext6: ""
-    };
+        questions: [{
+            questionnum: "",
+            questiontext: "",
+            answertext1: "",
+            answertext2: "",
+            answertext3: "",
+            answertext4: "",
+            answertext5: "",
+            answertext6: "",
+            function: ""
+        }],
+    }
 }
+
 
 function addAceEditor(stringIn, index) {
     return '<div class="editor" id="editor' + (index + 1) + '" ><textarea>' + stringIn + '</textarea></div>';
@@ -56,19 +59,16 @@ function addTinyMCE() {
         toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code | table | hr | help',
         convert_urls: false,
         init_instance_callback: function (editor) {
-            function saveit(){
-                                //console.log(editor.getContent(), this.id);
+            editor.on('KeyUp', function (e) {
+                //console.log(editor.getContent(), this.id);
                 var textarea = document.querySelector("#" + this.id)
                 textarea.dataset.editortext = (editor.getContent({
                     format: 'raw'
                 }));
                 saveData(textarea);
                 //console.log(textarea.dataset.editortext);
-            }
-            editor.on('KeyUp', saveit);
-            editor.on('Change', saveit);
-            editor.on('PastePostProcess', saveit);
-            editor.on('ExecCommand', saveit);
+
+            });
         }
     });
 }
@@ -110,11 +110,10 @@ function add_row() {
     var ui = document.querySelector("#UI");
     var divs = document.querySelectorAll('#UI > div');
     var index;
-    if (divs.length < 2){
+    if (divs.length < 2) {
         index = 0;
-    }
-    else {
-        index = parseInt(divs[divs.length - 2].id.split("row")[1]);
+    } else {
+        index = parseInt(divs[divs.length - 2].id.split("passage")[1]);
         index++;
     }
 
@@ -122,9 +121,9 @@ function add_row() {
     //TODO: function that g
     var new_rows = template([getBlank()]);
     var parser = new DOMParser();
-    new_rows = parser.parseFromString(new_rows, "text/html").querySelector("#row0");
+    new_rows = parser.parseFromString(new_rows, "text/html").querySelector("#passage0");
     //            console.log(new_rows);
-    new_rows.id = "row" + index;
+    new_rows.id = "passage" + index;
 
     ui.insertBefore(new_rows, divs[divs.length - 1]);
     fixNewRow(new_rows.id);
@@ -148,22 +147,23 @@ function addListeners() {
         }, false);
     }
     var closers = document.querySelectorAll(".remove");
-        for (var i = 0; i < closers.length; i++) {
+    for (var i = 0; i < closers.length; i++) {
         closers[i].addEventListener('click', function (event) {
             removeRow(this.parentElement.id);
         }, false);
     }
 
 }
-function removeRow(id){
-    if( confirm("Are you sure you want to remove this row? Click \"OK\" to continue.") == true){
-    var row = parseInt(id.split("row")[1]);
-    //replace that row with blank values
-    file[row] = getBlank();
-    file[row].toDelete = true;
-    console.log(file[row]);
-    var toRemove = document.querySelector("#" + id);
-    toRemove.parentElement.removeChild(toRemove);
+
+function removeRow(id) {
+    if (confirm("Are you sure you want to remove this row? Click \"OK\" to continue.") == true) {
+        var row = parseInt(id.split("row")[1]);
+        //replace that row with blank values
+        file[row] = getBlank();
+        file[row].toDelete = true;
+        console.log(file[row]);
+        var toRemove = document.querySelector("#" + id);
+        toRemove.parentElement.removeChild(toRemove);
     }
 }
 
@@ -186,8 +186,8 @@ function fixNewRow(id) {
             saveData(this);
         }, false);
     }
-        var closers = row.querySelectorAll(".remove");
-        for (var i = 0; i < closers.length; i++) {
+    var closers = row.querySelectorAll(".remove");
+    for (var i = 0; i < closers.length; i++) {
         closers[i].addEventListener('click', function (event) {
             removeRow(this.parentElement.id);
         }, false);
@@ -239,17 +239,15 @@ function getFile() {
 }
 
 function saveData(element) {
-
-
     // Get which row of the CSV to change
     var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
-//    console.log(row);
+    //    console.log(row);
     var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
-//        console.log("this is a new row, the last row is:", file[row - 1]);
+        //        console.log("this is a new row, the last row is:", file[row - 1]);
         file.push(getBlank());
-//        console.log(file[row]);
+        //        console.log(file[row]);
     }
 
     //            console.log(row, columnName);
@@ -268,17 +266,14 @@ function saveData(element) {
     }
 
     //            console.log(file[row][columnName]);
-    document.querySelector("#savemsg").classList.remove("run-animation");
-    void document.querySelector("#savemsg").offsetWidth;
-    document.querySelector("#savemsg").classList.add("run-animation");
-
-//     document.querySelector("#savemsg").classList.remove("run-animation");
 }
 
 
 function downloadit() {
     // filter out the rows that you have deleted.
-    file = file.filter(function(row){return typeof row.toDelete === 'undefined';});
+    file = file.filter(function (row) {
+        return typeof row.toDelete === 'undefined';
+    });
 
     console.log(file);
     var exported = d3.csvFormat(file);
