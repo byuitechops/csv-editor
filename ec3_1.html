@@ -19,6 +19,33 @@
 </head>
 
 <body>
+    <script id="templatequestion" type="text/x-handlebars-template">
+                {{#each this}}
+            <div class="question" id="question{{@index}}">
+                <div class="left-half">
+                    <h3>question text</h3>
+                    <textarea class="editor">{{questiontext}}</textarea>
+                </div>
+                <div class="right-half">
+                    <div class="left-half">
+                        <h3>answertext1</h3>
+                        <textarea class="answer" rows="3">{{answertext1}}</textarea>
+                        <h3>answertext3</h3>
+                        <textarea class="answer" rows="3">{{answertext3}}</textarea>
+                    </div>
+                    <div class="right-half">
+                        <h3>answertext2</h3>
+                        <textarea class="answer" rows="3">{{answertext2}}</textarea>
+
+                        <h3>answertext4</h3>
+                        <textarea class="answer" rows="3">{{answertext4}}</textarea>
+                    </div>
+                    <h3>function</h3>
+                    <input value="{{function}}" />
+                </div>
+            </div>
+            {{/each}}
+    </script>
     <script id="template" type="text/x-handlebars-template">
         {{#each this}}
         <div class="row" id="passage{{@index}}">
@@ -66,6 +93,10 @@
                 </div>
             </div>
             {{/each}}
+                <div class="new_row" onclick="add_question(passage{{@index}})">
+                <p class="plus">+</p>
+                <p>add another question</p>
+            </div>
         </div>
 {{/each}}
     </script>
@@ -82,9 +113,9 @@
     <div class="bottom">
         <h2>2. Edit CSV Here</h2>
         <div id="UI">
-            <div class="new_row" onclick="add_row()">
+            <div class="new_row" onclick="add_passage()">
                 <p class="plus">+</p>
-                <p>add another question</p>
+                <p>add another passage</p>
             </div>
         </div>
     </div>

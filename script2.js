@@ -1,13 +1,15 @@
 if (window.location.search.indexOf('?css=fun') === 0) {
     document.write('<link rel="stylesheet" href="./fun.css" />');
 } else {
-    document.write('<link rel="stylesheet" href="./default.css" />');
+    document.write('<link rel="stylesheet" href="./default2.css" />');
 }
 var file = [];
 var spaces;
 var file_name = "default.csv";
 var template = Handlebars.compile(document.querySelector('#template').innerHTML);
 document.querySelector('input').addEventListener('change', getFile);
+var templatequestion =  Handlebars.compile(document.querySelector('#templatequestion').innerHTML);
+
 
 //        function addAce(ele) {
 //            console.log(ele);
@@ -38,7 +40,19 @@ function getBlank() {
         }],
     }
 }
-
+function getBlankQuestion(){
+    return {
+            questionnum: "",
+            questiontext: "",
+            answertext1: "",
+            answertext2: "",
+            answertext3: "",
+            answertext4: "",
+            answertext5: "",
+            answertext6: "",
+            function: ""
+        }
+}
 
 function addAceEditor(stringIn, index) {
     return '<div class="editor" id="editor' + (index + 1) + '" ><textarea>' + stringIn + '</textarea></div>';
@@ -105,7 +119,7 @@ function makeUI(data) {
 }
 
 // Finds out what the last row in the UI is and then adds another row to the end.
-function add_row() {
+function add_passage() {
     //            var new_row = document.createElement('div');
     var ui = document.querySelector("#UI");
     var divs = document.querySelectorAll('#UI > div');
@@ -116,8 +130,6 @@ function add_row() {
         index = parseInt(divs[divs.length - 2].id.split("passage")[1]);
         index++;
     }
-
-
     //TODO: function that g
     var new_rows = template([getBlank()]);
     var parser = new DOMParser();
@@ -127,6 +139,21 @@ function add_row() {
 
     ui.insertBefore(new_rows, divs[divs.length - 1]);
     fixNewRow(new_rows.id);
+}
+
+function add_question(passage){
+
+    console.log(passage.id);
+    var divs = passage.querySelectorAll('.question');
+    console.log(divs, divs.length);
+    var cur_index = divs.length - 1;
+    var next_index = divs.length;
+    var new_row = templatequestion([getBlankQuestion()]);
+    var parser = new DOMParser();
+    new_row = parser.parseFromString(new_row, "text/html").querySelector("#question0");
+    new_row.id = "question" + next_index;
+    $(new_row).insertAfter(divs[cur_index]);
+    fixNewRow(new_row.id);
 }
 
 function addListeners() {
