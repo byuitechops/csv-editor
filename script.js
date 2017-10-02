@@ -50,17 +50,18 @@ function addTinyMCE() {
         menubar: false,
         plugins: [
                     'advlist autolink lists link image charmap print preview anchor textcolor',
-                    'searchreplace visualblocks code fullscreen',
+                    'searchreplace visualblocks code fullscreen wordcount',
                     'insertdatetime media table contextmenu paste table hr code help'
                 ],
         toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code | table | hr | help',
         convert_urls: false,
+        content_css : "./tinymcestyle.css",
         init_instance_callback: function (editor) {
             function saveit(){
                                 //console.log(editor.getContent(), this.id);
                 var textarea = document.querySelector("#" + this.id)
                 textarea.dataset.editortext = (editor.getContent({
-                    format: 'raw'
+                    format: 'html'
                 }));
                 saveData(textarea);
                 //console.log(textarea.dataset.editortext);
