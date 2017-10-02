@@ -1,3 +1,5 @@
+//I'm adding this line so I can commit
+
 if (window.location.search.indexOf('?css=fun') === 0) {
     document.write('<link rel="stylesheet" href="./fun.css" />');
 } else {
