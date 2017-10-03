@@ -10,50 +10,82 @@ var spaces;
 var file_name = "default.csv";
 var template = Handlebars.compile(document.querySelector('#template').innerHTML);
 document.querySelector('input').addEventListener('change', getFile);
-var templatequestion =  Handlebars.compile(document.querySelector('#templatequestion').innerHTML);
+var templatequestion = Handlebars.compile(document.querySelector('#templatequestion').innerHTML);
 
 
-//        function addAce(ele) {
-//            console.log(ele);
-//            var editor = ace.edit(ele);
-//            editor.setTheme("ace/theme/iplastic");
-//            editor.getSession().setMode("ace/mode/html");
-//        }
+
+
+//function getBlank() {
+//    return {
+//        skill: "",
+//        level: "",
+//        questionname: "",
+//        function: "",
+//        topic: "",
+//        difficultylevel: "",
+//        passagetext: "",
+//        questions: [getblankQuestion()],
+//    }
+//}
+
+function getBlankQuestion() {
+    return {
+        questionnum: "",
+        questionname: "",
+        questionfunction: "",
+        questiontext: "",
+        questiontype: "",
+        answertext1: "",
+        answertext2: "",
+        answertext3: "",
+        answertext4: "",
+        answertext5: "",
+        answertext6: "",
+        questiontexteditorcomments: "",
+        questionaudio: "",
+        questionimagedescription: "",
+        questionrubric: "",
+        answer1feedback: "",
+        answer1audio: "",
+        answer1imagedescription: "",
+        answer2feedback: "",
+        answer2audio: "",
+        answer2imagedescription: "",
+        answer3feedback: "",
+        answer3audio: "",
+        answer3imagedescription: "",
+        answer4feedback: "",
+        answer4audio: "",
+        answer4imagedescription: "",
+        answer5feedback: "",
+        answer5audio: "",
+        answer5imagedescription: "",
+        answer6feedback: "",
+        answer6audio: "",
+        answer6imagedescription: "",
+        answereditorcomments: "",
+        Clausespersentence: "",
+        wordcount: ""
+    }
+}
 
 function getBlank() {
     return {
         skill: "",
         level: "",
-        questionname: "",
+        passagenum: "",
         function: "",
         topic: "",
         difficultylevel: "",
         passagetext: "",
-        questions: [{
-            questionnum: "",
-            questiontext: "",
-            answertext1: "",
-            answertext2: "",
-            answertext3: "",
-            answertext4: "",
-            answertext5: "",
-            answertext6: "",
-            function: ""
-        }],
+        passagetexteditorcomments: "",
+        passageaudio: "",
+        passageimagedescription: "",
+        references: "",
+        ERCentralLevel: "",
+        ECCentralScore: "",
+        questions: [getBlankQuestion()]
     }
-}
-function getBlankQuestion(){
-    return {
-            questionnum: "",
-            questiontext: "",
-            answertext1: "",
-            answertext2: "",
-            answertext3: "",
-            answertext4: "",
-            answertext5: "",
-            answertext6: "",
-            function: ""
-        }
 }
 
 function addAceEditor(stringIn, index) {
@@ -91,32 +123,152 @@ function addTinyMCE() {
 
 function makeUI(data) {
     file = data;
-    document.querySelector('#UI').innerHTML = template(data);
+    var reordered_data = [];
+    var unique_passages = [new Set(file.map(item => item.passagenum))];
+    console.log(unique_passages);
+    for (var i = 0; i < file.length; i++) {
 
-    //add ace
-    //Array.from(document.querySelectorAll('textarea')).forEach(addAce)
-    function addAce() {
+        if (!reordered_data.some(function (item) {
+                return item.passagenum === file[i].passagenum
+            })) {
+            reordered_data.push({
+                skill: file[i].skill,
+                level: file[i].level,
+                passagenum: file[i].passagenum,
+                function: file[i].function,
+                topic: file[i].topic,
+                difficultylevel: file[i].difficultylevel,
+                passagetext: file[i].passagetext,
+                passagetexteditorcomments: file[i].passagetexteditorcomments,
+                passageaudio: file[i].passageaudio,
+                passageimagedescription: file[i].passageimagedescription,
+                references: file[i].references,
+                ERCentralLevel: file[i].ERCentralLevel,
+                ECCentralScore: file[i].ECCentralScore,
+                questions: [{
+                    questionnum: file[i].questionnum,
+                    questionname: file[i].questionname,
+                    questionfunction: file[i].questionfunction,
+                    questiontext: file[i].questiontext,
+                    questiontype: file[i].questiontype,
+                    answertext1: file[i].answertext1,
+                    answertext2: file[i].answertext2,
+                    answertext3: file[i].answertext3,
+                    answertext4: file[i].answertext4,
+                    answertext5: file[i].answertext5,
+                    answertext6: file[i].answertext6,
+                    questiontexteditorcomments: file[i].questiontexteditorcomments,
+                    questionaudio: file[i].questionaudio,
+                    questionimagedescription: file[i].questionimagedescription,
+                    questionrubric: file[i].questionrubric,
+                    answer1feedback: file[i].answer1feedback,
+                    answer1audio: file[i].answer1audio,
+                    answer1imagedescription: file[i].answer1imagedescription,
 
-        var needsAce = document.getElementsByTagName("textarea");
+                    answer2feedback: file[i].answer2feedback,
+                    answer2audio: file[i].answer2audio,
+                    answer2imagedescription: file[i].answer2imagedescription,
 
-        for (var i = 0; i < needsAce.length; i++) {
-            needsAce[i].outerHTML = addAceEditor(needsAce[i].innerHTML, i);
+                    answer3feedback: file[i].answer3feedback,
+                    answer3audio: file[i].answer3audio,
+                    answer3imagedescription: file[i].answer3imagedescription,
+
+                    answer4feedback: file[i].answer4feedback,
+                    answer4audio: file[i].answer4audio,
+                    answer4imagedescription: file[i].answer4imagedescription,
+
+                    answer5feedback: file[i].answer5feedback,
+                    answer5audio: file[i].answer5audio,
+                    answer5imagedescription: file[i].answer5imagedescription,
+
+                    answer6feedback: file[i].answer6feedback,
+                    answer6audio: file[i].answer6audio,
+                    answer6imagedescription: file[i].answer6imagedescription,
+                    answereditorcomments: file[i].answereditorcomments,
+                    Clausespersentence: file[i].Clausespersentence,
+                    wordcount: file[i].wordcount
+                    }]
+            })
+        } else {
+            for (var j = 0; j < reordered_data.length; j++) {
+                if (reordered_data[j].passagenum === file[i].passagenum) {
+                    reordered_data[j].questions.push({
+                        questionnum: file[i].questionnum,
+                        questionname: file[i].questionname,
+                        questionfunction: file[i].questionfunction,
+                        questiontext: file[i].questiontext,
+                        questiontype: file[i].questiontype,
+                        answertext1: file[i].answertext1,
+                        answertext2: file[i].answertext2,
+                        answertext3: file[i].answertext3,
+                        answertext4: file[i].answertext4,
+                        answertext5: file[i].answertext5,
+                        answertext6: file[i].answertext6,
+                        questiontexteditorcomments: file[i].questiontexteditorcomments,
+                        questionaudio: file[i].questionaudio,
+                        questionimagedescription: file[i].questionimagedescription,
+                        questionrubric: file[i].questionrubric,
+                        answer1feedback: file[i].answer1feedback,
+                        answer1audio: file[i].answer1audio,
+                        answer1imagedescription: file[i].answer1imagedescription,
+
+                        answer2feedback: file[i].answer2feedback,
+                        answer2audio: file[i].answer2audio,
+                        answer2imagedescription: file[i].answer2imagedescription,
+
+                        answer3feedback: file[i].answer3feedback,
+                        answer3audio: file[i].answer3audio,
+                        answer3imagedescription: file[i].answer3imagedescription,
+
+                        answer4feedback: file[i].answer4feedback,
+                        answer4audio: file[i].answer4audio,
+                        answer4imagedescription: file[i].answer4imagedescription,
+
+                        answer5feedback: file[i].answer5feedback,
+                        answer5audio: file[i].answer5audio,
+                        answer5imagedescription: file[i].answer5imagedescription,
+
+                        answer6feedback: file[i].answer6feedback,
+                        answer6audio: file[i].answer6audio,
+                        answer6imagedescription: file[i].answer6imagedescription,
+                        answereditorcomments: file[i].answereditorcomments,
+                        Clausespersentence: file[i].Clausespersentence,
+                        wordcount: file[i].wordcount
+                    })
+                }
+            }
         }
-        renderAceEditor();
+
+    } /*END FOR*/
+
+    for (var i = 0; i < reordered_data.length; i++) {
+        if (reordered_data[i].passagenum === "") {
+            reordered_data[i].passagenum = "undeclared";
+        }
+        for (var j = 0; j < reordered_data[i].questions.length; j++) {
+            if (reordered_data[i].questions[j].questionnum === "") {
+                reordered_data[i].questions[j].questionnum = "undeclared";
+            }
+        }
     }
 
-    //addAce();
+    console.log(reordered_data);
+
+
+    //   document.querySelector('#UI').innerHTML = template(data);
+    document.querySelector('#UI').innerHTML = template(reordered_data);
+
     addTinyMCE();
 
     addListeners();
 
     var add_another = document.createElement('div');
     add_another.addEventListener('click', function (event) {
-        add_row();
+        add_passage();
     }, false);
 
     add_another.classList.add("new_row");
-    add_another.innerHTML = "<p class='plus'>+</p><p> add another question</p>";
+    add_another.innerHTML = "<p class='plus'>+</p><p> add another passage</p>";
     document.querySelector("#UI").appendChild(add_another);
 }
 
@@ -138,12 +290,14 @@ function add_passage() {
     new_rows = parser.parseFromString(new_rows, "text/html").querySelector("#passage0");
     //            console.log(new_rows);
     new_rows.id = "passage" + index;
-
+    new_rows.querySelectorAll(".new_row")[0].onclick = function () {
+        add_question(document.querySelector("#passage" + index));
+    }
     ui.insertBefore(new_rows, divs[divs.length - 1]);
     fixNewRow(new_rows.id);
 }
 
-function add_question(passage){
+function add_question(passage) {
 
     console.log(passage.id);
     var divs = passage.querySelectorAll('.question');
@@ -224,25 +378,6 @@ function fixNewRow(id) {
 }
 
 
-function renderAceEditor() {
-    $('.editor').each(function (index, element) {
-        // Make the document object to count the lines
-
-
-        var editor = ace.edit(element);
-
-        editor.setTheme("ace/theme/chrome");
-
-        editor.setAutoScrollEditorIntoView(true);
-        editor.setOptions({
-            fontFamily: "monospace",
-            fontSize: "16px",
-            // Only display 30 lines, if result is longer than 30 lines
-            minLines: 10
-        })
-        editor.getSession().setMode("ace/mode/html");
-    });
-}
 
 
 function getFile() {
