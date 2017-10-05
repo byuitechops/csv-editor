@@ -14,7 +14,9 @@ document.querySelector('input').addEventListener('change', getFile);
 var templatequestion = Handlebars.compile(document.querySelector('#templatequestion').innerHTML);
 
 function getBlankQuestion() {
+    var tempuuid =  uuidv5("EC_POC", uuidv4())
     return {
+        uuid: tempuuid,
         questionnum: "",
         questionname: "",
         questionfunction: "",
@@ -56,6 +58,7 @@ function getBlankQuestion() {
 
 function getBlank() {
     return {
+
         passagenum: "",
         skill: "",
         level: "",
@@ -110,7 +113,12 @@ function makeUI(data) {
     var unique_passages = [new Set(file.map(item => item.passagenum))];
     console.log(unique_passages);
     for (var i = 0; i < file.length; i++) {
+        if(!file[i].uuid){
+            file[i].uuid = uuidv5("EC_POC", uuidv4());
+        }
+
         var questionformat = {
+            uuid: file[i].uuid,
             questionnum: file[i].questionnum,
             questionname: file[i].questionname,
             questionfunction: file[i].questionfunction,
@@ -152,6 +160,7 @@ function makeUI(data) {
                 return item.passagenum === file[i].passagenum
             })) {
             reordered_data.push({
+
                 skill: file[i].skill,
                 level: file[i].level,
                 passagenum: file[i].passagenum,
@@ -185,10 +194,13 @@ function makeUI(data) {
             reordered_data[i].passagenum = i + 1;
         }
         for (var j = 0; j < reordered_data[i].questions.length; j++) {
+            console.log(reordered_data[i].questions[j].uuid);
+
             if (reordered_data[i].questions[j].questionnum === "") {
                 reordered_data[i].questions[j].questionnum = 9000 + j;
             }
         }
+
     }
 
     console.log(reordered_data);
@@ -343,9 +355,22 @@ function getFile() {
 
 function saveData(element) {
     //Get which row of the CSV to change
-    var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
+    var passage_id =  $(element).closest('.row')[0].id;
+    var question_to_edit;
+    if ($(element).closest('h2')[0].innerHTML.includes('PASSAGE')){
+        console.log('passage edited');
+    }
+    else{
+        console.log('question edited');
+        question_to_edit =  $(element).closest('h2')[0].dataset.uuid;
+    }
+
+
+    var uuid = $(element).closest('.row')[0].querySelectorAll('h2')[1].dataset.uuid;
+
+    console.log(row, question_to_edit ,uuid);
     //console.log(row);
-    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+/*    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
     //Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
         //console.log("this is a new row, the last row is:", file[row - 1]);
@@ -368,6 +393,7 @@ function saveData(element) {
         // console.log(file[row][columnName])
     }
     //console.log(file[row][columnName]);
+*/
 }
 
 
