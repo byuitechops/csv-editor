@@ -115,6 +115,7 @@ function makeUI(data) {
     for (var i = 0; i < file.length; i++) {
         if(!file[i].uuid){
             file[i].uuid = uuidv5("EC_POC", uuidv4());
+            console.log(file[i]);
         }
 
         var questionformat = {
@@ -365,12 +366,12 @@ function saveData(element) {
     passage = $(element).closest('.row')[0];
     if (!only_passage){
         //UPDATES ONE QUESTION
-        console.log("Updating question with UUID:",question);
 
+        update_row(question);
     }
     else{
         //UPDATE ALL THE QUESTIONS!
-        console.log("Updating the following questions:");
+
         var temp = passage.querySelectorAll('h2');
         var questions = [];
         for (var i = 0; i < temp.length; i ++){
@@ -378,8 +379,12 @@ function saveData(element) {
                 questions.push(temp[i].dataset.uuid);
             }
         }
-        console.log(questions);
-
+        for (var i = 0; i <questions.length; i++){
+            update_row(questions[i]);
+        }
+    }
+    function update_row(uuid){
+        console.log("updating:",uuid);
     }
 
 
