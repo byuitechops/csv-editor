@@ -355,20 +355,35 @@ function getFile() {
 
 function saveData(element) {
     //Get which row of the CSV to change
-    var passage_id =  $(element).closest('.row')[0].id;
-    var question_to_edit;
-    if ($(element).closest('h2')[0].innerHTML.includes('PASSAGE')){
-        console.log('passage edited');
+    var only_passage = false, question, passage;
+    if ($(element).closest('.question')[0] == undefined){
+        only_passage = true;
     }
     else{
-        console.log('question edited');
-        question_to_edit =  $(element).closest('h2')[0].dataset.uuid;
+        question = $($(element).closest('.question')[0]).prevAll('h2')[0].dataset.uuid;
+    }
+    passage = $(element).closest('.row')[0];
+    if (!only_passage){
+        //UPDATES ONE QUESTION
+        console.log("Updating question with UUID:",question);
+
+    }
+    else{
+        //UPDATE ALL THE QUESTIONS!
+        console.log("Updating the following questions:");
+        var temp = passage.querySelectorAll('h2');
+        var questions = [];
+        for (var i = 0; i < temp.length; i ++){
+            if (temp[i].dataset.uuid){
+                questions.push(temp[i].dataset.uuid);
+            }
+        }
+        console.log(questions);
+
     }
 
 
-    var uuid = $(element).closest('.row')[0].querySelectorAll('h2')[1].dataset.uuid;
-
-    console.log(row, question_to_edit ,uuid);
+//    var uuid = $(element).closest('.row')[0].querySelectorAll('h2')[1].dataset.uuid;
     //console.log(row);
 /*    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
     //Adds a new row to the file data if it doesn't exist yet.
