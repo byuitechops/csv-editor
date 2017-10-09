@@ -14,7 +14,7 @@ document.querySelector('input').addEventListener('change', getFile);
 var templatequestion = Handlebars.compile(document.querySelector('#templatequestion').innerHTML);
 
 function getBlankQuestion() {
-    var tempuuid =  uuidv5("EC_POC", uuidv4())
+    var tempuuid = uuidv5("EC_POC", uuidv4())
     return {
         uuid: tempuuid,
         questionnum: "",
@@ -113,7 +113,7 @@ function makeUI(data) {
     var unique_passages = [new Set(file.map(item => item.passagenum))];
     console.log(unique_passages);
     for (var i = 0; i < file.length; i++) {
-        if(!file[i].uuid){
+        if (!file[i].uuid) {
             file[i].uuid = uuidv5("EC_POC", uuidv4());
             console.log(file[i]);
         }
@@ -224,6 +224,131 @@ function makeUI(data) {
     document.querySelector("#UI").appendChild(add_another);
 }
 
+// Flattens a passage
+function flatten(passage) {
+    var rows_to_push = []
+    for (var i = 0; i < passage.questions.length; i++) {
+        rows_to_push.push({
+            skill: passage.skill,
+            level: passage.level,
+            passagenum: passage.passagenum,
+            function: passage.function,
+            topic: passage.topic,
+            difficultylevel: passage.difficultylevel,
+            passagetext: passage.passagetext,
+            passagetexteditorcomments: passage.passagetexteditorcomments,
+            passageaudio: passage.passageaudio,
+            passageimagedescription: passage.passageimagedescription,
+            references: passage.references,
+            ERCentralLevel: passage.ERCentralLevel,
+            ECCentralScore: passage.ECCentralScore,
+            uuid: passage.questions[i].uuid,
+            questionnum: passage.questions[i].questionnum,
+            questionname: passage.questions[i].questionname,
+            questionfunction: passage.questions[i].questionfunction,
+            questiontext: passage.questions[i].questiontext,
+            questiontype: passage.questions[i].questiontype,
+            answertext1: passage.questions[i].answertext1,
+            answertext2: passage.questions[i].answertext2,
+            answertext3: passage.questions[i].answertext3,
+            answertext4: passage.questions[i].answertext4,
+            answertext5: passage.questions[i].answertext5,
+            answertext6: passage.questions[i].answertext6,
+            questiontexteditorcomments: passage.questions[i].questiontexteditorcomments,
+            questionaudio: passage.questions[i].questionaudio,
+            questionimagedescription: passage.questions[i].questionimagedescription,
+            questionrubric: passage.questions[i].questionrubric,
+            answer1feedback: passage.questions[i].answer1feedback,
+            answer1audio: passage.questions[i].answer1audio,
+            answer1imagedescription: passage.questions[i].answer1imagedescription,
+            answer2feedback: passage.questions[i].answer2feedback,
+            answer2audio: passage.questions[i].answer2audio,
+            answer2imagedescription: passage.questions[i].answer2imagedescription,
+            answer3feedback: passage.questions[i].answer3feedback,
+            answer3audio: passage.questions[i].answer3audio,
+            answer3imagedescription: passage.questions[i].answer3imagedescription,
+            answer4feedback: passage.questions[i].answer4feedback,
+            answer4audio: passage.questions[i].answer4audio,
+            answer4imagedescription: passage.questions[i].answer4imagedescription,
+            answer5feedback: passage.questions[i].answer5feedback,
+            answer5audio: passage.questions[i].answer5audio,
+            answer5imagedescription: passage.questions[i].answer5imagedescription,
+            answer6feedback: passage.questions[i].answer6feedback,
+            answer6audio: passage.questions[i].answer6audio,
+            answer6imagedescription: passage.questions[i].answer6imagedescription,
+            answereditorcomments: passage.questions[i].answereditorcomments,
+            Clausespersentence: passage.questions[i].Clausespersentence,
+            wordcount: passage.questions[i].wordcount
+        })
+    }
+    return rows_to_push;
+
+}
+
+function add_row_to_file(p_id, row_data){
+    var p_num = p_id.split("passage")[1];
+    var passage_hit;
+    for (var i = 0; i < file.length; i++){
+        if (file[i].passagenum == p_num){
+            console.log(file[i]);
+            passage_hit = file[i];
+            i = file.length;
+        }
+    }
+    file.push({
+            skill: passage_hit.skill,
+            level: passage_hit.level,
+            passagenum: passage_hit.passagenum,
+            function: passage_hit.function,
+            topic: passage_hit.topic,
+            difficultylevel: passage_hit.difficultylevel,
+            passagetext: passage_hit.passagetext,
+            passagetexteditorcomments: passage_hit.passagetexteditorcomments,
+            passageaudio: passage_hit.passageaudio,
+            passageimagedescription: passage_hit.passageimagedescription,
+            references: passage_hit.references,
+            ERCentralLevel: passage_hit.ERCentralLevel,
+            ECCentralScore: passage_hit.ECCentralScore,
+            uuid: row_data.uuid,
+            questionnum: row_data.questionnum,
+            questionname: row_data.questionname,
+            questionfunction: row_data.questionfunction,
+            questiontext: row_data.questiontext,
+            questiontype: row_data.questiontype,
+            answertext1: row_data.answertext1,
+            answertext2: row_data.answertext2,
+            answertext3: row_data.answertext3,
+            answertext4: row_data.answertext4,
+            answertext5: row_data.answertext5,
+            answertext6: row_data.answertext6,
+            questiontexteditorcomments: row_data.questiontexteditorcomments,
+            questionaudio: row_data.questionaudio,
+            questionimagedescription: row_data.questionimagedescription,
+            questionrubric: row_data.questionrubric,
+            answer1feedback: row_data.answer1feedback,
+            answer1audio: row_data.answer1audio,
+            answer1imagedescription: row_data.answer1imagedescription,
+            answer2feedback: row_data.answer2feedback,
+            answer2audio: row_data.answer2audio,
+            answer2imagedescription: row_data.answer2imagedescription,
+            answer3feedback: row_data.answer3feedback,
+            answer3audio: row_data.answer3audio,
+            answer3imagedescription: row_data.answer3imagedescription,
+            answer4feedback: row_data.answer4feedback,
+            answer4audio: row_data.answer4audio,
+            answer4imagedescription: row_data.answer4imagedescription,
+            answer5feedback: row_data.answer5feedback,
+            answer5audio: row_data.answer5audio,
+            answer5imagedescription: row_data.answer5imagedescription,
+            answer6feedback: row_data.answer6feedback,
+            answer6audio: row_data.answer6audio,
+            answer6imagedescription: row_data.answer6imagedescription,
+            answereditorcomments: row_data.answereditorcomments,
+            Clausespersentence: row_data.Clausespersentence,
+            wordcount: row_data.wordcount
+    })
+
+}
 // Finds out what the last row in the UI is and then adds another row to the end.
 function add_passage() {
     //var new_row = document.createElement('div');
@@ -237,8 +362,12 @@ function add_passage() {
         index++;
     }
     //TODO: function that g
-    var new_rows = template([getBlank()]);
+    var new_row_data = getBlank()
+    var new_rows = template([new_row_data]);
     var parser = new DOMParser();
+
+
+    //    console.log(file);
     new_rows = parser.parseFromString(new_rows, "text/html").querySelector("#passage0");
     //            console.log(new_rows);
     new_rows.id = "passage" + index;
@@ -248,17 +377,31 @@ function add_passage() {
         // Sets the passage number and question 0 of newly added passages.
     new_rows.querySelector('h2').innerHTML = "PASSAGE #" + index;
     new_rows.querySelectorAll('h2')[1].innerHTML = "QUESTION #1";
+
+    //        ADDS THE NEW PASSAGE TO THE MODEL DATA
+    new_row_data.passagenum = index;
+    var flat = flatten(new_row_data);
+    for (var i = 0; i < flat.length; i++) {
+        file.push(flat[i]);
+        //console.log(file);
+    }
+
     ui.insertBefore(new_rows, divs[divs.length - 1]);
     fixNewRow(new_rows.id);
 }
 
 function add_question(passage) {
-    console.log(passage.id);
+
+//    console.log(passage.id);
+
     var divs = passage.querySelectorAll('.question');
     console.log(divs, divs.length);
     var cur_index = divs.length - 1;
     var next_index = divs.length;
-    var new_row = templatequestion([getBlankQuestion()]);
+    var new_row_data = getBlankQuestion()
+    var new_row = templatequestion([new_row_data]);
+    add_row_to_file(passage.id, new_row_data);
+
     var parser = new DOMParser();
     new_row = parser.parseFromString(new_row, "text/html").querySelector("#question0");
     new_row.id = "question" + next_index;
@@ -356,64 +499,70 @@ function getFile() {
 
 function saveData(element) {
     //Get which row of the CSV to change
-    var only_passage = false, question, passage;
-    if ($(element).closest('.question')[0] == undefined){
+    var only_passage = false,
+        question, passage;
+    if ($(element).closest('.question')[0] == undefined) {
         only_passage = true;
-    }
-    else{
-        question = $($(element).closest('.question')[0]).prevAll('h2')[0].dataset.uuid;
+    } else {
+        var question_html = $(element).closest('.question')[0];
+        question = question_html.querySelectorAll('h2')[0].dataset.uuid;
     }
     passage = $(element).closest('.row')[0];
-    if (!only_passage){
+    if (!only_passage) {
         //UPDATES ONE QUESTION
-
         update_row(question);
-    }
-    else{
+    } else {
         //UPDATE ALL THE QUESTIONS!
 
         var temp = passage.querySelectorAll('h2');
         var questions = [];
-        for (var i = 0; i < temp.length; i ++){
-            if (temp[i].dataset.uuid){
+        for (var i = 0; i < temp.length; i++) {
+            if (temp[i].dataset.uuid) {
                 questions.push(temp[i].dataset.uuid);
             }
         }
-        for (var i = 0; i <questions.length; i++){
+        for (var i = 0; i < questions.length; i++) {
             update_row(questions[i]);
         }
     }
-    function update_row(uuid){
-        console.log("updating:",uuid);
+
+
+    function update_row(question) {
+        for (var i = 0; i < file.length; i++) {
+
+            if (file[i].uuid == question) {
+                console.log(file[i]);
+            }
+        }
     }
 
 
-//    var uuid = $(element).closest('.row')[0].querySelectorAll('h2')[1].dataset.uuid;
+    //    var uuid = $(element).closest('.row')[0].querySelectorAll('h2')[1].dataset.uuid;
     //console.log(row);
-/*    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
-    //Adds a new row to the file data if it doesn't exist yet.
-    if (!file[row]) {
-        //console.log("this is a new row, the last row is:", file[row - 1]);
-        file.push(getBlank());
-        //console.log(file[row]);
-    }
+    /*    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+        //Adds a new row to the file data if it doesn't exist yet.
+        if (!file[row]) {
+            //console.log("this is a new row, the last row is:", file[row - 1]);
+            file.push(getBlank());
+            //console.log(file[row]);
+        }
 
-    //console.log(row, columnName);
-    //console.log(file[row][columnName]);
-    if (element.classList.contains("editor")) {
-        // DO IT TWICE, BECAUSE MCE
-        var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(' ', '');
-        //console.log(element.dataset.editortext);
+        //console.log(row, columnName);
         //console.log(file[row][columnName]);
-        file[row][columnName] = element.dataset.editortext;
+        if (element.classList.contains("editor")) {
+            // DO IT TWICE, BECAUSE MCE
+            var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(' ', '');
+            //console.log(element.dataset.editortext);
+            //console.log(file[row][columnName]);
+            file[row][columnName] = element.dataset.editortext;
+            //console.log(file[row][columnName]);
+        } else {
+            var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+            file[row][columnName] = element.value;
+            // console.log(file[row][columnName])
+        }
         //console.log(file[row][columnName]);
-    } else {
-        var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
-        file[row][columnName] = element.value;
-        // console.log(file[row][columnName])
-    }
-    //console.log(file[row][columnName]);
-*/
+    */
 }
 
 
@@ -428,7 +577,7 @@ function downloadit() {
     var validity = validate();
     if (!validity.valid) {
         var issuesmsg = "This quiz has the following issues:\n";
-        for (var i = 0;i < validity.issues.length; i++){
+        for (var i = 0; i < validity.issues.length; i++) {
             issuesmsg += "\n [" + validity.issues[i].location + ": " + validity.issues[i].issue + "]";
         }
         issuesmsg += "\n\n Click \"OK\" to download anyway."
@@ -448,11 +597,17 @@ returned and presented to the user for review
 before choosing to correct the errors or continue
 to download.
 *************************************************/
-function validate(){
-    var validity = {valid: true, issues: []};
+function validate() {
+    var validity = {
+        valid: true,
+        issues: []
+    };
     //simplify adding issues to validity
-    function add_issue(l, i){
-        validity.issues.push({location: l, issue: i})
+    function add_issue(l, i) {
+        validity.issues.push({
+            location: l,
+            issue: i
+        })
     }
     //Test issue
     //add_issue("passage1", "numbering");
@@ -460,7 +615,7 @@ function validate(){
 
 
 
-    if (validity.issues.length > 0){
+    if (validity.issues.length > 0) {
         validity.valid = false;
     }
     return validity;

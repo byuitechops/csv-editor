@@ -134,9 +134,9 @@
 
 
             {{#each this.questions}}
+            <div class="question" id="question{{@index}}">
             <h2 data-uuid={{uuid}}>QUESTION #{{questionnum}}</h2>
             <P>UUID: {{uuid}}</P>
-            <div class="question" id="question{{@index}}">
                 <div class="left-half">
                     <h3>question text</h3>
                     <textarea class="editor">{{questiontext}}</textarea>
@@ -198,7 +198,7 @@
                     </div>
 
                 </div>
-            </div>
+        </div>
             {{/each}}
                 <div class="new_row" onclick="add_question(passage{{@index}})">
                 <p class="plus">+</p>
