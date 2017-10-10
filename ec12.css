@@ -5,6 +5,7 @@ body {
 input {
     width: 100%;
 }
+hr{border:2px solid black;}
 h3 {
     margin-top: 0;
     padding: 10px;
@@ -90,3 +91,16 @@ h3 {
 .remove:hover{ transition:0.5s ease-in-out; background-color:darkred;color:white}
 
 .remove{position:absolute; box-sizing:border-box; cursor:pointer;height:32px; width:32px;font-weight:bold; right:5px; top:5px; text-align:Center; font-family:monospace;border-radius:9999em; font-size:20px; line-height:30px; background:white; transition:0.5s ease-in-out;}
+
+
+#savemsg{
+    position:fixed; right:30px; top:-30px; border-left:2px solid lightgreen; border-right:2px solid lightgreen;
+    transition:0.2s ease-in-out; padding:5px; background:cornsilk;max-height:20px; opacity:0;
+    z-index:9999;
+}
+
+.run-animation {
+  animation: showsave 1.5s 1;
+}
+
+@keyframes showsave {60%{top:0px;opacity:1;}100%{top:-30px; opacity:0}}

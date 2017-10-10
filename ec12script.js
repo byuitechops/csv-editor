@@ -18,58 +18,52 @@ document.querySelector('input').addEventListener('change', getFile)
 
 function getBlank() {
     return {
-        skill: "",
         level: "",
-        questionname: "",
-        function: "",
-        topic: "",
-        difficultylevel: "",
-        passagetext: "",
-        questiontext: "",
+        lesson: "",
+        section: "",
+        skill: "",
+
+        activitytype: "",
+        itemtype: "",
+        texttype: "",
+
         questiontype: "",
-        answertext1: "",
-        answertext2: "",
-        answertext3: "",
-        answertext4: "",
-        answertext5: "",
-        answertext6: "",
+        questionname: "",
+
+        passagetext: "",
         passagetexteditorcomments: "",
         passageaudio: "",
         passageimagedescription: "",
+
+        questiontext: "",
         questiontexteditorcomments: "",
         questionaudio: "",
         questionimagedescription: "",
         questionrubric: "",
+
+        answer1: "",
         answer1feedback: "",
         answer1audio: "",
         answer1imagedescription: "",
+        answer2: "",
         answer2feedback: "",
         answer2audio: "",
         answer2imagedescription: "",
+        answer3: "",
         answer3feedback: "",
         answer3audio: "",
         answer3imagedescription: "",
+        answer4: "",
         answer4feedback: "",
         answer4audio: "",
         answer4imagedescription: "",
-        answer5feedback: "",
-        answer5audio: "",
-        answer5imagedescription: "",
-        answer6feedback: "",
-        answer6audio: "",
-        answer6imagedescription: "",
         answereditorcomments: "",
-        references: "",
-        ERCentralLevel: "",
-        ECCentralScore: "",
-        Clausespersentence: "",
-        wordcount: ""
+        references: ""
+
     };
 }
 
-function addAceEditor(stringIn, index) {
-    return '<div class="editor" id="editor' + (index + 1) + '" ><textarea>' + stringIn + '</textarea></div>';
-}
+
 
 function addTinyMCE() {
 
@@ -80,22 +74,25 @@ function addTinyMCE() {
         menubar: false,
         plugins: [
                     'advlist autolink lists link image charmap print preview anchor textcolor',
-                    'searchreplace visualblocks code fullscreen',
+                    'searchreplace visualblocks code fullscreen wordcount',
                     'insertdatetime media table contextmenu paste table hr code help'
                 ],
         toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code | table | hr | help',
         convert_urls: false,
         init_instance_callback: function (editor) {
-            editor.on('KeyUp', function (e) {
-                //console.log(editor.getContent(), this.id);
+              function saveit(){
+                                //console.log(editor.getContent(), this.id);
                 var textarea = document.querySelector("#" + this.id)
                 textarea.dataset.editortext = (editor.getContent({
-                    format: 'raw'
+                    format: 'html'
                 }));
                 saveData(textarea);
                 //console.log(textarea.dataset.editortext);
-
-            });
+            }
+            editor.on('KeyUp', saveit);
+            editor.on('Change', saveit);
+            editor.on('PastePostProcess', saveit);
+            editor.on('ExecCommand', saveit);
         }
     });
 }
@@ -222,26 +219,6 @@ function fixNewRow(id) {
 }
 
 
-function renderAceEditor() {
-    $('.editor').each(function (index, element) {
-        // Make the document object to count the lines
-
-
-        var editor = ace.edit(element);
-
-        editor.setTheme("ace/theme/chrome");
-
-        editor.setAutoScrollEditorIntoView(true);
-        editor.setOptions({
-            fontFamily: "monospace",
-            fontSize: "16px",
-            // Only display 30 lines, if result is longer than 30 lines
-            minLines: 10
-        })
-        editor.getSession().setMode("ace/mode/html");
-    });
-}
-
 
 function getFile() {
     var file = this.files[0]
@@ -269,7 +246,7 @@ function saveData(element) {
     // Get which row of the CSV to change
     var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
     //    console.log(row);
-    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+    var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
         //        console.log("this is a new row, the last row is:", file[row - 1]);
@@ -281,16 +258,23 @@ function saveData(element) {
     //            console.log(file[row][columnName]);
     if (element.classList.contains("editor")) {
         // DO IT TWICE, BECAUSE MCE
-        var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(' ', '');
+        var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
         //console.log(element.dataset.editortext);
         //console.log(file[row][columnName]);
         file[row][columnName] = element.dataset.editortext;
         //console.log(file[row][columnName]);
     } else {
-        var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+        // Wow dude, lazy much? This replace needs to replace ALL of the sapces.
+        var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
+
         file[row][columnName] = element.value;
         // console.log(file[row][columnName])
     }
+
+
+    document.querySelector("#savemsg").classList.remove("run-animation");
+    void document.querySelector("#savemsg").offsetWidth;
+    document.querySelector("#savemsg").classList.add("run-animation");
 
     //            console.log(file[row][columnName]);
 }
