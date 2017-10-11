@@ -102,3 +102,8 @@ h3 {
     color: black;
     transition:0.2s ease-in-out;
 }
+
+.invalid::after{
+    content:"*";
+    color:red;
+}

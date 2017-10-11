@@ -529,20 +529,17 @@ function saveData(element) {
 
     function update_row(question) {
         for (var i = 0; i < file.length; i++) {
-
             if (file[i].uuid == question) {
                 console.log(file[i], element.value);
                 if (element.classList.contains("editor")) {
                     // DO IT TWICE, BECAUSE MCE
                     var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
-                    //console.log(element.dataset.editortext);
-                    //console.log(file[row][columnName]);
                     file[i][columnName] = element.dataset.editortext;
-                    console.log(file[i][columnName]);
+                    //console.log(file[i][columnName]);
                 } else {
                     var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
                     file[i][columnName] = element.value;
-                     console.log(file[i][columnName]);
+                    //console.log(file[i][columnName]);
                 }
             }
         }
@@ -595,9 +592,22 @@ function validate() {
     }
     //Test issue
     //add_issue("passage1", "numbering");
+    //Mark the header by adding the "invalid" class to the header
+    for (var i = 0; i < file.length; i++) {
+        if (file[i].passagetext.length > 4000) {
+            console.log(file[i].passagetext.length)
+            add_issue("passage" + file[i].passagenum, "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
+        }
+        if (file[i].questiontext.length > 4000) {
+            console.log(file[i].questiontext.length)
+            add_issue(file[i].uuid, "questiontext too long")
+        }
+    }
 
-
-
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
+    validity.issues = validity.issues.filter((thing, index, self) => self.findIndex((t) => {return t.location === thing.location && t.issue === thing.issue; }) === index);
 
     if (validity.issues.length > 0) {
         validity.valid = false;
