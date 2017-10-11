@@ -285,67 +285,67 @@ function flatten(passage) {
 
 }
 
-function add_row_to_file(p_id, row_data){
+function add_row_to_file(p_id, row_data) {
     var p_num = p_id.split("passage")[1];
     var passage_hit;
-    for (var i = 0; i < file.length; i++){
-        if (file[i].passagenum == p_num){
+    for (var i = 0; i < file.length; i++) {
+        if (file[i].passagenum == p_num) {
             console.log(file[i]);
             passage_hit = file[i];
             i = file.length;
         }
     }
     file.push({
-            skill: passage_hit.skill,
-            level: passage_hit.level,
-            passagenum: passage_hit.passagenum,
-            function: passage_hit.function,
-            topic: passage_hit.topic,
-            difficultylevel: passage_hit.difficultylevel,
-            passagetext: passage_hit.passagetext,
-            passagetexteditorcomments: passage_hit.passagetexteditorcomments,
-            passageaudio: passage_hit.passageaudio,
-            passageimagedescription: passage_hit.passageimagedescription,
-            references: passage_hit.references,
-            ERCentralLevel: passage_hit.ERCentralLevel,
-            ECCentralScore: passage_hit.ECCentralScore,
-            uuid: row_data.uuid,
-            questionnum: row_data.questionnum,
-            questionname: row_data.questionname,
-            questionfunction: row_data.questionfunction,
-            questiontext: row_data.questiontext,
-            questiontype: row_data.questiontype,
-            answertext1: row_data.answertext1,
-            answertext2: row_data.answertext2,
-            answertext3: row_data.answertext3,
-            answertext4: row_data.answertext4,
-            answertext5: row_data.answertext5,
-            answertext6: row_data.answertext6,
-            questiontexteditorcomments: row_data.questiontexteditorcomments,
-            questionaudio: row_data.questionaudio,
-            questionimagedescription: row_data.questionimagedescription,
-            questionrubric: row_data.questionrubric,
-            answer1feedback: row_data.answer1feedback,
-            answer1audio: row_data.answer1audio,
-            answer1imagedescription: row_data.answer1imagedescription,
-            answer2feedback: row_data.answer2feedback,
-            answer2audio: row_data.answer2audio,
-            answer2imagedescription: row_data.answer2imagedescription,
-            answer3feedback: row_data.answer3feedback,
-            answer3audio: row_data.answer3audio,
-            answer3imagedescription: row_data.answer3imagedescription,
-            answer4feedback: row_data.answer4feedback,
-            answer4audio: row_data.answer4audio,
-            answer4imagedescription: row_data.answer4imagedescription,
-            answer5feedback: row_data.answer5feedback,
-            answer5audio: row_data.answer5audio,
-            answer5imagedescription: row_data.answer5imagedescription,
-            answer6feedback: row_data.answer6feedback,
-            answer6audio: row_data.answer6audio,
-            answer6imagedescription: row_data.answer6imagedescription,
-            answereditorcomments: row_data.answereditorcomments,
-            Clausespersentence: row_data.Clausespersentence,
-            wordcount: row_data.wordcount
+        skill: passage_hit.skill,
+        level: passage_hit.level,
+        passagenum: passage_hit.passagenum,
+        function: passage_hit.function,
+        topic: passage_hit.topic,
+        difficultylevel: passage_hit.difficultylevel,
+        passagetext: passage_hit.passagetext,
+        passagetexteditorcomments: passage_hit.passagetexteditorcomments,
+        passageaudio: passage_hit.passageaudio,
+        passageimagedescription: passage_hit.passageimagedescription,
+        references: passage_hit.references,
+        ERCentralLevel: passage_hit.ERCentralLevel,
+        ECCentralScore: passage_hit.ECCentralScore,
+        uuid: row_data.uuid,
+        questionnum: row_data.questionnum,
+        questionname: row_data.questionname,
+        questionfunction: row_data.questionfunction,
+        questiontext: row_data.questiontext,
+        questiontype: row_data.questiontype,
+        answertext1: row_data.answertext1,
+        answertext2: row_data.answertext2,
+        answertext3: row_data.answertext3,
+        answertext4: row_data.answertext4,
+        answertext5: row_data.answertext5,
+        answertext6: row_data.answertext6,
+        questiontexteditorcomments: row_data.questiontexteditorcomments,
+        questionaudio: row_data.questionaudio,
+        questionimagedescription: row_data.questionimagedescription,
+        questionrubric: row_data.questionrubric,
+        answer1feedback: row_data.answer1feedback,
+        answer1audio: row_data.answer1audio,
+        answer1imagedescription: row_data.answer1imagedescription,
+        answer2feedback: row_data.answer2feedback,
+        answer2audio: row_data.answer2audio,
+        answer2imagedescription: row_data.answer2imagedescription,
+        answer3feedback: row_data.answer3feedback,
+        answer3audio: row_data.answer3audio,
+        answer3imagedescription: row_data.answer3imagedescription,
+        answer4feedback: row_data.answer4feedback,
+        answer4audio: row_data.answer4audio,
+        answer4imagedescription: row_data.answer4imagedescription,
+        answer5feedback: row_data.answer5feedback,
+        answer5audio: row_data.answer5audio,
+        answer5imagedescription: row_data.answer5imagedescription,
+        answer6feedback: row_data.answer6feedback,
+        answer6audio: row_data.answer6audio,
+        answer6imagedescription: row_data.answer6imagedescription,
+        answereditorcomments: row_data.answereditorcomments,
+        Clausespersentence: row_data.Clausespersentence,
+        wordcount: row_data.wordcount
     })
 
 }
@@ -392,7 +392,7 @@ function add_passage() {
 
 function add_question(passage) {
 
-//    console.log(passage.id);
+    //    console.log(passage.id);
 
     var divs = passage.querySelectorAll('.question');
     console.log(divs, divs.length);
@@ -531,38 +531,22 @@ function saveData(element) {
         for (var i = 0; i < file.length; i++) {
 
             if (file[i].uuid == question) {
-                console.log(file[i]);
+                console.log(file[i], element.value);
+                if (element.classList.contains("editor")) {
+                    // DO IT TWICE, BECAUSE MCE
+                    var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
+                    //console.log(element.dataset.editortext);
+                    //console.log(file[row][columnName]);
+                    file[i][columnName] = element.dataset.editortext;
+                    console.log(file[i][columnName]);
+                } else {
+                    var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
+                    file[i][columnName] = element.value;
+                     console.log(file[i][columnName]);
+                }
             }
         }
     }
-
-
-    //    var uuid = $(element).closest('.row')[0].querySelectorAll('h2')[1].dataset.uuid;
-    //console.log(row);
-    /*    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
-        //Adds a new row to the file data if it doesn't exist yet.
-        if (!file[row]) {
-            //console.log("this is a new row, the last row is:", file[row - 1]);
-            file.push(getBlank());
-            //console.log(file[row]);
-        }
-
-        //console.log(row, columnName);
-        //console.log(file[row][columnName]);
-        if (element.classList.contains("editor")) {
-            // DO IT TWICE, BECAUSE MCE
-            var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(' ', '');
-            //console.log(element.dataset.editortext);
-            //console.log(file[row][columnName]);
-            file[row][columnName] = element.dataset.editortext;
-            //console.log(file[row][columnName]);
-        } else {
-            var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
-            file[row][columnName] = element.value;
-            // console.log(file[row][columnName])
-        }
-        //console.log(file[row][columnName]);
-    */
 }
 
 
