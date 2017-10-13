@@ -530,7 +530,7 @@ function saveData(element) {
     function update_row(question) {
         for (var i = 0; i < file.length; i++) {
             if (file[i].uuid == question) {
-                console.log(file[i], element.value);
+              // console.log(file[i], element.value);
                 if (element.classList.contains("editor")) {
                     // DO IT TWICE, BECAUSE MCE
                     var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
@@ -544,6 +544,10 @@ function saveData(element) {
             }
         }
     }
+
+    document.querySelector("#savemsg").classList.remove("run-animation");
+    void document.querySelector("#savemsg").offsetWidth;
+    document.querySelector("#savemsg").classList.add("run-animation");
 }
 
 

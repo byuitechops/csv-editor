@@ -1,0 +1,48 @@
+skill,
+level,
+question name,
+function,
+topic,
+difficulty level,
+passage text,
+question text,
+question type,
+
+answertext1,answertext2,answertext3,answertext4,answertext5,answertext6,
+
+passage text editor comments,
+passage audio,
+passage image description,
+question text editor comments,
+question audio,
+question image description,
+question rubric,
+
+answer 1 feedback,answer 1 audio,answer 1 image description,
+answer 2 feedback,answer 2 audio,answer 2 image description,
+answer 3 feedback,answer 3 audio,answer 3 image description,
+answer 4 feedback,answer 4 audio,answer 4 image description,
+answer 5 feedback,answer 5 audio,answer 5 image description,
+answer 6 feedback,answer 6 audio,answer 6 image description,
+
+answer editor comments,
+references,
+ER Central Level,
+EC Central Score,
+Clauses per sentence,
+word count
+
+
+
+reading,1,,ask and answer,daily life,advanced,,,multiple choice,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+writing,2,,narrate,social communication,intermediate,,,true false,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+speaking ,3,,describe,education,,,,multi-answer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+listening,4,,negotiate,ethics and values,,,,matching,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,religion,,,,sort,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,family,,,,fill in the blank,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,goals and challenges,,,,drag and drop,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,humanities,,,,highlight,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,news and events,,,,hotspot.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,personal finance,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,recreation and travel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,work and professional communication,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

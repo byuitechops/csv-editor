@@ -140,6 +140,25 @@
                 <div class="left-half">
                     <h3>question text</h3>
                     <textarea class="editor">{{questiontext}}</textarea>
+                    <div class="left-half">
+                        <h3>question text editor comments</h3>
+                    <textarea>{{questiontexteditorcomments}}</textarea>
+                        <h3>question rubric</h3>
+                    <textarea>{{questionrubric}}</textarea>
+                        <h3>question type</h3>
+                    <input value="{{questiontype}}" />
+                        <h3>question audio</h3>
+                    <input value="{{questionaudio}}" />
+                         <h3>question image description</h3>
+                    <input value="{{questionimagedescription}}" />
+
+        </div><div class="right-half">
+         <h3>answer editor comments</h3>
+                    <textarea>{{answereditorcomments}}</textarea>
+                    <h3>word count</h3>
+                    <input value="{{wordcount}}"/>
+
+        </div>
                 </div>
                 <div class="right-half">
                     <div class="left-half">
@@ -207,6 +226,7 @@
         </div>
 {{/each}}
     </script>
+    <div id="savemsg">Changes Saved</div>
     <div class="top">
         <div class="half">
             <h2 >1. Upload a file here.</h2>
