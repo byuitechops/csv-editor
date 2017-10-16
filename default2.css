@@ -58,6 +58,7 @@ h3 {
     width:100%;
 }
 
+.question{position:relative;}
 .remove:hover{ transition:0.5s ease-in-out; background-color:darkred;color:white}
 
 .remove{position:absolute; box-sizing:border-box; cursor:pointer;height:32px; width:32px;font-weight:bold; right:5px; top:5px; text-align:Center; font-family:monospace;border-radius:9999em; font-size:20px; line-height:30px; background:white; transition:0.5s ease-in-out;}
@@ -65,7 +66,11 @@ h3 {
     overflow-y:auto;
     overflow-x:hidden;
     clear:both;
+     padding-bottom:15px;
+    border-bottom: 3px solid black;
 }
+
+
 
 .new_row {
     border-radius:15px;

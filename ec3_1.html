@@ -24,6 +24,7 @@
     <script id="templatequestion" type="text/x-handlebars-template">
                 {{#each this}}
 <div class="question" id="question{{@index}}">
+    <div class="remove">x</div>
     <h2  data-uuid={{uuid}}>QUESTION #{{questionnum}} </h2>
     <P>UUID: {{uuid}}</P>
                 <div class="left-half">
@@ -135,6 +136,7 @@
 
             {{#each this.questions}}
             <div class="question" id="question{{@index}}">
+                <div class="remove">x</div>
             <h2 data-uuid={{uuid}}>QUESTION #{{questionnum}}</h2>
             <P>UUID: {{uuid}}</P>
                 <div class="left-half">

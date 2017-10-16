@@ -439,14 +439,48 @@ function addListeners() {
 
 
 function removeRow(id) {
-    if (confirm("Are you sure you want to remove this row? Click \"OK\" to continue.") == true) {
-        var row = parseInt(id.split("row")[1]);
-        //replace that row with blank values
-        file[row] = getBlank();
-        file[row].toDelete = true;
-        console.log(file[row]);
-        var toRemove = document.querySelector("#" + id);
-        toRemove.parentElement.removeChild(toRemove);
+        ////////////////////////////////////////////////////////////////////
+        //////////// UNDER CONSTRUCTION ////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        var whole_passage = false,
+            question, passage;
+        if (id.includes("passage")) {
+            console.log("passage detected");
+            whole_passage = true;
+        } else {
+            var question_html = $(id).closest('.question')[0];
+            console.log(question_html);
+            question = question_html.querySelectorAll('h2')[0].dataset.uuid;
+        }
+        passage = $(id).closest('.row')[0];
+        if (!whole_passage) {
+            console.log("removing one question");
+
+        } else {
+            // REMOVE ALL PASSAGE QUESTIONS!
+            console.log("removing whole passage")
+            var temp = passage.querySelectorAll('h2');
+            var questions = [];
+            for (var i = 0; i < temp.length; i++) {
+                if (temp[i].dataset.uuid) {
+                    questions.push(temp[i].dataset.uuid);
+                }
+            }
+            for (var i = 0; i < questions.length; i++) {
+                console.log(questions[i]);
+            }
+        }
+        ////////////////////////////////////////////////////////////////////
+        //////////// UNDER CONSTRUCTION ////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+    if (confirm("Are you sure you want to remove " + id + "? Click \"OK\" to continue.") == true) {
+//        var row = parseInt(id.split("row")[1]);
+//        //replace that row with blank values
+//        file[row] = getBlank();
+//        file[row].toDelete = true;
+//        console.log(file[row]);
+//        var toRemove = document.querySelector("#" + id);
+//        toRemove.parentElement.removeChild(toRemove);
     }
 }
 
@@ -530,7 +564,7 @@ function saveData(element) {
     function update_row(question) {
         for (var i = 0; i < file.length; i++) {
             if (file[i].uuid == question) {
-              // console.log(file[i], element.value);
+                // console.log(file[i], element.value);
                 if (element.classList.contains("editor")) {
                     // DO IT TWICE, BECAUSE MCE
                     var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
@@ -611,7 +645,9 @@ function validate() {
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
-    validity.issues = validity.issues.filter((thing, index, self) => self.findIndex((t) => {return t.location === thing.location && t.issue === thing.issue; }) === index);
+    validity.issues = validity.issues.filter((thing, index, self) => self.findIndex((t) => {
+        return t.location === thing.location && t.issue === thing.issue;
+    }) === index);
 
     if (validity.issues.length > 0) {
         validity.valid = false;
