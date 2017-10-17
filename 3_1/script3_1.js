@@ -3,7 +3,7 @@
 if (window.location.search.indexOf('?css=fun') === 0) {
     document.write('<link rel="stylesheet" href="./fun.css" />');
 } else {
-    document.write('<link rel="stylesheet" href="./default2.css" />');
+    document.write('<link rel="stylesheet" href="./default3_1.css" />');
 }
 var file = [];
 var reordered_data = [];
@@ -213,7 +213,7 @@ function makeUI(data) {
     addTinyMCE();
 
     addListeners();
-
+/*
     var add_another = document.createElement('div');
     add_another.addEventListener('click', function (event) {
         add_passage();
@@ -221,7 +221,7 @@ function makeUI(data) {
 
     add_another.classList.add("new_row");
     add_another.innerHTML = "<p class='plus'>+</p><p> add another passage</p>";
-    document.querySelector("#UI").appendChild(add_another);
+    document.querySelector("#UI").appendChild(add_another); */
 }
 
 // Flattens a passage
@@ -398,13 +398,13 @@ function add_question(passage) {
     console.log(divs, divs.length);
     var cur_index = divs.length - 1;
     var next_index = divs.length;
-    var new_row_data = getBlankQuestion()
+    var new_row_data = getBlankQuestion();
     var new_row = templatequestion([new_row_data]);
     add_row_to_file(passage.id, new_row_data);
 
     var parser = new DOMParser();
     new_row = parser.parseFromString(new_row, "text/html").querySelector("#question0");
-    new_row.id = "question" + next_index;
+    new_row.id = "question" + (next_index + 1);
     // row ids start at zero, but questions start at 1.
     new_row.querySelector('h2').innerHTML = "QUESTION #" + (next_index + 1);
     $(new_row).insertAfter(divs[cur_index]);
@@ -439,49 +439,76 @@ function addListeners() {
 
 
 function removeRow(id) {
-        ////////////////////////////////////////////////////////////////////
-        //////////// UNDER CONSTRUCTION ////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////
-        var whole_passage = false,
-            question, passage;
-        if (id.includes("passage")) {
-            console.log("passage detected");
-            whole_passage = true;
-        } else {
-            var question_html = $(id).closest('.question')[0];
-            console.log(question_html);
-            question = question_html.querySelectorAll('h2')[0].dataset.uuid;
-        }
-        passage = $(id).closest('.row')[0];
-        if (!whole_passage) {
-            console.log("removing one question");
-
-        } else {
-            // REMOVE ALL PASSAGE QUESTIONS!
-            console.log("removing whole passage")
-            var temp = passage.querySelectorAll('h2');
-            var questions = [];
-            for (var i = 0; i < temp.length; i++) {
-                if (temp[i].dataset.uuid) {
-                    questions.push(temp[i].dataset.uuid);
-                }
-            }
-            for (var i = 0; i < questions.length; i++) {
-                console.log(questions[i]);
-            }
-        }
-        ////////////////////////////////////////////////////////////////////
-        //////////// UNDER CONSTRUCTION ////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////
-    if (confirm("Are you sure you want to remove " + id + "? Click \"OK\" to continue.") == true) {
-//        var row = parseInt(id.split("row")[1]);
-//        //replace that row with blank values
-//        file[row] = getBlank();
-//        file[row].toDelete = true;
-//        console.log(file[row]);
-//        var toRemove = document.querySelector("#" + id);
-//        toRemove.parentElement.removeChild(toRemove);
+    ////////////////////////////////////////////////////////////////////
+    //////////// UNDER CONSTRUCTION ////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
+    var whole_passage = false,
+        question, passage;
+    if (id.includes("passage")) {
+        console.log("passage detected");
+        whole_passage = true;
+    } else {
+        var question_html = $('#' + id).closest('.question')[0];
+        question = question_html.querySelectorAll('h2')[0].dataset.uuid;
+        console.log(question_html);
     }
+    passage = $('#' + id).closest('.row')[0];
+    if (!whole_passage) {
+        console.log("removing one question");
+        if (confirm("Are you sure you want to remove " + question + "? Click \"OK\" to continue.") == true) {
+            var toRemove = document.querySelector("#" + id);
+            toRemove.parentElement.removeChild(toRemove);
+            clear_row(question);
+
+        }
+    } else {
+        // REMOVE ALL PASSAGE QUESTIONS!
+        console.log("removing whole passage");
+        var temp = passage.querySelectorAll('h2');
+        var questions = [];
+        for (var i = 0; i < temp.length; i++) {
+            if (temp[i].dataset.uuid) {
+                questions.push(temp[i].dataset.uuid);
+            }
+        }
+        if (confirm("Are you sure you want to remove the questions in" + passage + "? Click \"OK\" to continue.") == true) {
+            var toRemove = document.querySelector("#" + passage.id);
+            toRemove.parentElement.removeChild(toRemove);
+            for (var i = 0; i < questions.length; i++) {
+                clear_row(questions[i]);
+            }
+        }
+    }
+
+    function clear_row(uuid){
+        console.log(uuid);
+        empty = flatten(getBlank())[0];
+        console.log(empty, empty.uuid);
+        empty.uuid = uuid;
+        console.log(empty, empty.uuid);
+
+        for (var i = 0; i < file.length; i++){
+            if (file[i].uuid === empty.uuid){
+                pnum = file[i].passagenum;
+                file[i] = empty;
+                // Need to keep this or bad things happen.
+//                file[i].passagenum = pnum;
+            }
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    //////////// UNDER CONSTRUCTION ////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
+
+        //        var row = parseInt(id.split("row")[1]);
+        //        //replace that row with blank values
+        //        file[row] = getBlank();
+        //        file[row].toDelete = true;
+        //        console.log(file[row]);
+        //        var toRemove = document.querySelector("#" + id);
+        //        toRemove.parentElement.removeChild(toRemove);
+
 }
 
 

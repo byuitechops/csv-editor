@@ -24,7 +24,7 @@
     <script id="templatequestion" type="text/x-handlebars-template">
                 {{#each this}}
 <div class="question" id="question{{@index}}">
-    <div class="remove">x</div>
+<!--    <div class="remove">x</div>-->
     <h2  data-uuid={{uuid}}>QUESTION #{{questionnum}} </h2>
     <P>UUID: {{uuid}}</P>
                 <div class="left-half">
@@ -94,7 +94,7 @@
     <script id="template" type="text/x-handlebars-template">
         {{#each this}}
         <div class="row" id="passage{{@index}}" >
-            <div class="remove">x</div>
+<!--            <div class="remove">x</div>-->
             <h2>PASSAGE #{{passagenum}}</h2>
             <div class="passage">
                 <div class="left-half">
@@ -136,7 +136,7 @@
 
             {{#each this.questions}}
             <div class="question" id="question{{@index}}">
-                <div class="remove">x</div>
+<!--                <div class="remove">x</div>-->
             <h2 data-uuid={{uuid}}>QUESTION #{{questionnum}}</h2>
             <P>UUID: {{uuid}}</P>
                 <div class="left-half">
@@ -221,10 +221,12 @@
                 </div>
         </div>
             {{/each}}
+<!--
                 <div class="new_row" onclick="add_question(passage{{@index}})">
                 <p class="plus">+</p>
                 <p>add another question</p>
             </div>
+-->
         </div>
 {{/each}}
     </script>
@@ -242,13 +244,15 @@
     <div class="bottom">
         <h2>2. Edit CSV Here</h2>
         <div id="UI">
+<!--
             <div class="new_row" onclick="add_passage()">
                 <p class="plus">+</p>
                 <p>add another passage</p>
             </div>
+-->
         </div>
     </div>
-    <script src="./script2.js">
+    <script src="./script3_1.js">
 
 
     </script>
