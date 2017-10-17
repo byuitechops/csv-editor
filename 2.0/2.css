@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
     padding: 15px;
 }
+
 input {
     width: 100%;
 }
@@ -18,25 +19,18 @@ h3 {
     width: 50%;
     float: left;
 }
-.left-side{
-      width: calc(50% - 15px);
-    float: left;
-}
-.right-side{
-      width: calc(50% - 15px);
-    float: right;
-}
-#UI > div {
+
+.row {
+    position:relative;
     margin-bottom: 15px;
     border: 2px solid black;
     width: calc(100% - 30px);
-    display: inline-block;
+/*    display: inline-block;*/
     border-radius: 15px;
     padding: 15px;
-}
-#UI > div:nth-child(odd) {
     background-color: lightgray;
 }
+
 .top input {
     margin-bottom: 20px;
 }
@@ -51,7 +45,40 @@ h3 {
     width: calc(50% - 15px);
     float: right;
 }
-#UI > div.new_row {
+
+.left-side{
+      width: calc(75% - 15px);
+    float: left;
+}
+.right-side{
+      width: calc(25% - 15px);
+    float: right;
+}
+.answer{
+    width:100%;
+}
+
+.question{position:relative;}
+.remove:hover{ transition:0.5s ease-in-out; background-color:darkred;color:white}
+
+.remove{position:absolute; box-sizing:border-box; cursor:pointer;height:32px; width:32px;font-weight:bold; right:5px; top:5px; text-align:Center; font-family:monospace;border-radius:9999em; font-size:20px; line-height:30px; background:white; transition:0.5s ease-in-out;}
+.passage, .question{
+    overflow-y:auto;
+    overflow-x:hidden;
+    clear:both;
+     padding-bottom:15px;
+    border-bottom: 3px solid black;
+}
+.question:last-child{
+    border-bottom:none;
+}
+
+
+
+.new_row {
+    border-radius:15px;
+    margin-top:20px;
+    clear:both;
     background-color: white;
     color: #777;
     border: 5px dashed #777;
@@ -60,7 +87,7 @@ h3 {
     font-size: 1.5em;
     transition:0.2s ease-in-out;
 }
-#UI > div.new_row p {
+.new_row p {
     margin: 0;
 }
 .plus {
@@ -69,7 +96,7 @@ h3 {
     font-size: 5em;
 }
 
-#UI > div.new_row:hover {
+.new_row:hover {
     background-color: white;
     color: black;
     border: 5px dashed black;
@@ -78,20 +105,16 @@ h3 {
     font-size: 1.5em;
     transition:0.2s ease-in-out;
 }
-#UI > div.new_row:hover .plus {
+.new_row:hover .plus {
     background-color: white;
     color: black;
     transition:0.2s ease-in-out;
 }
 
-.answer{
-    width:100%;
+.invalid::after{
+    content:"*";
+    color:red;
 }
-.row{position:relative;}
-.remove:hover{ transition:0.5s ease-in-out; background-color:darkred;color:white}
-
-.remove{position:absolute; box-sizing:border-box; cursor:pointer;height:32px; width:32px;font-weight:bold; right:5px; top:5px; text-align:Center; font-family:monospace;border-radius:9999em; font-size:20px; line-height:30px; background:white; transition:0.5s ease-in-out;}
-
 
 #savemsg{
     position:fixed; right:30px; top:-30px; border-left:2px solid lightgreen; border-right:2px solid lightgreen;

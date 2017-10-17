@@ -19,21 +19,54 @@ document.querySelector('input').addEventListener('change', getFile)
 function getBlank() {
     return {
         passagenum:"",
-        questionnum:"",
+        questionnum: "",
         skill: "",
         level: "",
-        questionname: "",
         function: "",
         topic: "",
         difficultylevel: "",
         passagetext: "",
+        passagetexteditorcomments: "",
+        passageaudio: "",
+        passageimagedescription: "",
+        references: "",
+        ERCentralLevel: "",
+        ECCentralScore: "",
+        questionname: "",
+        questionfunction: "",
         questiontext: "",
+        questiontype: "",
         answertext1: "",
         answertext2: "",
         answertext3: "",
         answertext4: "",
         answertext5: "",
-        answertext6: ""
+        answertext6: "",
+        questiontexteditorcomments: "",
+        questionaudio: "",
+        questionimagedescription: "",
+        questionrubric: "",
+        answer1feedback: "",
+        answer1audio: "",
+        answer1imagedescription: "",
+        answer2feedback: "",
+        answer2audio: "",
+        answer2imagedescription: "",
+        answer3feedback: "",
+        answer3audio: "",
+        answer3imagedescription: "",
+        answer4feedback: "",
+        answer4audio: "",
+        answer4imagedescription: "",
+        answer5feedback: "",
+        answer5audio: "",
+        answer5imagedescription: "",
+        answer6feedback: "",
+        answer6audio: "",
+        answer6imagedescription: "",
+        answereditorcomments: "",
+        Clausespersentence: "",
+        wordcount: ""
     };
 }
 
@@ -267,7 +300,10 @@ function saveData(element) {
         file[row][columnName] = element.value;
         // console.log(file[row][columnName])
     }
-
+    // just in case the row decides it was supposed to be deleted.
+    if(file[row].toDelete){
+        delete file[row].toDelete;
+    }
     //            console.log(file[row][columnName]);
     document.querySelector("#savemsg").classList.remove("run-animation");
     void document.querySelector("#savemsg").offsetWidth;

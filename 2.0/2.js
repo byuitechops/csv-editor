@@ -2,7 +2,7 @@
 if (window.location.search.indexOf('?css=fun') === 0) {
     document.write('<link rel="stylesheet" href="./fun.css" />');
 } else {
-    document.write('<link rel="stylesheet" href="./default3_1.css" />');
+    document.write('<link rel="stylesheet" href="./2.css" />');
 }
 
 var file = [];
