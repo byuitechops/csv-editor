@@ -3,6 +3,7 @@ if (window.location.search.indexOf('?css=fun') === 0) {
 } else {
     document.write('<link rel="stylesheet" href="./default.css" />');
 }
+
 var file = [];
 var spaces;
 var file_name = "default.csv";
@@ -65,7 +66,6 @@ function getBlank() {
     };
 }
 
-
 function addTinyMCE() {
 
     tinymce.init({
@@ -103,19 +103,7 @@ function makeUI(data) {
     file = data;
     document.querySelector('#UI').innerHTML = template(data);
 
-    //add ace
-    //Array.from(document.querySelectorAll('textarea')).forEach(addAce)
-    function addAce() {
 
-        var needsAce = document.getElementsByTagName("textarea");
-
-        for (var i = 0; i < needsAce.length; i++) {
-            needsAce[i].outerHTML = addAceEditor(needsAce[i].innerHTML, i);
-        }
-        renderAceEditor();
-    }
-
-    //addAce();
     addTinyMCE();
 
     addListeners();
@@ -203,35 +191,6 @@ function removeRow(id) {
         toRemove.parentElement.removeChild(toRemove);
     }
 }
-
-
-function fixNewRow(id) {
-    var row = document.querySelector("#" + id);
-    var inputs = row.getElementsByTagName("input");
-
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
-    }
-    addTinyMCE();
-    //add change event listener to editors
-    var editors = row.querySelectorAll("textarea");
-
-    for (var i = 0; i < editors.length; i++) {
-        editors[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
-    }
-    var closers = row.querySelectorAll(".remove");
-    for (var i = 0; i < closers.length; i++) {
-        closers[i].addEventListener('click', function (event) {
-            removeRow(this.parentElement.id);
-        }, false);
-    }
-}
-
-
 
 function getFile() {
     var file = this.files[0]

@@ -68,6 +68,9 @@ h3 {
     color: #777;
     font-size: 5em;
 }
+select{
+    width:100%;
+}
 
 #UI > div.new_row:hover {
     background-color: white;
