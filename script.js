@@ -9,16 +9,11 @@ var file_name = "default.csv";
 var template = Handlebars.compile(document.querySelector('#template').innerHTML);
 document.querySelector('input').addEventListener('change', getFile)
 
-//        function addAce(ele) {
-//            console.log(ele);
-//            var editor = ace.edit(ele);
-//            editor.setTheme("ace/theme/iplastic");
-//            editor.getSession().setMode("ace/mode/html");
-//        }
+
 
 function getBlank() {
     return {
-        passagenum:"",
+        passagenum: "",
         questionnum: "",
         skill: "",
         level: "",
@@ -70,9 +65,6 @@ function getBlank() {
     };
 }
 
-function addAceEditor(stringIn, index) {
-    return '<div class="editor" id="editor' + (index + 1) + '" ><textarea>' + stringIn + '</textarea></div>';
-}
 
 function addTinyMCE() {
 
@@ -88,10 +80,10 @@ function addTinyMCE() {
                 ],
         toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code | table | hr | help',
         convert_urls: false,
-        content_css : "./tinymcestyle.css",
+        content_css: "./tinymcestyle.css",
         init_instance_callback: function (editor) {
-            function saveit(){
-                                //console.log(editor.getContent(), this.id);
+            function saveit() {
+                //console.log(editor.getContent(), this.id);
                 var textarea = document.querySelector("#" + this.id)
                 textarea.dataset.editortext = (editor.getContent({
                     format: 'html'
@@ -144,10 +136,9 @@ function add_row() {
     var ui = document.querySelector("#UI");
     var divs = document.querySelectorAll('#UI > div');
     var index;
-    if (divs.length < 2){
+    if (divs.length < 2) {
         index = 0;
-    }
-    else {
+    } else {
         index = parseInt(divs[divs.length - 2].id.split("row")[1]);
         index++;
     }
@@ -161,43 +152,55 @@ function add_row() {
     new_rows.id = "row" + index;
 
     ui.insertBefore(new_rows, divs[divs.length - 1]);
-    fixNewRow(new_rows.id);
+    //    fixNewRow(new_rows.id);
+    addTinyMCE();
+    addListeners();
 }
 
 function addListeners() {
     //add change event listener to inputs
     var inputs = document.getElementsByTagName("input");
-
+    var events;
     for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
+        if (!inputs[i].dataset.listener) {
+            inputs[i].addEventListener('keyup', function (event) {
+                saveData(this);
+            }, false);
+            inputs[i].dataset.listener = true;
+        }
     }
 
     //add change event listener to editors
     var editors = document.querySelectorAll("textarea");
     for (var i = 0; i < editors.length; i++) {
-        editors[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
+        if (!editors[i].dataset.listener) {
+            editors[i].addEventListener('keyup', function (event) {
+                saveData(this);
+            }, false);
+            inputs[i].dataset.listener = true;
+        }
     }
     var closers = document.querySelectorAll(".remove");
-        for (var i = 0; i < closers.length; i++) {
-        closers[i].addEventListener('click', function (event) {
-            removeRow(this.parentElement.id);
-        }, false);
+    for (var i = 0; i < closers.length; i++) {
+        if (!closers[i].dataset.listener) {
+            closers[i].addEventListener('click', function (event) {
+                removeRow(this.parentElement.id);
+            }, false);
+            closers[i].dataset.listener = true;
+        }
     }
 
 }
-function removeRow(id){
-    if( confirm("Are you sure you want to remove this row? Click \"OK\" to continue.") == true){
-    var row = parseInt(id.split("row")[1]);
-    //replace that row with blank values
-    file[row] = getBlank();
-    file[row].toDelete = true;
-    console.log(file[row]);
-    var toRemove = document.querySelector("#" + id);
-    toRemove.parentElement.removeChild(toRemove);
+
+function removeRow(id) {
+    if (confirm("Are you sure you want to remove this row? Click \"OK\" to continue.") == true) {
+        var row = parseInt(id.split("row")[1]);
+        //replace that row with blank values
+        file[row] = getBlank();
+        file[row].toDelete = true;
+        console.log(file[row]);
+        var toRemove = document.querySelector("#" + id);
+        toRemove.parentElement.removeChild(toRemove);
     }
 }
 
@@ -220,34 +223,14 @@ function fixNewRow(id) {
             saveData(this);
         }, false);
     }
-        var closers = row.querySelectorAll(".remove");
-        for (var i = 0; i < closers.length; i++) {
+    var closers = row.querySelectorAll(".remove");
+    for (var i = 0; i < closers.length; i++) {
         closers[i].addEventListener('click', function (event) {
             removeRow(this.parentElement.id);
         }, false);
     }
 }
 
-
-function renderAceEditor() {
-    $('.editor').each(function (index, element) {
-        // Make the document object to count the lines
-
-
-        var editor = ace.edit(element);
-
-        editor.setTheme("ace/theme/chrome");
-
-        editor.setAutoScrollEditorIntoView(true);
-        editor.setOptions({
-            fontFamily: "monospace",
-            fontSize: "16px",
-            // Only display 30 lines, if result is longer than 30 lines
-            minLines: 10
-        })
-        editor.getSession().setMode("ace/mode/html");
-    });
-}
 
 
 function getFile() {
@@ -277,13 +260,13 @@ function saveData(element) {
 
     // Get which row of the CSV to change
     var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
-//    console.log(row);
+    //    console.log(row);
     var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
-//        console.log("this is a new row, the last row is:", file[row - 1]);
+        //        console.log("this is a new row, the last row is:", file[row - 1]);
         file.push(getBlank());
-//        console.log(file[row]);
+        //        console.log(file[row]);
     }
 
     //            console.log(row, columnName);
@@ -301,7 +284,7 @@ function saveData(element) {
         // console.log(file[row][columnName])
     }
     // just in case the row decides it was supposed to be deleted.
-    if(file[row].toDelete){
+    if (file[row].toDelete) {
         delete file[row].toDelete;
     }
     //            console.log(file[row][columnName]);
@@ -309,13 +292,15 @@ function saveData(element) {
     void document.querySelector("#savemsg").offsetWidth;
     document.querySelector("#savemsg").classList.add("run-animation");
 
-//     document.querySelector("#savemsg").classList.remove("run-animation");
+    //     document.querySelector("#savemsg").classList.remove("run-animation");
 }
 
 
 function downloadit() {
     // filter out the rows that you have deleted.
-    file = file.filter(function(row){return typeof row.toDelete === 'undefined';});
+    file = file.filter(function (row) {
+        return typeof row.toDelete === 'undefined';
+    });
 
     console.log(file);
     var exported = d3.csvFormat(file);
