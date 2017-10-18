@@ -1,17 +1,27 @@
-//I'm adding this line so I can commit
+// SET THE CSS OF THE EDITOR, LOOKS FOR THE "FUN" OPTION AND
+// LOADS ALTERNATE STYLES IF IT IS INCLUDED.
 if (window.location.search.indexOf('?css=fun') === 0) {
     document.write('<link rel="stylesheet" href="./fun.css" />');
 } else {
     document.write('<link rel="stylesheet" href="./2.css" />');
 }
 
+// File data, the imported CSV/JSON object
 var file = [];
+// Data from the file that has been reordered temporarily
 var reordered_data = [];
+// Spaces in the object names, such as "passage text"
 var spaces;
+// Default name of the file to be downloaded. Replaced with name of file the user uploads
 var file_name = "default.csv";
+// The passage handlebars template
 var template = Handlebars.compile(document.querySelector('#template').innerHTML);
-document.querySelector('input').addEventListener('change', getFile);
+// The passage question handlebars template
 var templatequestion = Handlebars.compile(document.querySelector('#templatequestion').innerHTML);
+
+// Add a change listener to the file input field to upload the file immediately.
+document.querySelector('input').addEventListener('change', getFile);
+
 
 /**********************************************************
  *                   getBlank(string)
@@ -45,6 +55,8 @@ function getBlank(option) {
  *       a TinyMCE editor. (Editor code is already done).
  * INPUTS: None
  * RETURNS: Void
+ *
+ * NOTE: This works, don't touch.
  ***********************************************************/
 function addTinyMCE() {
     tinymce.init({
@@ -100,15 +112,14 @@ function flatten(passage) {
 
 
 /**********************************************************
- *                   add_row_to_file(string, JSON)
- *
+ *           add_row_to_file(string, JSON)
+ * TODO: DELETE THIS?
  * DESC: Adds a row of data to the model file
  *       this function should no longer be needed
  * INPUTS: A string passage identifier and data to add.
  * RETURNS: void
  ***********************************************************/
-function add_row_to_file(p_id, row_data) {
-}
+function add_row_to_file(p_id, row_data) {}
 
 
 /**********************************************************
@@ -119,162 +130,91 @@ function add_row_to_file(p_id, row_data) {
  * RETURNS: Void
  ***********************************************************/
 function add_passage() {
-    //var new_row = document.createElement('div');
+    // Get the UI
     var ui = document.querySelector("#UI");
+    // Get a blank passage
     var blank = getBlank("passage");
+    // Find last passage on DOM
+    // Use Handlebars template to build the passage element
+    // Insert passage into DOM
     /*ui.insertBefore(new_row, ["new row button" div]);*/
+    // Add Editors
     addTinyMCE();
+    // Add listeners
     addListeners();
 }
 
+/**********************************************************
+ *                   add_question(string/id)
+ *
+ * DESC: Adds a new question with blank values to the UI
+ *       under an existing passage.
+ * INPUTS: String passage id, or passage element to append
+ * RETURNS: Void
+ ***********************************************************/
 function add_question(passage) {
-
-    //    console.log(passage.id);
-
-    var divs = passage.querySelectorAll('.question');
-    console.log(divs, divs.length);
-    var cur_index = divs.length - 1;
-    var next_index = divs.length;
-    var new_row_data = getBlankQuestion();
-    var new_row = templatequestion([new_row_data]);
-    add_row_to_file(passage.id, new_row_data);
-
-    var parser = new DOMParser();
-    new_row = parser.parseFromString(new_row, "text/html").querySelector("#question0");
-    new_row.id = "question" + (next_index + 1);
-    // row ids start at zero, but questions start at 1.
-    new_row.querySelector('h2').innerHTML = "QUESTION #" + (next_index + 1);
-    $(new_row).insertAfter(divs[cur_index]);
-    fixNewRow(new_row.id);
+    // Get the passage questions and find the last spot
+    // Get a blank question
+    // Create new element using Handlebars template and
+    //      blank question values
+    // Append to DOM in last-spot position
 }
 
+/**********************************************************
+ *                   add_listeners()
+ *
+ * DESC: Put the appropriate listeners on the elements that
+ *       have been added to the DOM
+ * INPUTS: None (scrapes the page)
+ * RETURNS: Void
+ ***********************************************************/
 function addListeners() {
-    //add change event listener to inputs
-    var inputs = document.getElementsByTagName("input");
+    //add change event listener all input fields
 
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
-    }
+    //  var inputs = document.getElementsByTagName("input");
+    //  var selects = document.getElementsByTagName("select");
+    //  var editors = document.querySelectorAll("textarea");
+    //  var closers = document.querySelectorAll(".remove");
 
-    //add change event listener to editors
-    var editors = document.querySelectorAll("textarea");
-    for (var i = 0; i < editors.length; i++) {
-        editors[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
-    }
-    var closers = document.querySelectorAll(".remove");
+    //add listener for the "remove" buttons
+
+    //EXAMPLE LOOP FOR LISTENERS
+    /*for (var i = 0; i < inputs.length; i++) {
     for (var i = 0; i < closers.length; i++) {
         closers[i].addEventListener('click', function (event) {
             removeRow(this.parentElement.id);
         }, false);
     }
-
+    */
 }
 
-
+/**********************************************************
+ *                   remove_row(string/element)
+ *
+ * DESC: Deletes the content of the input row from both the
+ *       UI and the data to be exported
+ * INPUTS: String id OR entire element (such as a 'this')
+ * RETURNS: Void
+ ***********************************************************/
 function removeRow(id) {
-    ////////////////////////////////////////////////////////////////////
-    //////////// UNDER CONSTRUCTION ////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////
-    var whole_passage = false,
-        question, passage;
-    if (id.includes("passage")) {
-        console.log("passage detected");
-        whole_passage = true;
-    } else {
-        var question_html = $('#' + id).closest('.question')[0];
-        question = question_html.querySelectorAll('h2')[0].dataset.uuid;
-        console.log(question_html);
-    }
-    passage = $('#' + id).closest('.row')[0];
-    if (!whole_passage) {
-        console.log("removing one question");
-        if (confirm("Are you sure you want to remove " + question + "? Click \"OK\" to continue.") == true) {
-            var toRemove = document.querySelector("#" + id);
-            toRemove.parentElement.removeChild(toRemove);
-            clear_row(question);
-
-        }
-    } else {
-        // REMOVE ALL PASSAGE QUESTIONS!
-        console.log("removing whole passage");
-        var temp = passage.querySelectorAll('h2');
-        var questions = [];
-        for (var i = 0; i < temp.length; i++) {
-            if (temp[i].dataset.uuid) {
-                questions.push(temp[i].dataset.uuid);
-            }
-        }
-        if (confirm("Are you sure you want to remove the questions in" + passage + "? Click \"OK\" to continue.") == true) {
-            var toRemove = document.querySelector("#" + passage.id);
-            toRemove.parentElement.removeChild(toRemove);
-            for (var i = 0; i < questions.length; i++) {
-                clear_row(questions[i]);
-            }
-        }
-    }
-
-    function clear_row(uuid) {
-        console.log(uuid);
-        empty = flatten(getBlank())[0];
-        console.log(empty, empty.uuid);
-        empty.uuid = uuid;
-        console.log(empty, empty.uuid);
-
-        for (var i = 0; i < file.length; i++) {
-            if (file[i].uuid === empty.uuid) {
-                pnum = file[i].passagenum;
-                file[i] = empty;
-                // Need to keep this or bad things happen.
-                //                file[i].passagenum = pnum;
-            }
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    //////////// UNDER CONSTRUCTION ////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////
-
-    //        var row = parseInt(id.split("row")[1]);
-    //        //replace that row with blank values
-    //        file[row] = getBlank();
-    //        file[row].toDelete = true;
-    //        console.log(file[row]);
-    //        var toRemove = document.querySelector("#" + id);
-    //        toRemove.parentElement.removeChild(toRemove);
-
+    // Determine if it is a question or passage being removed
+    // If it's a question, delete it from the appropriate
+    //      passage in the file data (JSON to export).
+    // If it's a passage, remove the entire passage.
+    // Delete the question or passage from the DOM
 }
 
 
-//New rows need listeners added to their editors and "remove" buttons.
-function fixNewRow(id) {
-    var row = document.querySelector("#" + id);
-    var inputs = row.getElementsByTagName("input");
-
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
-    }
-    addTinyMCE();
-    //add change event listener to editors
-    var editors = row.querySelectorAll("textarea");
-    for (var i = 0; i < editors.length; i++) {
-        editors[i].addEventListener('keyup', function (event) {
-            saveData(this);
-        }, false);
-    }
-    var closers = row.querySelectorAll(".remove");
-    for (var i = 0; i < closers.length; i++) {
-        closers[i].addEventListener('click', function (event) {
-            removeRow(this.parentElement.id);
-        }, false);
-    }
-}
-
+/**********************************************************
+ *                   getFile()
+ *
+ * DESC: Grabs the input file, creates the data structure
+ *       Calls "makeUI" to build the page
+ * INPUTS: None, triggered by a file change listener
+ * RETURNS: Void
+ *
+ * NOTE: This works, don't touch.
+ ***********************************************************/
 function getFile() {
     var file = this.files[0]
     var reader = new FileReader();
@@ -295,124 +235,102 @@ function getFile() {
     reader.readAsText(file);
 }
 
-function saveData(element) {
-    //Get which row of the CSV to change
-    var only_passage = false,
-        question, passage;
-    if ($(element).closest('.question')[0] == undefined) {
-        only_passage = true;
-    } else {
-        var question_html = $(element).closest('.question')[0];
-        question = question_html.querySelectorAll('h2')[0].dataset.uuid;
-    }
-    passage = $(element).closest('.row')[0];
-    if (!only_passage) {
-        //UPDATES ONE QUESTION
-        update_row(question);
-    } else {
-        //UPDATE ALL THE QUESTIONS!
 
-        var temp = passage.querySelectorAll('h2');
-        var questions = [];
-        for (var i = 0; i < temp.length; i++) {
-            if (temp[i].dataset.uuid) {
-                questions.push(temp[i].dataset.uuid);
-            }
-        }
-        for (var i = 0; i < questions.length; i++) {
-            update_row(questions[i]);
-        }
-    }
-
-
-    function update_row(question) {
-        for (var i = 0; i < file.length; i++) {
-            if (file[i].uuid == question) {
-                // console.log(file[i], element.value);
-                if (element.classList.contains("editor")) {
-                    // DO IT TWICE, BECAUSE MCE
-                    var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
-                    file[i][columnName] = element.dataset.editortext;
-                    //console.log(file[i][columnName]);
-                } else {
-                    var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
-                    file[i][columnName] = element.value;
-                    //console.log(file[i][columnName]);
-                }
-            }
-        }
-    }
-
+/**********************************************************
+ *                saveData()
+ *
+ * DESC: Scrapes the fields on the page and updates the
+ *       data that is going to be exported. Is called
+ *       every two minutes, or when the user downloads
+ *       the file.
+ * INPUTS: None
+ * RETURNS: Void
+ ***********************************************************/
+function saveData() {
+    // Read data from the UI
+    // All information under a "row" or "passage" is one row of
+    //      the export data. All questions in a "passage" are
+    //      rows of the passage.questions array.
+    // Tell the user that content has been saved
     document.querySelector("#savemsg").classList.remove("run-animation");
     void document.querySelector("#savemsg").offsetWidth;
     document.querySelector("#savemsg").classList.add("run-animation");
 }
 
-
+/**********************************************************
+ *                downloadit()
+ *
+ * DESC: Exports the page data to a JSON file.
+ * INPUTS: None
+ * RETURNS: Void
+ ***********************************************************/
 function downloadit() {
-    // filter out the rows that you have deleted.
-    file = file.filter(function (row) {
-        return typeof row.toDelete === 'undefined';
-    });
-    //console.log(file);
-    var exported = d3.csvFormat(file);
-
+    // Save user's progress
+    saveData();
+    // Check the items for validation issues and flag it.
     var validity = validate();
+    // Finalize the file to be exported
+
+    // If there are issues with the file, mark them and alert
+    //      the user. Allow the user to proceed with the
+    //      faulty download at their own risk.
+    // If there are no issues with the file, just download it.
+    /* //EXAMPLE:
     if (!validity.valid) {
         var issuesmsg = "This quiz has the following issues:\n";
-        for (var i = 0; i < validity.issues.length; i++) {
+        for (var i = 0; i < validity.issues.length; i++)
             issuesmsg += "\n [" + validity.issues[i].location + ": " + validity.issues[i].issue + "]";
-        }
         issuesmsg += "\n\n Click \"OK\" to download anyway."
-        if (confirm(issuesmsg) == true) {
+        if (confirm(issuesmsg) == true)
             download(exported, file_name, "text/plain");
-        }
-    } else {
-        download(exported, file_name, "text/plain");
+        else
+            download(exported, file_name, "text/plain");
     }
+    */
 }
 
-/*************************************************
-Looks for any reason the user should NOT download
-the file, and marks it in the document. All issues
-are pushed to the "validity" object which is
-returned and presented to the user for review
-before choosing to correct the errors or continue
-to download.
-*************************************************/
+/**********************************************************
+ *                validate()
+ *
+ * DESC: Checks the page for any issues we don't want to
+ *       export. Returns a list of issues and marks them
+ *       in the DOM to be fixed if the user desires.
+ * INPUTS: None
+ * RETURNS: {valid: bool, issues:[{issue:"",location,""}]}
+ ***********************************************************/
 function validate() {
+    // Blank returned object.
     var validity = {
         valid: true,
         issues: []
     };
-    //simplify adding issues to validity
+    // Add an issue to the returned object.
     function add_issue(l, i) {
         validity.issues.push({
-            location: l,
-            issue: i
+            issue: i,
+            location: l
         })
     }
-    //Test issue
-    //add_issue("passage1", "numbering");
-    //Mark the header by adding the "invalid" class to the header
-    for (var i = 0; i < file.length; i++) {
+    // This example issue checks for the length of
+    //      passagetext and logs an issue if it is over 4000 chars.
+    /*for (var i = 0; i < file.length; i++) {
         if (file[i].passagetext.length > 4000) {
             console.log(file[i].passagetext.length)
             add_issue("passage" + file[i].passagenum, "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
         }
-        if (file[i].questiontext.length > 4000) {
-            console.log(file[i].questiontext.length)
-            add_issue(file[i].uuid, "questiontext too long")
-        }
-    }
+    }*/
 
-    function onlyUnique(value, index, self) {
+    // Mark any invalid inputs with the "invalid" class.
+
+    // Remove duplicate issues, may no longer be needed with JSON output.
+    /*function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
     validity.issues = validity.issues.filter((thing, index, self) => self.findIndex((t) => {
         return t.location === thing.location && t.issue === thing.issue;
-    }) === index);
+    }) === index);*/
 
+    // If there are issues, set "valid" to false.
     if (validity.issues.length > 0) {
         validity.valid = false;
     }
