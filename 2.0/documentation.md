@@ -1,5 +1,9 @@
 # CSV-EDITOR GUIDE
 
+## Discussion Points
+
+* Talk about Question Types
+
 ## Requirements
 
 * An interface to create and edit quiz questions for English Connect
