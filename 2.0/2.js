@@ -34,13 +34,61 @@ document.querySelector('input').addEventListener('change', getFile);
 function getBlank(option) {
     if (option === "question") {
         return {
-            /*add necessary fields*/
-            question_fields: ""
+        uuid: "",
+        questionnum: "",
+        questionname: "",
+        questionfunction: "",
+        questiontext: "",
+        questiontype: "",
+        answertext1: "",
+        answertext2: "",
+        answertext3: "",
+        answertext4: "",
+        answertext5: "",
+        answertext6: "",
+        questiontexteditorcomments: "",
+        questionaudio: "",
+        questionimagedescription: "",
+        questionrubric: "",
+        answer1feedback: "",
+        answer1audio: "",
+        answer1imagedescription: "",
+        answer2feedback: "",
+        answer2audio: "",
+        answer2imagedescription: "",
+        answer3feedback: "",
+        answer3audio: "",
+        answer3imagedescription: "",
+        answer4feedback: "",
+        answer4audio: "",
+        answer4imagedescription: "",
+        answer5feedback: "",
+        answer5audio: "",
+        answer5imagedescription: "",
+        answer6feedback: "",
+        answer6audio: "",
+        answer6imagedescription: "",
+        answereditorcomments: "",
+        Clausespersentence: "",
+        wordcount: ""
+
         }
     } else if (option === "passage") {
         return {
             /*add necessary fields*/
-            passage_fields: "",
+                    passagenum: "",
+        skill: "",
+        level: "",
+        function: "",
+        topic: "",
+        difficultylevel: "",
+        passagetext: "",
+        passagetexteditorcomments: "",
+        passageaudio: "",
+        passageimagedescription: "",
+        references: "",
+        ERCentralLevel: "",
+        ECCentralScore: "",
             questions: [getBlank("question")]
         }
     } else {
