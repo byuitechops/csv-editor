@@ -1,11 +1,11 @@
 @media screen and (max-width: 1599px) {
     .row {
-        border: 2px solid black;
+        border: 5px solid black;
         padding: 5px;
         box-sizing: border-box;
         margin: 5px;
         min-width: 800px;
-        max-width: 70%;
+        max-width: 100%;
         margin:  auto;
         position: relative;
     }
@@ -13,11 +13,12 @@
         position: absolute;
     }
     .passage, .question{
-         display:flex; flex-direction:row; flex-wrap:wrap; justify-content:flex-start;
+        width:100%;
+         display:flex; flex-direction:row; flex-wrap:wrap;
     }
 
     .row > div {
-        border: 2px solid black;
+/*        border: 2px solid black;*/
         padding: 5px;
         box-sizing: border-box;
         margin: 5px;
@@ -25,11 +26,11 @@
 }
 @media screen and (min-width: 1600px) {
     .row {
-        border: 2px solid black;
+        border: 5px solid black;
         padding: 5px;
         box-sizing: border-box;
         margin: 5px;
-        max-width: 95%;
+        max-width: 100%;
         margin: 0 auto;
         display: flex;
         flex-direction: row;
@@ -37,22 +38,30 @@
         position: relative;
     }
     .row > div {
-        border: 2px solid black;
+/*        border: 2px solid black;*/
         padding: 5px;
         box-sizing: border-box;
         margin: 5px;
     }
     .passage, .question {
         width: calc(50% - 10px);
-        display:flex; flex-direction:row; flex-wrap:wrap; justify-content:flex-start;
+        display:flex; flex-direction:row; flex-wrap:wrap; align-self:flex-start;
     }
 
+}
+/************ END MEDIA SCREENS ***********/
+.row{
+    border-radius:15px;
+    margin-bottom:15px;
+}
+.passage > div, .question > div{
+width:100%;
 }
    .passage > div:nth-child(n+3), .question > div:nth-child(n+3){
         width: calc(25% - 10px);
     }
 .answer-half {
-    display:flex; flex-direction:row; flex-wrap:wrap; justify-content:flex-start;align-items:flex-start;
+    display:flex; flex-direction:row; flex-wrap:wrap; justify-content:flex-start;align-self:flex-start;
     width: calc(50% - 10px);
 }
 .answer-half > div.answertext{

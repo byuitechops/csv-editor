@@ -87,7 +87,7 @@ function addTinyMCE() {
 
     tinymce.init({
         selector: 'textarea.editor',
-        height: 300,
+        height: 200,
         width: '100%',
         menubar: false,
         plugins: [
