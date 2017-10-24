@@ -11,511 +11,141 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-dsv/1.0.7/d3-dsv.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"></script>
     <!--    <script src="./tinymce/js/tinymce/tinymce.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.7/download.min.js"></script>
-    <script src="https://wzrd.in/standalone/uuid%2Fv4@latest"></script>
-    <script src="https://wzrd.in/standalone/uuid%2Fv5@latest"></script>
 
 </head>
 
 <body>
-    <script id="templatequestion" type="text/x-handlebars-template">
-{{#each this}}
-<div class="fieldset">
-            <h2>Question {{questionnum}}</h2>
-            <label for="questiontext">Question Text</label>
-                <textarea id="questiontext">{{questiontext}}</textarea>
-<div class="half">
-            <div>
-                <label for="uuid">UUID</label>
-                <input id="uuid" disabled value="{{uuid}}">
-            </div>
-            <div>
-                <label for="questionnum">Question Number</label>
-                <input id="questionnum" type="number" value="{{questionnum}}">
-            </div>
-            <div>
-                <label for="questionname">Question Name</label>
-                <input id="questionname" type="text" value="{{questionname}}">
-            </div>
-            <div>
-                <label for="questionfunction">Question Function</label>
-                <select id="questionfunction">
-                    <option value="ask and answer">ask and answer</option>
-                    <option value="narrate">narrate</option>
-                    <option value="describe">describe</option>
-                    <option value="negotiate">negotiate</option>
-                </select>
-            </div>
-              <div>
-                <label for="questiontype">Question Type</label>
-                <select id="questiontype">
-                    <option value="multiple choice">Multiple Choice</option>
-                    <option value="true false">True False</option>
-                    <option value="multi-answer">Multi-Answer</option>
-                    <option value="matching">Matching</option>
-                    <option value="sort">Sort</option>
-                    <option value="fill in the blank">Fill in the Blank</option>
-                    <option value="drag and drop">Drag and Drop</option>
-                    <option value="highlight">Highlight</option>
-                    <option value="hotspot">Hotspot</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="questiontexteditorcomments">Question Text Editor Comments</label>
-                <input id="questiontexteditorcomments" type="text" value="{{questiontexteditorcomments}}">
-            </div>
-
-          </div>
-          <div class="half">
-<div>
-
-            </div>
-            <div>
-                <label for="questionaudio">Question Audio</label>
-                <input id="questionaudio" type="text" value="{{questionaudio}}">
-            </div>
-            <div>
-                <label for="questionimagedescription">Question Image Description</label>
-                <input id="questionimagedescription" type="text" value="{{questionimagedescription}}">
-            </div>
-            <div>
-                <label for="questionrubric">Question Rubric</label>
-                <input id="questionrubric" type="text" value="{{questionrubric}}">
-            </div>
-            <div>
-                <label for="Clausespersentence">Clauses Per Sentence</label>
-                <input id="Clausespersentence" type="text" value="{{Clausespersentence}}">
-            </div>
-            <div>
-                <label for="wordcount">Word Count</label>
-                <input id="wordcount" type="number" value="{{wordcount}}">
-            </div>
-          </div>
-            <!-- ANSWER TEMPLATE -->
-            <div class="fieldset">
-                <h2>Answers</h2>
-                <div class="answer">
-                    <div>
-                        <label for="answertext1">Answer 1 Text</label>
-                        <textarea id="answertext1">{{answertext1}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer1feedback">Answer 1 Feedback</label>
-                        <input id="answer1feedback" type="text" value="{{answer1feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer1audio">Answer 1 Audio</label>
-                        <input id="answer1audio" type="text" value="{{answer1audio}}">
-                    </div>
-                    <div>
-                        <label for="answer1imagedescription">Answer 1 Image Description</label>
-                        <input id="answer1imagedescription" type="text" value="{{answer1imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext2">Answer 2 Text</label>
-                        <textarea id="answertext2">{{answertext2}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer2feedback">Answer 2 Feedback</label>
-                        <input id="answer2feedback" type="text" value="{{answer2feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer2audio">Answer 2 Audio</label>
-                        <input id="answer2audio" type="text" value="{{answer2audio}}">
-                    </div>
-                    <div>
-                        <label for="answer2imagedescription">Answer 2 Image Description</label>
-                        <input id="answer2imagedescription" type="text" value="{{answer2imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext3">Answer 3 Text</label>
-                        <textarea id="answertext3">{{answertext3}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer3feedback">Answer 3 Feedback</label>
-                        <input id="answer3feedback" type="text" value="{{answer3feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer3audio">Answer 3 Audio</label>
-                        <input id="answer3audio" type="text" value="{{answer3audio}}">
-                    </div>
-                    <div>
-                        <label for="answer3imagedescription">Answer 3 Image Description</label>
-                        <input id="answer3imagedescription" type="text" value="{{answer3imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext4">Answer 4 Text</label>
-                        <textarea id="answertext4">{{answertext4}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer4feedback">Answer 4 Feedback</label>
-                        <input id="answer4feedback" type="text" value="{{answer4feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer4audio">Answer 4 Audio</label>
-                        <input id="answer4audio" type="text" value="{{answer4audio}}">
-                    </div>
-                    <div>
-                        <label for="answer4imagedescription">Answer 4 Image Description</label>
-                        <input id="answer4imagedescription" type="text" value="{{answer4imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext5">Answer 5 Text</label>
-                        <textarea id="answertext5">{{answertext5}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer5feedback">Answer 5 Feedback</label>
-                        <input id="answer5feedback" type="text" value="{{answer5feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer5audio">Answer 5 Audio</label>
-                        <input id="answer5audio" type="text" value="{{answer5audio}}">
-                    </div>
-                    <div>
-                        <label for="answer5imagedescription">Answer 5 Image Description</label>
-                        <input id="answer5imagedescription" type="text" value="{{answer5imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext6">Answer 6 Text</label>
-                        <textarea id="answertext6">{{answertext6}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer6feedback">Answer 6 Feedback</label>
-                        <input id="answer6feedback" type="text" value="{{answer6feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer6audio">Answer 6 Audio</label>
-                        <input id="answer6audio" type="text" value="{{answer6audio}}">
-                    </div>
-                    <div>
-                        <label for="answer6imagedescription">Answer 6 Image Description</label>
-                        <input id="answer6imagedescription" type="text" value="{{answer6imagedescription}}">
-                    </div>
-                </div>
-                <div>
-                    <label for="answereditorcomments">Answer Editor Comments</label>
-                    <input id="answereditorcomments" type="text" value="{{answereditorcomments}}">
-                </div>
-            </div>
-
-        </div>
-{{/each}}
-    </script>
-
-    <!-- PASSAGE TEMPLATE FOR HANDLEBARS -->
     <script id="template" type="text/x-handlebars-template">
-{{#each this}}
-            <div id="passage-{{passagenum}}" class="fieldset">
-        <h2>PASSAGE {{passagenum}}</h2>
-        <label for="passagetext">Passage Text</label>
-            <textarea id="passagetext">{{passagetext}}</textarea>
-      <div class="half">
-        <div>
-            <label for="passagenum">Passage Number</label>
-            <input type="number" id="passagenum" value="{{passagenum}}">
-        </div>
-        <div>
-            <label for="skill">Skill</label>
-            <select id="skill">
-                <option value="reading">reading</option>
-                <option value="writing">writing</option>
-                <option value="speaking">speaking</option>
-                <option value="listening">listening</option>
-            </select>
-        </div>
-        <div>
-            <label for="level">Level</label>
-            <select id="level">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div>
-            <label for="function">Function</label>
-            <select id="function">
-                <option value="ask and answer">ask and answer</option>
-                <option value="narrate">narrate</option>
-                <option value="describe">describe</option>
-                <option value="negotiate">negotiate</option>
-            </select>
-        </div>
-        <div>
-            <label for="topic">Topic</label>
-            <select id="topic">
-                <option value="daily life">daily life</option>
-                <option value="social communication">social communication</option>
-                <option value="education">education</option>
-                <option value="ethics and values">ethics and values</option>
-                <option value="religion">religion</option>
-                <option value="family">family</option>
-                <option value="goals and challenges">goals and challenges</option>
-                <option value="humanities">humanities</option>
-                <option value="news and events">news and events</option>
-                <option value="personal finance">personal finance</option>
-                <option value="recreation and travel">recreation and travel</option>
-                <option value="work and professional communication">work and professional communication</option>
-            </select>
-        </div>
-        <div>
-            <label for="difficultylevel">Difficulty Level</label>
-            <select id="difficultylevel">
-                <option value="advanced">advanced</option>
-                <option value="intermediate">intermediate</option>
-            </select>
-        </div>
-        <div>
+        {{#each this}}
+<div class="row" id="row{{@index}}">
+    <div class="remove">x</div>
+    <div class="passage">
 
-        </div>
-        </div>
-      <div class="half">
-        <div>
-            <label for="passagetexteditorcomments">Passage Text Editor Comments</label>
-            <input type="text" id="passagetexteditorcomments" value="{{passagetexteditorcomments}}">
-        </div>
-        <div>
-            <label for="passageaudio">Passage Audio</label>
-            <input id="passageaudio" type="text" value="{{passageaudio}}">
-        </div>
-        <div>
-            <label for="passageimagedescription">Passage Image Description</label>
-            <input id="passageimagedescription" type="text" value="{{passageimagedescription}}">
-        </div>
-        <div>
-            <label for="references">References</label>
-            <input id="references" type="text" value="{{references}}">
-        </div>
-        <div>
-            <label for="ERCentralLevel">ER Central Level</label>
-            <input id="ERCentralLevel" type="text" value="{{ERCentralLevel}}">
-        </div>
-        <div>
-            <label for="ECCentralScore">EC Central Score</label>
-            <input id="ECCentralScore" type="text" value="{{ECCentralScore}}">
-        </div>
-      </div>
-{{#each this.questions}}
-                    <div class="fieldset">
-            <h2>Question {{questionnum}}</h2>
-            <label for="questiontext">Question Text</label>
-                <textarea id="questiontext">{{questiontext}}</textarea>
-<div class="half">
-            <div>
-                <label for="uuid">UUID</label>
-                <input id="uuid" disabled value="{{uuid}}">
-            </div>
-            <div>
-                <label for="questionnum">Question Number</label>
-                <input id="questionnum" type="number" value="{{questionnum}}">
-            </div>
-            <div>
-                <label for="questionname">Question Name</label>
-                <input id="questionname" type="text" value="{{questionname}}">
-            </div>
-            <div>
-                <label for="questionfunction">Question Function</label>
-                <select id="questionfunction">
-                    <option value="ask and answer">ask and answer</option>
-                    <option value="narrate">narrate</option>
-                    <option value="describe">describe</option>
-                    <option value="negotiate">negotiate</option>
-                </select>
-            </div>
-              <div>
-                <label for="questiontype">Question Type</label>
-                <select id="questiontype">
-                    <option value="multiple choice">Multiple Choice</option>
-                    <option value="true false">True False</option>
-                    <option value="multi-answer">Multi-Answer</option>
-                    <option value="matching">Matching</option>
-                    <option value="sort">Sort</option>
-                    <option value="fill in the blank">Fill in the Blank</option>
-                    <option value="drag and drop">Drag and Drop</option>
-                    <option value="highlight">Highlight</option>
-                    <option value="hotspot">Hotspot</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="questiontexteditorcomments">Question Text Editor Comments</label>
-                <input id="questiontexteditorcomments" type="text" value="{{questiontexteditorcomments}}">
-            </div>
-
-          </div>
-          <div class="half">
-<div>
-
-            </div>
-            <div>
-                <label for="questionaudio">Question Audio</label>
-                <input id="questionaudio" type="text" value="{{questionaudio}}">
-            </div>
-            <div>
-                <label for="questionimagedescription">Question Image Description</label>
-                <input id="questionimagedescription" type="text" value="{{questionimagedescription}}">
-            </div>
-            <div>
-                <label for="questionrubric">Question Rubric</label>
-                <input id="questionrubric" type="text" value="{{questionrubric}}">
-            </div>
-            <div>
-                <label for="Clausespersentence">Clauses Per Sentence</label>
-                <input id="Clausespersentence" type="text" value="{{Clausespersentence}}">
-            </div>
-            <div>
-                <label for="wordcount">Word Count</label>
-                <input id="wordcount" type="number" value="{{wordcount}}">
-            </div>
-          </div>
-
-            <div class="fieldset">
-                <h2>Answers</h2>
-                <div class="answer">
-                    <div>
-                        <label for="answertext1">Answer 1 Text</label>
-                        <textarea id="answertext1">{{answertext1}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer1feedback">Answer 1 Feedback</label>
-                        <input id="answer1feedback" type="text" value="{{answer1feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer1audio">Answer 1 Audio</label>
-                        <input id="answer1audio" type="text" value="{{answer1audio}}">
-                    </div>
-                    <div>
-                        <label for="answer1imagedescription">Answer 1 Image Description</label>
-                        <input id="answer1imagedescription" type="text" value="{{answer1imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext2">Answer 2 Text</label>
-                        <textarea id="answertext2">{{answertext2}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer2feedback">Answer 2 Feedback</label>
-                        <input id="answer2feedback" type="text" value="{{answer2feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer2audio">Answer 2 Audio</label>
-                        <input id="answer2audio" type="text" value="{{answer2audio}}">
-                    </div>
-                    <div>
-                        <label for="answer2imagedescription">Answer 2 Image Description</label>
-                        <input id="answer2imagedescription" type="text" value="{{answer2imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext3">Answer 3 Text</label>
-                        <textarea id="answertext3">{{answertext3}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer3feedback">Answer 3 Feedback</label>
-                        <input id="answer3feedback" type="text" value="{{answer3feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer3audio">Answer 3 Audio</label>
-                        <input id="answer3audio" type="text" value="{{answer3audio}}">
-                    </div>
-                    <div>
-                        <label for="answer3imagedescription">Answer 3 Image Description</label>
-                        <input id="answer3imagedescription" type="text" value="{{answer3imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext4">Answer 4 Text</label>
-                        <textarea id="answertext4">{{answertext4}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer4feedback">Answer 4 Feedback</label>
-                        <input id="answer4feedback" type="text" value="{{answer4feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer4audio">Answer 4 Audio</label>
-                        <input id="answer4audio" type="text" value="{{answer4audio}}">
-                    </div>
-                    <div>
-                        <label for="answer4imagedescription">Answer 4 Image Description</label>
-                        <input id="answer4imagedescription" type="text" value="{{answer4imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext5">Answer 5 Text</label>
-                        <textarea id="answertext5">{{answertext5}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer5feedback">Answer 5 Feedback</label>
-                        <input id="answer5feedback" type="text" value="{{answer5feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer5audio">Answer 5 Audio</label>
-                        <input id="answer5audio" type="text" value="{{answer5audio}}">
-                    </div>
-                    <div>
-                        <label for="answer5imagedescription">Answer 5 Image Description</label>
-                        <input id="answer5imagedescription" type="text" value="{{answer5imagedescription}}">
-                    </div>
-                </div>
-                <div class="answer">
-                    <div>
-                        <label for="answertext6">Answer 6 Text</label>
-                        <textarea id="answertext6">{{answertext6}}</textarea>
-                    </div>
-                    <div>
-                        <label for="answer6feedback">Answer 6 Feedback</label>
-                        <input id="answer6feedback" type="text" value="{{answer6feedback}}">
-                    </div>
-                    <div>
-                        <label for="answer6audio">Answer 6 Audio</label>
-                        <input id="answer6audio" type="text" value="{{answer6audio}}">
-                    </div>
-                    <div>
-                        <label for="answer6imagedescription">Answer 6 Image Description</label>
-                        <input id="answer6imagedescription" type="text" value="{{answer6imagedescription}}">
-                    </div>
-                </div>
-                <div>
-                    <label for="answereditorcomments">Answer Editor Comments</label>
-                    <input id="answereditorcomments" type="text" value="{{answereditorcomments}}">
-                </div>
-            </div>
+            <div><p>passage text</p>
+            <textarea class="editor">{{passagetext}}</textarea></div>
+        <div><p>passage text editor comments</p>
+            <textarea class="editor">{{passagetexteditorcomments}}</textarea></div>
+            <div><p>passage num</p>
+            <input value="{{passagenum}}" /></div>
+            <div><p>function</p>
+            <input value="{{function}}" /></div>
+            <div><p>topic</p>
+            <input value="{{topic}}" /></div>
+            <div><p>difficulty level</p>
+            <input value="{{difficultylevel}}" /></div>
+            <div><p>skill</p>
+            <input value="{{skill}}" /></div>
+            <div><p>level</p>
+            <input value="{{level}}" /></div>
 
 
+            <div><p>references</p>
+            <input value="{{references}}" /></div>
+            <div><p>ER Central Level</p>
+            <input value="{{ERCentralLevel}}" /></div>
+            <div><p>EC Central Score</p>
+            <input value="{{ECCentralScore}}" /></div>
+            <div><p>Clauses per sentence</p>
+            <input value="{{Clausespersentence}}" /></div>
+            <div><p>passage audio</p>
+            <input value="{{passageaudio}}" /></div>
+            <div><p>passage image description</p>
+            <input value="{{passageimagedescription}}" /></div>
     </div>
-                <div class="new_row" onclick="add_question('passage-{{passagenum}}')">
-                <p class="plus">+</p>
-                <p>add another question</p>
-            </div>
-                {{/each}}  </div>
-                              <div class="new_row" onclick="add_passage()">
-                <p class="plus">+</p>
-                <p>add another passage</p>
-            </div>
-{{/each}}
+        <div class="question">
+            <div><p>question text</p>
+            <textarea class="editor">{{questiontext}}</textarea></div>
+            <div><p>question text editor comments</p>
+            <textarea class="editor">{{questiontexteditorcomments}}</textarea></div>
+            <div><p>question num</p>
+            <input value="{{questionnum}}" /></div>
+
+
+            <div><p>question type</p>
+            <input value="{{questiontype}}" /></div>
+            <div><p>question audio</p>
+            <input value="{{questionaudio}}" /></div>
+            <div><p>question image description</p>
+            <input value="{{questionimagedescription}}" /></div>
+            <div><p>word count</p>
+            <input value="{{wordcount}}" /></div>
+                        <div><p>question function</p>
+            <input value="{{questionfunction}}" /></div>
+             <div><p>question rubric</p>
+                 <input value="{{questionrubric}}"/></div>
+        </div>
+
+
+    <div class="answers">
+
+
+           <div class="answer-half">
+            <div class="answertext"><p>answertext1</p>
+            <textarea class="answer" rows="3">{{answertext1}}</textarea></div>
+            <div><p>answer 1 feedback</p>
+            <input value="{{answer1feedback}}" /></div>
+            <div><p>answer 1 audio</p>
+            <input value="{{answer1audio}}" /></div>
+            <div><p>answer 1 image description</p>
+            <input value="{{answer1imagedescription}}" /></div>
+            <div class="answertext"><p>answertext2</p>
+            <textarea class="answer" rows="3">{{answertext2}}</textarea></div>
+            <div><p>answer 2 feedback</p>
+            <input value="{{answer2feedback}}" /></div>
+            <div><p>answer 2 audio</p>
+            <input value="{{answer2audio}}" /></div>
+            <div><p>answer 2 image description</p>
+            <input value="{{answer2imagedescription}}" /></div>
+            <div class="answertext"><p>answertext3</p>
+            <textarea class="answer" rows="3">{{answertext3}}</textarea></div>
+            <div><p>answer 3 feedback</p>
+            <input value="{{answer3feedback}}" /></div>
+            <div><p>answer 3 audio</p>
+            <input value="{{answer3audio}}" /></div>
+            <div><p>answer 3 image description</p>
+            <input value="{{answer3imagedescription}}" /></div>
+
+        </div><div class="answer-half">
+            <div class="answertext"><p>answertext4</p>
+            <textarea class="answer" rows="3">{{answertext4}}</textarea></div>
+            <div><p>answer 4 feedback</p>
+            <input value="{{answer4feedback}}" /></div>
+            <div><p>answer 4 audio</p>
+            <input value="{{answer4audio}}" /></div>
+            <div><p>answer 4 image description</p>
+            <input value="{{answer4imagedescription}}" /></div>
+            <div class="answertext"><p>answertext5</p>
+            <textarea class="answer" rows="3">{{answertext5}}</textarea></div>
+            <div><p>answer 5 feedback</p>
+            <input value="{{answer5feedback}}" /></div>
+            <div><p>answer 5 audio</p>
+            <input value="{{answer5audio}}" /></div>
+            <div><p>answer 5 image description</p>
+            <input value="{{answer5imagedescription}}" /></div>
+            <div class="answertext"><p>answertext6</p>
+            <textarea class="answer" rows="3">{{answertext6}}</textarea></div>
+            <div><p>answer 6 feedback</p>
+            <input value="{{answer6feedback}}" /></div>
+            <div><p>answer 6 audio</p>
+            <input value="{{answer6audio}}" /></div>
+            <div><p>answer 6 image description</p>
+            <input value="{{answer6imagedescription}}" /></div>
+
+        </div>
+ <div><p>answer editor comments</p>
+            <textarea class="editor">{{answereditorcomments}}</textarea></div>
+    </div>
+</div>
+
+        {{/each}}
     </script>
     <div id="savemsg">Changes Saved</div>
     <div class="top">
         <div class="half">
-            <h2 >1. Upload a file here.</h2>
+            <h2>1. Upload a file here.</h2>
             <input type="file" name="file" id="file" />
         </div>
         <div class="half">
@@ -524,14 +154,12 @@
         </div>
     </div>
     <div class="bottom">
-        <h2>2. Edit Here</h2>
+        <h2>2. Edit CSV Here</h2>
         <div id="UI">
-
-            <div class="new_row" onclick="add_passage()">
+            <div class="new_row" onclick="add_row()">
                 <p class="plus">+</p>
-                <p>add another passage</p>
+                <p>add another question</p>
             </div>
-
         </div>
     </div>
     <script src="./2.js">
