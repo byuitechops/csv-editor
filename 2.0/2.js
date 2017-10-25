@@ -10,6 +10,14 @@ var file_name = "default.csv";
 var template = Handlebars.compile(document.querySelector('#template').innerHTML);
 document.querySelector('input').addEventListener('change', getFile)
 
+/*******************************
+internet boi handlebars helper
+*******************************/
+window.Handlebars.registerHelper('select', function( value, options ){
+        var $el = $('<select />').html( options.fn(this) );
+        $el.find('[value="' + value + '"]').attr({'selected':'selected'});
+        return $el.html();
+    });
 
 /**********************************************************
  *                   getBlank(string)
@@ -192,13 +200,22 @@ function add_row() {
 function addListeners() {
     //add change event listener to inputs
     var inputs = document.getElementsByTagName("input");
-    var events;
+    var selects = document.getElementsByTagName("select");
+//    var events;
     for (var i = 0; i < inputs.length; i++) {
         if (!inputs[i].dataset.listener) {
             inputs[i].addEventListener('keyup', function (event) {
                 saveData(this);
             }, false);
             inputs[i].dataset.listener = true;
+        }
+    }
+    for (var i = 0; i < selects.length; i++) {
+        if (!selects[i].dataset.listener) {
+            selects[i].addEventListener('change', function (event) {
+                saveData(this);
+            }, false);
+            selects[i].dataset.listener = true;
         }
     }
 
@@ -221,6 +238,8 @@ function addListeners() {
             closers[i].dataset.listener = true;
         }
     }
+
+
 
 }
 

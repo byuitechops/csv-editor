@@ -32,14 +32,14 @@
             <div><p>id</p>
             <input value="{{id}}" disabled /></div>
             <div><p>passage function</p>
-                       <select><option value=""></option>
+                       <select>{{#select passagefunction}}<option value=""></option>
                 <option value="ask and answer">ask and answer</option>
                 <option value="narrate">narrate</option>
                 <option value="describe">describe</option>
                 <option value="negotiate">negotiate</option>
-            </select></div>
+            {{/select}}</select></div>
             <div><p>topic</p>
-                        <select><option value=""></option>
+                        <select>{{#select topic}}<option value=""></option>
                 <option value="daily life">daily life</option>
                 <option value="social communication">social communication</option>
                 <option value="education">education</option>
@@ -52,27 +52,27 @@
                 <option value="personal finance">personal finance</option>
                 <option value="recreation and travel">recreation and travel</option>
                 <option value="work and professional communication">work and professional communication</option>
-            </select></div>
+            {{/select}}</select></div>
             <div><p>difficulty level</p>
-                        <select><option value=""></option>
+                        <select>{{#select difficultylevel}}<option value=""></option>
                 <option value="advanced">advanced</option>
                 <option value="intermediate">intermediate</option>
-            </select></div>
+            {{/select}}</select></div>
             <div><p>skill</p>
-                        <select><option value=""></option>
+                        <select>{{#select skill}}<option value=""></option>
                 <option value="reading">reading</option>
                 <option value="writing">writing</option>
                 <option value="speaking">speaking</option>
                 <option value="listening">listening</option>
-            </select>
+            {{/select}}</select>
         </div>
             <div><p>level</p>
-                        <select><option value=""></option>
+                        <select>{{#select level}}<option value=""></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-            </select></div>
+            {{/select}}</select></div>
             <div><p>references</p>
             <input value="{{references}}" /></div>
             <div><p>ER Central Level</p>
@@ -94,12 +94,12 @@
             <div><p>question text comments for writer</p>
             <textarea class="editor">{{questiontextcommentsforwriter}}</textarea></div>
             <div><p>question type</p>
-                            <select><option value=""></option>
+                            <select>{{#select questiontype}}<option value=""></option>
                     <option value="multiple choice">Multiple Choice</option>
                     <option value="true false">True False</option>
                     <option value="multi-answer">Multi-Answer</option>
                     <option value="long ansswer">long answer</option>
-                </select></div>
+                {{/select}}</select></div>
             <div><p>question audio file name</p>
             <input value="{{questionaudiofilename}}" /></div>
             <div><p>question image description</p>
@@ -107,12 +107,12 @@
             <div><p>word count</p>
             <input value="{{wordcount}}" /></div>
                         <div><p>question function</p>
-                        <select><option value=""></option>
+                        <select>{{#select questionfunction}}<option value=""></option>
                 <option value="ask and answer">ask and answer</option>
                 <option value="narrate">narrate</option>
                 <option value="describe">describe</option>
                 <option value="negotiate">negotiate</option>
-            </select></div>
+            {{/select}}</select></div>
              <div><p>question rubric</p>
                  <input value="{{questionrubric}}"/></div>
             <div><p>question name</p><input value="{{questionname}}"></div>
