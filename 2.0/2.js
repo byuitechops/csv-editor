@@ -20,56 +20,65 @@ document.querySelector('input').addEventListener('change', getFile)
  * RETURNS: a blank template of the specified object.
  ***********************************************************/
 function getBlank() {
+    var tempuuid = uuidv5("EC_POC", uuidv4())
     return {
-        passagenum: "",
-        questionnum: "",
+        id: tempuuid,
         skill: "",
         level: "",
-        function: "",
         topic: "",
         difficultylevel: "",
+        passagefunction: "",
         passagetext: "",
-        passagetexteditorcomments: "",
-        passageaudio: "",
+        passagecorevocabularyused: "",
+        passagetextcommentsforwriter: "",
+        passagetextcommonissuestheme: "",
+        passageaudiofilename: "",
         passageimagedescription: "",
+        questionname: "",
+        questionfunction: "",
+        questioncando: "",
+        questiontext: "",
+        questiontextcommonissuestheme: "",
+        questionlevelfeedback: "",
+        questiontype: "",
+        questiontextcommentsforwriter: "",
+        questionaudiofilename: "",
+        questionimagedescription: "",
+        questionrubric: "",
+        answertext1: "",
+        answer1feedback: "",
+        answer1audiofilename: "",
+        answer1imagedescription: "",
+        answertext2: "",
+        answer2feedback: "",
+        answer2audiofilename: "",
+        answer2imagedescription: "",
+        answertext3: "",
+        answer3feedback: "",
+        answer3audiofilename: "",
+        answer3imagedescription: "",
+        answertext4: "",
+        answer4feedback: "",
+        answer4audiofilename: "",
+        answer4imagedescription: "",
+        answertext5: "",
+        answer5feedback: "",
+        answer5audiofilename: "",
+        answer5imagedescription: "",
+        answertext6: "",
+        answer6feedback: "",
+        answer6audiofilename: "",
+        answer6imagedescription: "",
+        answercommentsforthewriter: "",
         references: "",
         ERCentralLevel: "",
         ECCentralScore: "",
-        questionname: "",
-        questionfunction: "",
-        questiontext: "",
-        questiontype: "",
-        answertext1: "",
-        answertext2: "",
-        answertext3: "",
-        answertext4: "",
-        answertext5: "",
-        answertext6: "",
-        questiontexteditorcomments: "",
-        questionaudio: "",
-        questionimagedescription: "",
-        questionrubric: "",
-        answer1feedback: "",
-        answer1audio: "",
-        answer1imagedescription: "",
-        answer2feedback: "",
-        answer2audio: "",
-        answer2imagedescription: "",
-        answer3feedback: "",
-        answer3audio: "",
-        answer3imagedescription: "",
-        answer4feedback: "",
-        answer4audio: "",
-        answer4imagedescription: "",
-        answer5feedback: "",
-        answer5audio: "",
-        answer5imagedescription: "",
-        answer6feedback: "",
-        answer6audio: "",
-        answer6imagedescription: "",
-        answereditorcomments: "",
         Clausespersentence: "",
-        wordcount: ""
+        wordcount: "",
+        writername: "",
+        peerreviewname: "",
+        editorname: ""
+
     };
 }
 
@@ -145,11 +154,10 @@ function makeUI(data) {
 
 
 /**********************************************************
- *           add_row(_to_file(string, JSON))
+ *           add_row()
  *
  ***********************************************************/
 function add_row() {
-    //            var new_row = document.createElement('div');
     var ui = document.querySelector("#UI");
     var divs = document.querySelectorAll('#UI > div');
     var index;
@@ -160,8 +168,6 @@ function add_row() {
         index++;
     }
 
-
-    //TODO: function that g
     var new_rows = template([getBlank()]);
     var parser = new DOMParser();
     new_rows = parser.parseFromString(new_rows, "text/html").querySelector("#row0");
@@ -283,49 +289,46 @@ function getFile() {
  * RETURNS: Void
  ***********************************************************/
 function saveData(element) {
-
-
     // Get which row of the CSV to change
     var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
-    //    console.log(row);
-    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+        console.log(row);
+    var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
-        //        console.log("this is a new row, the last row is:", file[row - 1]);
+        //console.log("this is a new row, the last row is:", file[row - 1]);
         file.push(getBlank());
-        //        console.log(file[row]);
+        //console.log(file[row]);
     }
 
-    //            console.log(row, columnName);
-    //            console.log(file[row][columnName]);
+    //console.log(row, columnName);
+    //console.log(file[row][columnName]);
     if (element.classList.contains("editor")) {
         // DO IT TWICE, BECAUSE MCE
-        var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(' ', '');
+        var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
         //console.log(element.dataset.editortext);
         //console.log(file[row][columnName]);
         file[row][columnName] = element.dataset.editortext;
         //console.log(file[row][columnName]);
-    } else {
-        var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+    }
+    else {
+        var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
         file[row][columnName] = element.value;
-        // console.log(file[row][columnName])
+         //console.log(file[row][columnName])
     }
     // just in case the row decides it was supposed to be deleted.
     if (file[row].toDelete) {
         delete file[row].toDelete;
     }
-    //            console.log(file[row][columnName]);
+    //console.log(file[row][columnName]);
     document.querySelector("#savemsg").classList.remove("run-animation");
     void document.querySelector("#savemsg").offsetWidth;
     document.querySelector("#savemsg").classList.add("run-animation");
-
-    //     document.querySelector("#savemsg").classList.remove("run-animation");
 }
 
 /**********************************************************
  *                downloadit()
  *
- * DESC: Exports the page data to a JSON file.
+ * DESC: Exports the page data to a CSV
  * INPUTS: None
  * RETURNS: Void
  ***********************************************************/
@@ -389,17 +392,3 @@ function validate() {
     }
     return validity;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -6,25 +6,43 @@
         margin: 5px;
         min-width: 800px;
         max-width: 100%;
-        margin:  auto;
+        margin: auto;
         position: relative;
     }
     .remove {
         position: absolute;
     }
-    .passage, .question{
-        width:100%;
-         display:flex; flex-direction:row; flex-wrap:wrap;
+    .passage,
+    .question {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
-
+    .answer-half {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-self: flex-start;
+        width: 100%;
+    }
     .row > div {
-/*        border: 2px solid black;*/
+        /*        border: 2px solid black;*/
         padding: 5px;
         box-sizing: border-box;
         margin: 5px;
     }
 }
 @media screen and (min-width: 1600px) {
+    .answer-half {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-self: flex-start;
+        width: calc(50% - 10px);
+    }
     .row {
         border: 5px solid black;
         padding: 5px;
@@ -38,78 +56,106 @@
         position: relative;
     }
     .row > div {
-/*        border: 2px solid black;*/
+        /*        border: 2px solid black;*/
         padding: 5px;
         box-sizing: border-box;
         margin: 5px;
     }
-    .passage, .question {
+    .passage,
+    .question {
         width: calc(50% - 10px);
-        display:flex; flex-direction:row; flex-wrap:wrap; align-self:flex-start;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-self: flex-start;
     }
-
 }
+
 /************ END MEDIA SCREENS ***********/
-.row{
-    border-radius:15px;
-    margin-bottom:15px;
+body {
+    font-family: sans-serif;
 }
-.passage > div, .question > div{
-width:100%;
+.row {
+    border-radius: 15px;
+    margin-bottom: 15px;
 }
-   .passage > div:nth-child(n+3), .question > div:nth-child(n+3){
-        width: calc(25% - 10px);
-    }
-.answer-half {
-    display:flex; flex-direction:row; flex-wrap:wrap; justify-content:flex-start;align-self:flex-start;
-    width: calc(50% - 10px);
+.passage > div,
+.question > div {
+    width: 100%;
 }
-.answer-half > div.answertext{
-    width:100%;
+.passage > div:nth-child(n+3),
+.question > div:nth-child(n+3) {
+    width: calc(25% - 10px);
 }
-.answer-half > div{
-    width:33%;
+.answer-half > div.answertext {
+    width: 100%;
 }
-.answer-half input{
-    width:calc(100% - 10px);
+.answer-half > div {
+    width: 33%;
 }
-
-    .answers {
-        display:flex; flex-direction:row; flex-wrap:wrap;justify-content:space-between;
-        width: calc(100% - 10px);
-    }
-
-.answers > div:last-child{
-    width:100%;
+.answer-half input {
+    width: calc(100% - 10px);
 }
-
-textarea{
-    box-sizing:border-box;
+.answers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: calc(100% - 10px);
 }
-    .remove {
-        position: absolute;
-        flex: none;
-    }
-
-    .row:nth-child(odd) {
+.answers > div:last-child {
+    width: 100%;
+}
+textarea {
+    box-sizing: border-box;
+}
+.remove {
+    position: absolute;
+    flex: none;
+}
+.row:nth-child(odd) {
     background-color: lightgray;
 }
-p{
-
-
-    margin:0;
-    padding-top:5px;
-    padding-bottom:5px;
+p {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 input {
-   200px;
+    200px;
+}
+#savemsg {
+    position: fixed;
+    right: 30px;
+    top: -30px;
+    border-left: 2px solid lightgreen;
+    border-right: 2px solid lightgreen;
+    transition: 0.2s ease-in-out;
+    padding: 5px;
+    background: cornsilk;
+    max-height: 20px;
+    opacity: 0;
+    z-index: 9999;
+}
+.run-animation {
+    animation: showsave 1.5s 1;
+}
+@keyframes showsave {
+    60% {
+        top: 0px;
+        opacity: 1;
+    }
+    100% {
+        top: -30px;
+        opacity: 0
+    }
+}
+.answer {
+    width: 100%;
 }
 
 /**********************************************************************************************/
 
-body {
-    font-family: sans-serif;
-}
 
 h3 {
     margin-top: 0;
@@ -124,30 +170,13 @@ h3 {
     width: 50%;
     float: left;
 }
-.left-side {
-    width: calc(50% - 15px);
-    float: left;
-}
-.right-side {
-    width: calc(50% - 15px);
-    float: right;
-}
-
-
 .top input {
     margin-bottom: 20px;
 }
 .bottom {
     clear: both;
 }
-.left-half {
-    width: calc(50% - 15px);
-    float: left;
-}
-.right-half {
-    width: calc(50% - 15px);
-    float: right;
-}
+
 #UI > div.new_row {
     background-color: white;
     color: #777;
@@ -182,9 +211,7 @@ select {
     color: black;
     transition: 0.2s ease-in-out;
 }
-.answer {
-    width: 100%;
-}
+
 .remove:hover {
     transition: 0.5s ease-in-out;
     background-color: darkred;
@@ -206,30 +233,4 @@ select {
     line-height: 30px;
     background: white;
     transition: 0.5s ease-in-out;
-}
-#savemsg {
-    position: fixed;
-    right: 30px;
-    top: -30px;
-    border-left: 2px solid lightgreen;
-    border-right: 2px solid lightgreen;
-    transition: 0.2s ease-in-out;
-    padding: 5px;
-    background: cornsilk;
-    max-height: 20px;
-    opacity: 0;
-    z-index: 9999;
-}
-.run-animation {
-    animation: showsave 1.5s 1;
-}
-@keyframes showsave {
-    60% {
-        top: 0px;
-        opacity: 1;
-    }
-    100% {
-        top: -30px;
-        opacity: 0
-    }
 }

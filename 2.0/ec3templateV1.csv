@@ -1,0 +1,13 @@
+id,skill,level,topic,difficulty level,passage function,passage text,passage core vocabulary used,passage text comments for writer (make the same as the passage text field),passage text common issues theme,passage audio file name,passage image description,question name,question function,question can-do,question text,question text common issues theme,question level feedback,question type,question text comments for writer (make the same as the passage text field),question audio file name,question image description,question rubric,answertext1,answer 1 feedback,answer 1 audio file name,answer 1 image description,answertext2,answer 2 feedback,answer 2 audio file name,answer 2 image description,answertext3,answer 3 feedback,answer 3 audio file name,answer 3 image description,answertext4,answer 4 feedback,answer 4 audio file name,answer 4 image description,answertext5,answer 5 feedback,answer 5 audio file name,answer 5 image description,answertext6,answer 6 feedback,answer 6 audio file name,answer 6 image description,answer comments for the writer (make the same as the passage text field),references,ER Central Level,EC Central Score,Clauses per sentence,word count,writer name,peer review name,editor name
+,reading,1,daily life,advanced,ask and answer,,,,,,,,ask and answer,,,,,multiple choice,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,writing,2,social communication,intermediate,narrate,,,,,,,,narrate,,,,,multiple answers,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,speaking ,3,education,,describe,,,,,,,,describe,,,,,true false,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,listening,4,ethics and values,,negotiate,,,,,,,,negotiate,,,,,long answer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,religion,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,family,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,goals and challenges,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,humanities,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,news and events,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,personal finance,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,recreation and travel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,work and professional communication,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
