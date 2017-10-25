@@ -121,8 +121,9 @@ p {
     padding-top: 5px;
     padding-bottom: 5px;
 }
-input {
-    200px;
+input,select {
+    width: 200px;
+    box-sizing:border-box;
 }
 #savemsg {
     position: fixed;
@@ -196,9 +197,7 @@ h3 {
     color: #777;
     font-size: 5em;
 }
-select {
-    width: 100%;
-}
+
 #UI > div.new_row:hover {
     background-color: white;
     color: black;

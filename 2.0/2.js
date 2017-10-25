@@ -291,7 +291,7 @@ function getFile() {
 function saveData(element) {
     // Get which row of the CSV to change
     var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
-        console.log(row);
+    console.log(row);
     var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
@@ -309,11 +309,10 @@ function saveData(element) {
         //console.log(file[row][columnName]);
         file[row][columnName] = element.dataset.editortext;
         //console.log(file[row][columnName]);
-    }
-    else {
+    } else {
         var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
         file[row][columnName] = element.value;
-         //console.log(file[row][columnName])
+        //console.log(file[row][columnName])
     }
     // just in case the row decides it was supposed to be deleted.
     if (file[row].toDelete) {
@@ -333,14 +332,27 @@ function saveData(element) {
  * RETURNS: Void
  ***********************************************************/
 function downloadit() {
+    var valid = validate();
     // filter out the rows that you have deleted.
-    file = file.filter(function (row) {
-        return typeof row.toDelete === 'undefined';
-    });
+    if (valid.valid) {
+        file = file.filter(function (row) {
+            return typeof row.toDelete === 'undefined';
+        });
 
-    console.log(file);
-    var exported = d3.csvFormat(file);
-    download(exported, file_name, "text/plain");
+        console.log(file);
+        var exported = d3.csvFormat(file);
+        download(exported, file_name, "text/plain");
+    } else {
+        console.log(valid.issues);
+        if (confirm("Issues have been found. Prese \"OK\" to ignore and download anyway.")) {
+            file = file.filter(function (row) {
+                return typeof row.toDelete === 'undefined';
+            });
+            console.log(file);
+            var exported = d3.csvFormat(file);
+            download(exported, file_name, "text/plain");
+        }
+    }
 }
 
 
@@ -369,22 +381,14 @@ function validate() {
     }
     // This example issue checks for the length of
     //      passagetext and logs an issue if it is over 4000 chars.
-    /*for (var i = 0; i < file.length; i++) {
+    for (var i = 0; i < file.length; i++) {
         if (file[i].passagetext.length > 4000) {
             console.log(file[i].passagetext.length)
             add_issue("passage" + file[i].passagenum, "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
         }
-    }*/
+    }
 
     // Mark any invalid inputs with the "invalid" class.
-
-    // Remove duplicate issues, may no longer be needed with JSON output.
-    /*function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
-    }
-    validity.issues = validity.issues.filter((thing, index, self) => self.findIndex((t) => {
-        return t.location === thing.location && t.issue === thing.issue;
-    }) === index);*/
 
     // If there are issues, set "valid" to false.
     if (validity.issues.length > 0) {
