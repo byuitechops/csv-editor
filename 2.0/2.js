@@ -403,8 +403,22 @@ function validate() {
     for (var i = 0; i < file.length; i++) {
         if (file[i].passagetext.length > 4000) {
             console.log(file[i].passagetext.length)
-            add_issue("passage" + file[i].passagenum, "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
+            add_issue(file[i].id, "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
         }
+        if (file[i].passagefunction == "")
+            add_issue(file[i].id, "passagefunction cannot be blank.");
+        if (file[i].topic == "")
+            add_issue(file[i].id, "topic cannot be blank.");
+        if (file[i].difficultylevel == "")
+            add_issue(file[i].id, "difficultylevel cannot be blank.");
+        if (file[i].skill == "")
+            add_issue(file[i].id, "skill cannot be blank.");
+        if (file[i].level == "")
+            add_issue(file[i].id, "level cannot be blank.");
+        if (file[i].questiontype == "")
+            add_issue(file[i].id, "questiontype cannot be blank.");
+        if (file[i].questionfunction == "")
+            add_issue(file[i].id, "questionfunction cannot be blank.");
     }
 
     // Mark any invalid inputs with the "invalid" class.
