@@ -27,6 +27,14 @@
         align-self: flex-start;
         width: 100%;
     }
+        .answer-quarter {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-self: flex-start;
+        width: 100%;
+    }
     .row > div {
         /*        border: 2px solid black;*/
         padding: 5px;
@@ -42,6 +50,14 @@
         justify-content: flex-start;
         align-self: flex-start;
         width: calc(50% - 10px);
+    }
+        .answer-quarter {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-self: flex-start;
+        width: calc(25% - 10px);
     }
     .row {
         border: 5px solid black;
@@ -73,6 +89,7 @@
 
 /************ END MEDIA SCREENS ***********/
 body {
+
     font-family: sans-serif;
 }
 .row {
@@ -87,13 +104,13 @@ body {
 .question > div:nth-child(n+3) {
     width: calc(25% - 10px);
 }
-.answer-half > div.answertext {
+.answer-quarter > div.answertext {
     width: 100%;
 }
-.answer-half > div {
+.answer-quarter > div {
     width: 33%;
 }
-.answer-half input {
+.answer-quarter input {
     width: calc(100% - 10px);
 }
 .answers {
@@ -103,7 +120,7 @@ body {
     justify-content: space-between;
     width: calc(100% - 10px);
 }
-.answers > div:last-child {
+.answer-half > div {
     width: 100%;
 }
 textarea {
