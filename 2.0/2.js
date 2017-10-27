@@ -281,6 +281,9 @@ function getFile() {
     reader.onload = function (e) {
         var fileData = e.target.result;
 
+        //Map the columns to have a key for each property of the getblank object.
+//      IGNORE FOR NOW
+//        var blankKeys = Object.keys(getBlank());
         //need to fix the spaces in the obj props
         makeUI(d3.csvParse(fileData).map(function (item) {
             spaces = Object.keys(item);
@@ -360,7 +363,8 @@ function downloadit() {
         });
 
         console.log(file);
-        var exported = d3.csvFormat(file);
+        /*ADD THE COLUMNS!*/
+        var exported = d3.csvFormat(file, Object.keys(getBlank())); //var exported = d3.csvFormat(file, ["col","col"]);
         download(exported, file_name, "text/plain");
     } else {
         console.log(valid.issues);
