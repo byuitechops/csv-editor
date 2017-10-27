@@ -255,6 +255,7 @@ function saveData(element) {
 }
 
 
+
 function downloadit() {
     // filter out the rows that you have deleted.
     file = file.filter(function (row) {
@@ -262,6 +263,7 @@ function downloadit() {
     });
 
     console.log(file);
-    var exported = d3.csvFormat(file);
+    var exported = d3.csvFormat(file, Object.keys(getBlank()));
     download(exported, file_name, "text/plain");
 }
+
