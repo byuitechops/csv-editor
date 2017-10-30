@@ -45,6 +45,7 @@
 }
 @media screen and (min-width: 1600px) {
     .answer-half {
+
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -89,6 +90,14 @@
 }
 
 /************ END MEDIA SCREENS ***********/
+
+.uuid{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    right:0;
+    text-align:right;
+}
 body {
 
     font-family: sans-serif;
@@ -108,10 +117,17 @@ body {
 .answer-quarter > div.answertext {
     width: 100%;
 }
+.answer-half > div.answercomments{
+    width:100%;
+}
+.answer-half > div{
+    width: 25%;
+}
 .answer-quarter > div {
     width: 33%;
 }
-.answer-quarter input {
+
+.answer-quarter input, .answer-half input {
     width: calc(100% - 10px);
 }
 .answers {
@@ -121,9 +137,7 @@ body {
     justify-content: space-between;
     width: calc(100% - 10px);
 }
-.answer-half > div {
-    width: 100%;
-}
+
 textarea {
     box-sizing: border-box;
 }
