@@ -1,4 +1,3 @@
-/*IT HAS UPDATED*/
 if (window.location.search.indexOf('?css=fun') === 0) {
     document.write('<link rel="stylesheet" href="./fun.css" />');
 } else {
@@ -167,6 +166,12 @@ function makeUI(data) {
 /**********************************************************
  *           add_row()
  *
+ * DESC: Adds a row to the DOM and to the file. First makes
+ *       the new row data, then inserts it where it belongs
+ *       from there it calls addTinyMCE() and addListeners()
+ *       to make sure the new row works like all the others.
+ * INPUTS: None
+ * RETURNS: Void
  ***********************************************************/
 function add_row() {
     var ui = document.querySelector("#UI");
@@ -357,7 +362,10 @@ function saveData(element) {
 /**********************************************************
  *                downloadit()
  *
- * DESC: Exports the page data to a CSV
+ * DESC: Exports the page data to a CSV. Calls validation
+ *       and makes the user confirm if certain errors are
+ *       found. If no changes have been made, or there are
+ *       validation issues, a warning is offered first.
  * INPUTS: None
  * RETURNS: Void
  ***********************************************************/
@@ -399,15 +407,15 @@ function downloadit() {
 
 
 
-/**********************************************************
+/******************************************************************
  *                validate()
  *
  * DESC: Checks the page for any issues we don't want to
  *       export. Returns a list of issues and marks them
  *       in the DOM to be fixed if the user desires.
  * INPUTS: None
- * RETURNS: {valid: bool, issues:[{issue:"",location,""}]}
- ***********************************************************/
+ * RETURNS: {valid: bool, issues:[{issue:"",location:"",field:""}]}
+ *****************************************************************/
 function validate() {
     // Blank returned object.
     var validity = {
