@@ -5,7 +5,6 @@ if (window.location.search.indexOf('?css=fun') === 0) {
 }
 
 var saves = 0;
-
 var file = [];
 var spaces;
 var file_name = "default.csv";
@@ -52,32 +51,32 @@ function getBlank() {
         questionlevelfeedback: "",
         questiontype: "",
         questiontextcommentsforwriter: "",
-        questionaudiofilename: "",
+        questionaudiofile: "",
         questionimagedescription: "",
         questionrubric: "",
         answertext1: "",
         answer1feedback: "",
-        answer1audiofilename: "",
+        answer1audiofile: "",
         answer1imagedescription: "",
         answertext2: "",
         answer2feedback: "",
-        answer2audiofilename: "",
+        answer2audiofile: "",
         answer2imagedescription: "",
         answertext3: "",
         answer3feedback: "",
-        answer3audiofilename: "",
+        answer3audiofile: "",
         answer3imagedescription: "",
         answertext4: "",
         answer4feedback: "",
-        answer4audiofilename: "",
+        answer4audiofile: "",
         answer4imagedescription: "",
         answertext5: "",
         answer5feedback: "",
-        answer5audiofilename: "",
+        answer5audiofile: "",
         answer5imagedescription: "",
         answertext6: "",
         answer6feedback: "",
-        answer6audiofilename: "",
+        answer6audiofile: "",
         answer6imagedescription: "",
         answercommentsforthewriter: "",
         references: "",
@@ -146,12 +145,8 @@ function addTinyMCE() {
 function makeUI(data) {
     file = data;
     document.querySelector('#UI').innerHTML = template(data);
-
-
     addTinyMCE();
-
     addListeners();
-
     var add_another = document.createElement('div');
     add_another.addEventListener('click', function (event) {
         add_row();
@@ -227,7 +222,6 @@ function addListeners() {
             selects[i].dataset.listener = true;
         }
     }
-
     //add change event listener to editors
     var editors = document.querySelectorAll("textarea");
     for (var i = 0; i < editors.length; i++) {
@@ -327,7 +321,6 @@ function saveData(element) {
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
         //CAUSING PROBLEMS?
-
         //console.log("this is a new row, the last row is:", file[row - 1]);
         //file.push(getBlank());
         //console.log(file[row]);
@@ -355,7 +348,6 @@ function saveData(element) {
     document.querySelector("#savemsg").classList.remove("run-animation");
     void document.querySelector("#savemsg").offsetWidth;
     document.querySelector("#savemsg").classList.add("run-animation");
-
     saves = 1;
 }
 
@@ -376,10 +368,9 @@ function downloadit() {
         file = file.filter(function (row) {
             return typeof row.toDelete === 'undefined';
         });
-
         console.log(file);
         /*ADD THE COLUMNS!*/
-        var exported = d3.csvFormat(file, Object.keys(getBlank())); //var exported = d3.csvFormat(file, ["col","col"]);
+        var exported = d3.csvFormat(file, Object.keys(getBlank()));
         download(exported, file_name, "text/plain");
     }
     else if (saves === 0){
@@ -452,7 +443,6 @@ function validate() {
         if (file[i].questionfunction == "")
             add_issue(file[i].id, "question function", "questionfunction cannot be blank.");
     }
-
     // Mark any invalid inputs with the "invalid" class.
     for (var i = 0; i < validity.issues.length; i++){
         var issue = validity.issues[i];
