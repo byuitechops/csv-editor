@@ -4,10 +4,6 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <style>
-
-
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-dsv/1.0.7/d3-dsv.min.js"></script>
@@ -16,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.7/download.min.js"></script>
         <script src="https://wzrd.in/standalone/uuid%2Fv4@latest"></script>
     <script src="https://wzrd.in/standalone/uuid%2Fv5@latest"></script>
-
 </head>
 
 <body>
@@ -72,9 +67,6 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
             {{/select}}</select></div>
-
-
-
             <div><p>passage audio file name</p>
             <input value="{{passageaudiofilename}}" /></div>
             <div><p>passage image description</p>
@@ -168,8 +160,8 @@
             <input value="{{answer6imagedescription}}" /></div>
        </div>
         <div class="answer-half">
-            <div class="answercomments"><p>answer comments for the writer</p><textarea class="editor">{{answercommentsforthewriter}}</textarea></div>
-
+            <div class="answercomments"><p>answer comments for the writer</p>
+                <textarea class="editor">{{answercommentsforthewriter}}</textarea></div>
                 <div><p>Clauses per sentence</p>
             <input value="{{Clausespersentence}}" /></div>
                             <div><p>ER Central Level</p>
@@ -180,15 +172,11 @@
             <input value="{{references}}" /></div>
                 <div><p>word count</p>
             <input value="{{wordcount}}" /></div>
-
-
-
                 <div class="uuid" data-uuid="{{id}}"><span>id:</span>
             <span>{{id}}</span></div>
 
         </div>
 </div>
-
         {{/each}}
     </script>
     <div id="savemsg">Changes Saved</div>
@@ -211,10 +199,7 @@
             </div>
         </div>
     </div>
-    <script src="./2.js">
-
-
-    </script>
+    <script src="./2.js"></script>
 </body>
 
 </html>

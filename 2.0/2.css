@@ -2,8 +2,7 @@
 @media screen and (max-width: 1599px) {
     .row {border: 5px solid black; padding: 5px; box-sizing: border-box;
         margin: 5px; min-width: 800px; max-width: 100%; margin: auto;
-        position: relative;
-    }
+        position: relative;}
     .remove {position: absolute;}
     .passage, .question {width: 100%; display: flex; flex-direction: row; flex-wrap: wrap;}
     .answer-half {display: flex; flex-direction: row; flex-wrap: wrap;
@@ -25,8 +24,8 @@
         flex-wrap: wrap; align-self: flex-start;}
 }
 /************ END MEDIA SCREENS ***********/
-.uuid{width:100%; position:absolute; bottom:0; right:0; text-align:right;}
 body {font-family: sans-serif;}
+.uuid{width:100%; position:absolute; bottom:0; right:0; text-align:right;}
 .row {border-radius: 15px;  margin-bottom: 15px;}
 .passage > div,.question > div {width: 100%;}
 .passage > div:nth-child(n+3),.question > div:nth-child(n+3) {width: calc(25% - 10px);}
