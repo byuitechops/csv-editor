@@ -268,3 +268,10 @@ h3 {
     background: white;
     transition: 0.5s ease-in-out;
 }
+.invalid{color:red;}
+.invalid::after{
+    content:"*";
+    font-weight:bold;
+
+    color:red;
+}

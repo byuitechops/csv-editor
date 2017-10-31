@@ -25,19 +25,19 @@
 <div class="row" id="row{{@index}}">
     <div class="remove">x</div>
     <div class="passage">
-            <div><p>passage text</p>
+            <div><p data-label="passage text">passage text</p>
             <textarea class="editor">{{passagetext}}</textarea></div>
             <div><p>passage text comments for writer</p>
             <textarea class="editor">{{passagetextcommentsforwriter}}</textarea></div>
 
-            <div><p>passage function</p>
+            <div><p data-label="passage function">passage function</p>
                        <select>{{#select passagefunction}}<option value=""></option>
                 <option value="ask and answer">ask and answer</option>
                 <option value="narrate">narrate</option>
                 <option value="describe">describe</option>
                 <option value="negotiate">negotiate</option>
             {{/select}}</select></div>
-            <div><p>topic</p>
+            <div><p data-label="topic">topic</p>
                         <select>{{#select topic}}<option value=""></option>
                 <option value="daily life">daily life</option>
                 <option value="social communication">social communication</option>
@@ -52,12 +52,12 @@
                 <option value="recreation and travel">recreation and travel</option>
                 <option value="work and professional communication">work and professional communication</option>
             {{/select}}</select></div>
-            <div><p>difficulty level</p>
+            <div><p data-label="difficulty level">difficulty level</p>
                         <select>{{#select difficultylevel}}<option value=""></option>
                 <option value="advanced">advanced</option>
                 <option value="intermediate">intermediate</option>
             {{/select}}</select></div>
-            <div><p>skill</p>
+            <div><p data-label="skill">skill</p>
                         <select>{{#select skill}}<option value=""></option>
                 <option value="reading">reading</option>
                 <option value="writing">writing</option>
@@ -65,7 +65,7 @@
                 <option value="listening">listening</option>
             {{/select}}</select>
         </div>
-            <div><p>level</p>
+            <div><p data-label="level">level</p>
                         <select>{{#select level}}<option value=""></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -87,7 +87,7 @@
             <textarea class="editor">{{questiontext}}</textarea></div>
             <div><p>question text comments for writer</p>
             <textarea class="editor">{{questiontextcommentsforwriter}}</textarea></div>
-            <div><p>question type</p>
+            <div><p data-label="question type">question type</p>
                             <select>{{#select questiontype}}<option value=""></option>
                     <option value="multiple choice">Multiple Choice</option>
                     <option value="true false">True False</option>
@@ -99,7 +99,7 @@
             <div><p>question image description</p>
             <input value="{{questionimagedescription}}" /></div>
 
-                        <div><p>question function</p>
+                        <div><p data-label="question function">question function</p>
                         <select>{{#select questionfunction}}<option value=""></option>
                 <option value="ask and answer">ask and answer</option>
                 <option value="narrate">narrate</option>
@@ -183,7 +183,7 @@
 
 
 
-                <div class="uuid"><span>id:</span>
+                <div class="uuid" data-uuid="{{id}}"><span>id:</span>
             <span>{{id}}</span></div>
 
         </div>

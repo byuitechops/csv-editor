@@ -178,8 +178,9 @@ function add_row() {
         index = parseInt(divs[divs.length - 2].id.split("row")[1]);
         index++;
     }
-
-    var new_rows = template([getBlank()]);
+    var new_row_data = getBlank();
+    var new_rows = template([new_row_data]);
+    file.push(new_row_data);
     var parser = new DOMParser();
     new_rows = parser.parseFromString(new_rows, "text/html").querySelector("#row0");
     //            console.log(new_rows);
@@ -316,12 +317,14 @@ function getFile() {
 function saveData(element) {
     // Get which row of the CSV to change
     var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
-    console.log(row);
+//    console.log(row);
     var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
+        //CAUSING PROBLEMS?
+
         //console.log("this is a new row, the last row is:", file[row - 1]);
-        file.push(getBlank());
+        //file.push(getBlank());
         //console.log(file[row]);
     }
 
@@ -348,7 +351,7 @@ function saveData(element) {
     void document.querySelector("#savemsg").offsetWidth;
     document.querySelector("#savemsg").classList.add("run-animation");
 
-    saves++;
+    saves = 1;
 }
 
 /**********************************************************
@@ -412,10 +415,11 @@ function validate() {
         issues: []
     };
     // Add an issue to the returned object.
-    function add_issue(l, i) {
+    function add_issue(l, f, i) {
         validity.issues.push({
             issue: i,
-            location: l
+            location: l,
+            field: f
         })
     }
     // This example issue checks for the length of
@@ -423,26 +427,37 @@ function validate() {
     for (var i = 0; i < file.length; i++) {
         if (file[i].passagetext.length > 4000) {
             console.log(file[i].passagetext.length)
-            add_issue(file[i].id, "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
+            add_issue(file[i].id, "passage text", "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
         }
         if (file[i].passagefunction == "")
-            add_issue(file[i].id, "passagefunction cannot be blank.");
+            add_issue(file[i].id, "passage function", "passagefunction cannot be blank.");
         if (file[i].topic == "")
-            add_issue(file[i].id, "topic cannot be blank.");
+            add_issue(file[i].id, "topic", "topic cannot be blank.");
         if (file[i].difficultylevel == "")
-            add_issue(file[i].id, "difficultylevel cannot be blank.");
+            add_issue(file[i].id, "difficulty level", "difficultylevel cannot be blank.");
         if (file[i].skill == "")
-            add_issue(file[i].id, "skill cannot be blank.");
+            add_issue(file[i].id, "skill", "skill cannot be blank.");
         if (file[i].level == "")
-            add_issue(file[i].id, "level cannot be blank.");
+            add_issue(file[i].id, "level", "level cannot be blank.");
         if (file[i].questiontype == "")
-            add_issue(file[i].id, "questiontype cannot be blank.");
+            add_issue(file[i].id, "question type", "questiontype cannot be blank.");
         if (file[i].questionfunction == "")
-            add_issue(file[i].id, "questionfunction cannot be blank.");
+            add_issue(file[i].id, "question function", "questionfunction cannot be blank.");
     }
 
     // Mark any invalid inputs with the "invalid" class.
-
+    for (var i = 0; i < validity.issues.length; i++){
+        var issue = validity.issues[i];
+        var idTags = document.querySelectorAll(".uuid");
+        var location;
+        for (var j = 0; j < idTags.length; j++){
+            if (idTags[j].dataset.uuid == issue.location){
+                location = idTags[j];
+            }
+        }
+        location = location.closest('.row').querySelector('[data-label="' + issue.field + '"]');
+        location.classList.add('invalid');
+    }
     // If there are issues, set "valid" to false.
     if (validity.issues.length > 0) {
         validity.valid = false;
