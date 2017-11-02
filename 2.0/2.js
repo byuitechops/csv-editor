@@ -144,6 +144,11 @@ function addTinyMCE() {
  ***********************************************************/
 function makeUI(data) {
     file = data;
+    for (var i = 0; i < file.length;i++){
+        if (!file[i].id){
+            file[i].id = uuidv5("EC_POC", uuidv4());
+        }
+    }
     document.querySelector('#UI').innerHTML = template(data);
     addTinyMCE();
     addListeners();
