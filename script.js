@@ -220,7 +220,7 @@ function saveData(element) {
     // Get which row of the CSV to change
     var row = parseInt(element.parentElement.parentElement.parentElement.id.split("row")[1]);
     //    console.log(row);
-    var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+    var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
     // Adds a new row to the file data if it doesn't exist yet.
     if (!file[row]) {
         //        console.log("this is a new row, the last row is:", file[row - 1]);
@@ -232,13 +232,13 @@ function saveData(element) {
     //            console.log(file[row][columnName]);
     if (element.classList.contains("editor")) {
         // DO IT TWICE, BECAUSE MCE
-        var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(' ', '');
+        var columnName = element.previousElementSibling.previousElementSibling.innerHTML.replace(/ /g, '');
         //console.log(element.dataset.editortext);
         //console.log(file[row][columnName]);
         file[row][columnName] = element.dataset.editortext;
         //console.log(file[row][columnName]);
     } else {
-        var columnName = element.previousElementSibling.innerHTML.replace(' ', '');
+        var columnName = element.previousElementSibling.innerHTML.replace(/ /g, '');
         file[row][columnName] = element.value;
         // console.log(file[row][columnName])
     }
