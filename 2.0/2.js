@@ -384,7 +384,7 @@ function downloadit() {
                 return typeof row.toDelete === 'undefined';
             });
             console.log(file);
-            var exported = d3.csvFormat(file);
+            var exported = d3.csvFormat(file, Object.keys(getBlank()));
             download(exported, file_name, "text/plain");
         }
     }
@@ -395,7 +395,7 @@ function downloadit() {
                 return typeof row.toDelete === 'undefined';
             });
             console.log(file);
-            var exported = d3.csvFormat(file);
+            var exported = d3.csvFormat(file, Object.keys(getBlank()));
             download(exported, file_name, "text/plain");
         }
     }
