@@ -22,10 +22,10 @@
     <div class="passage">
             <div><p data-label="passage text">passage text</p>
             <textarea class="editor">{{passagetext}}</textarea></div>
-            <div><p>passage text comments for writer</p>
-            <textarea class="editor">{{passagetextcommentsforwriter}}</textarea></div>
+            <div><p>passage text editor comments</p>
+            <textarea class="editor">{{passagetexteditorcomments}}</textarea></div>
 
-            <div><p data-label="passage function">passage function</p>
+            <div><p data-label="function">function</p>
                        <select>{{#select passagefunction}}<option value=""></option>
                 <option value="ask and answer">ask and answer</option>
                 <option value="narrate">narrate</option>
@@ -67,8 +67,8 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
             {{/select}}</select></div>
-            <div><p>passage audio file name</p>
-            <input value="{{passageaudiofilename}}" /></div>
+            <div><p>passage audio</p>
+            <input value="{{passageaudio}}" /></div>
             <div><p>passage image description</p>
             <input value="{{passageimagedescription}}" /></div>
         <div><p>passage core vocabulary used</p><input value="{{passagecorevocabularyused}}"></div>
@@ -77,8 +77,8 @@
         <div class="question">
             <div><p>question text</p>
             <textarea class="editor">{{questiontext}}</textarea></div>
-            <div><p>question text comments for writer</p>
-            <textarea class="editor">{{questiontextcommentsforwriter}}</textarea></div>
+            <div><p>question text editor comments</p>
+            <textarea class="editor">{{questiontexteditorcomments}}</textarea></div>
             <div><p data-label="question type">question type</p>
                             <select>{{#select questiontype}}<option value=""></option>
                     <option value="multiple choice">Multiple Choice</option>
@@ -86,8 +86,8 @@
                     <option value="multi-answer">Multi-Answer</option>
                     <option value="long ansswer">long answer</option>
                 {{/select}}</select></div>
-            <div><p>question audio file name</p>
-            <input value="{{questionaudiofilename}}" /></div>
+            <div><p>question audio</p>
+            <input value="{{questionaudio}}" /></div>
             <div><p>question image description</p>
             <input value="{{questionimagedescription}}" /></div>
 
@@ -114,7 +114,7 @@
             <div><p>answer 1 feedback</p>
             <input value="{{answer1feedback}}" /></div>
             <div><p>answer 1 audio file</p>
-            <input value="{{answer1audiofile}}" /></div>
+            <input value="{{answer1audio}}" /></div>
             <div><p>answer 1 image description</p>
             <input value="{{answer1imagedescription}}" /></div>
             <div class="answertext"><p>answertext2</p>
@@ -122,7 +122,7 @@
             <div><p>answer 2 feedback</p>
             <input value="{{answer2feedback}}" /></div>
             <div><p>answer 2 audio file</p>
-            <input value="{{answer2audiofile}}" /></div>
+            <input value="{{answer2audio}}" /></div>
             <div><p>answer 2 image description</p>
             <input value="{{answer2imagedescription}}" /></div>
             <div class="answertext"><p>answertext3</p>
@@ -130,7 +130,7 @@
             <div><p>answer 3 feedback</p>
             <input value="{{answer3feedback}}" /></div>
             <div><p>answer 3 audio file</p>
-            <input value="{{answer3audiofile}}" /></div>
+            <input value="{{answer3audio}}" /></div>
             <div><p>answer 3 image description</p>
             <input value="{{answer3imagedescription}}" /></div>
         </div><div class="answer-quarter">
@@ -139,7 +139,7 @@
             <div><p>answer 4 feedback</p>
             <input value="{{answer4feedback}}" /></div>
             <div><p>answer 4 audio file</p>
-            <input value="{{answer4audiofile}}" /></div>
+            <input value="{{answer4audio}}" /></div>
             <div><p>answer 4 image description</p>
             <input value="{{answer4imagedescription}}" /></div>
             <div class="answertext"><p>answertext5</p>
@@ -147,7 +147,7 @@
             <div><p>answer 5 feedback</p>
             <input value="{{answer5feedback}}" /></div>
             <div><p>answer 5 audio file</p>
-            <input value="{{answer5audiofile}}" /></div>
+            <input value="{{answer5audio}}" /></div>
             <div><p>answer 5 image description</p>
             <input value="{{answer5imagedescription}}" /></div>
             <div class="answertext"><p>answertext6</p>
@@ -155,13 +155,13 @@
             <div><p>answer 6 feedback</p>
             <input value="{{answer6feedback}}" /></div>
             <div><p>answer 6 audio file</p>
-            <input value="{{answer6audiofile}}" /></div>
+            <input value="{{answer6audio}}" /></div>
             <div><p>answer 6 image description</p>
             <input value="{{answer6imagedescription}}" /></div>
        </div>
         <div class="answer-half">
-            <div class="answercomments"><p>answer comments for the writer</p>
-                <textarea class="editor">{{answercommentsforthewriter}}</textarea></div>
+            <div class="answercomments"><p>answer editor comments</p>
+                <textarea class="editor">{{answereditorcomments}}</textarea></div>
                 <div><p>Clauses per sentence</p>
             <input value="{{Clausespersentence}}" /></div>
                             <div><p>ER Central Level</p>
