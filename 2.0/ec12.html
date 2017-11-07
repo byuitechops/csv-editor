@@ -71,8 +71,11 @@
             <input value="{{passageaudio}}" /></div>
             <div><p>passage image description</p>
             <input value="{{passageimagedescription}}" /></div>
-        <div><p>passage core vocabulary used</p><input value="{{passagecorevocabularyused}}"></div>
-        <div><p>passage text common issues theme</p><input value="{{passagetextcommonissuestheme}}"></div>
+
+        <div><p>lesson</p><input value="{{lesson}}" /></div>
+        <div><p>section</p><input value="{{section}}" /></div>
+        <div><p>references</p><input value="{{references}}" /></div>
+
     </div>
         <div class="question">
             <div><p>question text</p>
@@ -91,87 +94,65 @@
             <div><p>question image description</p>
             <input value="{{questionimagedescription}}" /></div>
 
-                        <div><p data-label="question function">question function</p>
-                        <select>{{#select questionfunction}}<option value=""></option>
-                <option value="ask and answer">ask and answer</option>
-                <option value="narrate">narrate</option>
-                <option value="describe">describe</option>
-                <option value="negotiate">negotiate</option>
-            {{/select}}</select></div>
+
              <div><p>question rubric</p>
                  <input value="{{questionrubric}}"/></div>
             <div><p>question name</p><input value="{{questionname}}"></div>
-            <div><p>question can do</p><input value="{{questioncando}}"></div>
-            <div><p>question text common issues theme</p><input value="{{questiontextcommonissuestheme}}"></div>
-            <div><p>question level feedback</p><input value="{{questionlevelfeedback}}"></div>
-            <div><p>writer name</p><input value="{{writername}}"></div>
-            <div><p>peer review name</p><input value="{{peerreviewname}}"></div>
-            <div><p>editor name</p><input value="{{editorname}}"></div>
+
+            <div><p>activity type</p><input value="{{activitytype}}" /></div>
+            <div><p>item type</p><input value="{{itemtype}}" /></div>
+          <div><p>text type</p><input value="{{texttype}}" /></div>
+
         </div>
            <div class="answer-quarter">
-            <div class="answertext"><p>answertext1</p>
-            <textarea class="answer" rows="3">{{answertext1}}</textarea></div>
+
+            <div class="answertext"><p>answer 1</p>
+            <textarea class="answer" rows="3">{{answer1}}</textarea></div>
             <div><p>answer 1 feedback</p>
             <input value="{{answer1feedback}}" /></div>
-            <div><p>answer 1 audio file</p>
+            <div><p>answer 1 audio</p>
             <input value="{{answer1audio}}" /></div>
             <div><p>answer 1 image description</p>
             <input value="{{answer1imagedescription}}" /></div>
-            <div class="answertext"><p>answertext2</p>
-            <textarea class="answer" rows="3">{{answertext2}}</textarea></div>
-            <div><p>answer 2 feedback</p>
-            <input value="{{answer2feedback}}" /></div>
-            <div><p>answer 2 audio file</p>
-            <input value="{{answer2audio}}" /></div>
-            <div><p>answer 2 image description</p>
-            <input value="{{answer2imagedescription}}" /></div>
-            <div class="answertext"><p>answertext3</p>
-            <textarea class="answer" rows="3">{{answertext3}}</textarea></div>
+
+
+            <div class="answertext"><p>answer 3</p>
+            <textarea class="answer" rows="3">{{answer3}}</textarea></div>
             <div><p>answer 3 feedback</p>
             <input value="{{answer3feedback}}" /></div>
-            <div><p>answer 3 audio file</p>
+            <div><p>answer 3 audio</p>
             <input value="{{answer3audio}}" /></div>
             <div><p>answer 3 image description</p>
             <input value="{{answer3imagedescription}}" /></div>
         </div><div class="answer-quarter">
-            <div class="answertext"><p>answertext4</p>
-            <textarea class="answer" rows="3">{{answertext4}}</textarea></div>
+    <div class="answertext"><p>answer 2</p>
+            <textarea class="answer" rows="3">{{answer2}}</textarea></div>
+            <div><p>answer 2 feedback</p>
+            <input value="{{answer2feedback}}" /></div>
+            <div><p>answer 2 audio</p>
+            <input value="{{answer2audio}}" /></div>
+            <div><p>answer 2 image description</p>
+            <input value="{{answer2imagedescription}}" /></div>
+            <div class="answertext"><p>answer 4</p>
+            <textarea class="answer" rows="3">{{answer4}}</textarea></div>
             <div><p>answer 4 feedback</p>
             <input value="{{answer4feedback}}" /></div>
-            <div><p>answer 4 audio file</p>
+            <div><p>answer 4 audio</p>
             <input value="{{answer4audio}}" /></div>
             <div><p>answer 4 image description</p>
             <input value="{{answer4imagedescription}}" /></div>
-            <div class="answertext"><p>answertext5</p>
-            <textarea class="answer" rows="3">{{answertext5}}</textarea></div>
-            <div><p>answer 5 feedback</p>
-            <input value="{{answer5feedback}}" /></div>
-            <div><p>answer 5 audio file</p>
-            <input value="{{answer5audio}}" /></div>
-            <div><p>answer 5 image description</p>
-            <input value="{{answer5imagedescription}}" /></div>
-            <div class="answertext"><p>answertext6</p>
-            <textarea class="answer" rows="3">{{answertext6}}</textarea></div>
-            <div><p>answer 6 feedback</p>
-            <input value="{{answer6feedback}}" /></div>
-            <div><p>answer 6 audio file</p>
-            <input value="{{answer6audio}}" /></div>
-            <div><p>answer 6 image description</p>
-            <input value="{{answer6imagedescription}}" /></div>
+
+
        </div>
         <div class="answer-half">
             <div class="answercomments"><p>answer editor comments</p>
                 <textarea class="editor">{{answereditorcomments}}</textarea></div>
-                <div><p>Clauses per sentence</p>
-            <input value="{{Clausespersentence}}" /></div>
-                            <div><p>ER Central Level</p>
-            <input value="{{ERCentralLevel}}" /></div>
-            <div><p>EC Central Score</p>
-            <input value="{{ECCentralScore}}" /></div>
-                <div><p>references</p>
-            <input value="{{references}}" /></div>
-                <div><p>word count</p>
-            <input value="{{wordcount}}" /></div>
+
+
+
+
+
+
                 <div class="uuid" data-uuid="{{id}}"><span>id:</span>
             <span>{{id}}</span></div>
 
@@ -199,9 +180,9 @@
             </div>
         </div>
     </div>
-    <script src="./validate3.js"></script>
-    <script src="./getBlank3.js"></script>
-    <script src="./script.js"></script>
+    <script src="./validate12.js"></script>
+    <script src="./getBlank12.js"></script>
+    <script src="./2.js"></script>
 </body>
 
 </html>
