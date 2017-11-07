@@ -433,8 +433,8 @@ function validate() {
             console.log(file[i].passagetext.length)
             add_issue(file[i].id, "passage text", "passagetext too long. It is " + file[i].passagetext.length + " characters long.")
         }
-        if (file[i].passagefunction == "")
-            add_issue(file[i].id, "passage function", "passagefunction cannot be blank.");
+        if (file[i].function == "")
+            add_issue(file[i].id, "function", "function cannot be blank.");
         if (file[i].topic == "")
             add_issue(file[i].id, "topic", "topic cannot be blank.");
         if (file[i].difficultylevel == "")
