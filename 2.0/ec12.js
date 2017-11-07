@@ -1,8 +1,4 @@
-if (window.location.search.indexOf('?css=fun') === 0) {
-    document.write('<link rel="stylesheet" href="./fun.css" />');
-} else {
-    document.write('<link rel="stylesheet" href="./2.css" />');
-}
+
 
 var saves = 0;
 var file = [];
