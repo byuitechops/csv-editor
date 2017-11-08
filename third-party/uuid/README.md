@@ -1,4 +1,3 @@
-
 # uuid [![Build Status](https://secure.travis-ci.org/kelektiv/node-uuid.svg?branch=master)](http://travis-ci.org/kelektiv/node-uuid) #
 
 Simple, fast generation of [RFC4122](http://www.ietf.org/rfc/rfc4122.txt) UUIDS.
@@ -22,16 +21,14 @@ Version 1 (timestamp):
 
 ```javascript
 const uuidv1 = require('uuid/v1');
-uuidv1(); // ⇨ '985123a0-7e4f-11e7-9022-fb7190c856e4'
-
+uuidv1(); // -> '6c84fb90-12c4-11e1-840d-7b25c5ee775a'
 ```
 
 Version 4 (random):
 
 ```javascript
 const uuidv4 = require('uuid/v4');
-uuidv4(); // ⇨ 'df7cca36-3d7a-40f4-8f06-ae03cc22f045'
-
+uuidv4(); // -> '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
 ```
 
 Version 5 (namespace):
@@ -40,18 +37,14 @@ Version 5 (namespace):
 const uuidv5 = require('uuid/v5');
 
 // ... using predefined DNS namespace (for domain names)
-uuidv5('hello.example.com', uuidv5.DNS); // ⇨ 'fdda765f-fc57-5604-a269-52a7df8164ec'
+uuidv5('hello.example.com', uuidv5.DNS)); // -> 'fdda765f-fc57-5604-a269-52a7df8164ec'
 
 // ... using predefined URL namespace (for, well, URLs)
-uuidv5('http://example.com/hello', uuidv5.URL); // ⇨ '3bbcee75-cecc-5b56-8031-b6641c1ed1f1'
+uuidv5('http://example.com/hello', uuidv5.URL); // -> '3bbcee75-cecc-5b56-8031-b6641c1ed1f1'
 
 // ... using a custom namespace
-//
-// Note: Custom namespaces should be a UUID string specific to your application!
-// E.g. the one here was generated using this modules `uuid` CLI.
-const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff1f3341';
-uuidv5('Hello, World!', MY_NAMESPACE); // ⇨ '630eb68f-e0fa-5ecc-887a-7c7a62614681'
-
+const MY_NAMESPACE = '<UUID string you previously generated elsewhere>';
+uuidv5('Hello, World!', MY_NAMESPACE); // -> '90123e1c-7512-523e-bb28-76fab9f2f73d'
 ```
 
 ## Quickstart - Browser-ready Versions
@@ -92,7 +85,7 @@ uuidv5('http://example.com/hello', uuidv5.URL); // -> v5 UUID
 ```javascript
 const uuidv1 = require('uuid/v1');
 
-// Incantations
+// Allowed arguments
 uuidv1();
 uuidv1(options);
 uuidv1(options, buffer, offset);
@@ -117,24 +110,21 @@ Note: The <node> id is generated guaranteed to stay constant for the lifetime of
 Example: Generate string UUID with fully-specified options
 
 ```javascript
-const v1options = {
+uuidv1({
   node: [0x01, 0x23, 0x45, 0x67, 0x89, 0xab],
   clockseq: 0x1234,
   msecs: new Date('2011-11-01').getTime(),
   nsecs: 5678
-};
-uuidv1(v1options); // ⇨ '710b962e-041c-11e1-9234-0123456789ab'
-
+});   // -> "710b962e-041c-11e1-9234-0123456789ab"
 ```
 
 Example: In-place generation of two binary IDs
 
 ```javascript
 // Generate two ids in an array
-const arr = new Array();
-uuidv1(null, arr, 0);  // ⇨ [ 152, 81, 152, 208, 126, 79, 17, 231, 146, 52, 251, 113, 144, 200, 86, 228 ]
-uuidv1(null, arr, 16); // ⇨ [ 152, 81, 152, 208, 126, 79, 17, 231, 146, 52, 251, 113, 144, 200, 86, 228, 152, 81, 191, 224, 126, 79, 17, 231, 146, 52, 251, 113, 144, 200, 86, 228 ]
-
+const arr = new Array(32); // -> []
+uuidv1(null, arr, 0);   // -> [02 a2 ce 90 14 32 11 e1 85 58 0b 48 8e 4f c1 15]
+uuidv1(null, arr, 16);  // -> [02 a2 ce 90 14 32 11 e1 85 58 0b 48 8e 4f c1 15 02 a3 1c b0 14 32 11 e1 85 58 0b 48 8e 4f c1 15]
 ```
 
 ### Version 4
@@ -142,7 +132,7 @@ uuidv1(null, arr, 16); // ⇨ [ 152, 81, 152, 208, 126, 79, 17, 231, 146, 52, 25
 ```javascript
 const uuidv4 = require('uuid/v4')
 
-// Incantations
+// Allowed arguments
 uuidv4();
 uuidv4(options);
 uuidv4(options, buffer, offset);
@@ -158,40 +148,38 @@ Generate and return a RFC4122 v4 UUID.
 
 Returns `buffer`, if specified, otherwise the string form of the UUID
 
-Example: Generate string UUID with predefined `random` values
+Example: Generate string UUID with fully-specified options
 
 ```javascript
-const v4options = {
+uuid.v4({
   random: [
     0x10, 0x91, 0x56, 0xbe, 0xc4, 0xfb, 0xc1, 0xea,
     0x71, 0xb4, 0xef, 0xe1, 0x67, 0x1c, 0x58, 0x36
   ]
-};
-uuidv4(v4options); // ⇨ '109156be-c4fb-41ea-b1b4-efe1671c5836'
-
+});
+// -> "109156be-c4fb-41ea-b1b4-efe1671c5836"
 ```
 
 Example: Generate two IDs in a single buffer
 
 ```javascript
-const buffer = new Array();
-uuidv4(null, buffer, 0);  // ⇨ [ 217, 119, 223, 141, 202, 93, 66, 3, 178, 198, 149, 37, 232, 4, 107, 241 ]
-uuidv4(null, buffer, 16); // ⇨ [ 217, 119, 223, 141, 202, 93, 66, 3, 178, 198, 149, 37, 232, 4, 107, 241, 218, 189, 231, 45, 208, 56, 70, 125, 142, 27, 46, 27, 183, 9, 8, 202 ]
-
+const buffer = new Array(32); // (or 'new Buffer' in node.js)
+uuid.v4(null, buffer, 0);
+uuid.v4(null, buffer, 16);
 ```
 
 ### Version 5
 
 ```javascript
-const uuidv5 = require('uuid/v5');
+const uuidv5 = require('uuid/v4');
 
-// Incantations
+// Allowed arguments
 uuidv5(name, namespace);
 uuidv5(name, namespace, buffer);
 uuidv5(name, namespace, buffer, offset);
 ```
 
-Generate and return a RFC4122 v5 UUID.
+Generate and return a RFC4122 v4 UUID.
 
 * `name` - (String | Array[]) "name" to create UUID with
 * `namespace` - (String | Array[]) "namespace" UUID either as a String or Array[16] of byte values
@@ -203,28 +191,16 @@ Returns `buffer`, if specified, otherwise the string form of the UUID
 Example:
 
 ```javascript
-// Generate a unique namespace (typically you would do this once, outside of
+// Generate a unique  namespace (typically you would do this once, outside of
 // your project, then bake this value into your code)
 const uuidv4 = require('uuid/v4');
-const uuidv5 = require('uuid/v5');
-const MY_NAMESPACE = uuidv4();    // ⇨ '8dc079dd-0313-4563-864f-008eb45bf87f'
+const MY_NAMESPACE = uuidv4();  //
 
 // Generate a couple namespace uuids
-uuidv5('hello', MY_NAMESPACE);  // ⇨ 'c506b68b-ed29-5662-bb90-7f43e624e333'
-uuidv5('world', MY_NAMESPACE);  // ⇨ '669a6357-2584-534e-84bb-ac69f1c8ef44'
-
+const uuidv5 = require('uuid/v5');
+uuidv5('hello', MY_NAMESPACE);
+uuidv5('world', MY_NAMESPACE);
 ```
-
-## Command Line
-
-UUIDs can be generated from the command line with the `uuid` command.
-
-```shell
-$ uuid
-ddeb27fb-d9a0-4624-be4d-4615062daed4
-```
-
-Type `uuid --help` for usage details
 
 ## Testing
 
@@ -232,7 +208,7 @@ Type `uuid --help` for usage details
 npm test
 ```
 
-## Deprecated API
+## Deprecated / Browser-ready API
 
 The API below is available for legacy purposes and is not expected to be available post-3.X
 
@@ -249,6 +225,3 @@ uuid(...);    // alias of uuid/v4
 ## Legacy node-uuid package
 
 The code for the legacy node-uuid package is available in the `node-uuid` branch.
-
-----
-Markdown generated from [README_js.md](README_js.md) by [![RunMD Logo](http://i.imgur.com/h0FVyzU.png)](https://github.com/broofa/runmd)

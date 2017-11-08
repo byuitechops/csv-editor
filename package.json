@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/byuitechops/csv-editor/issues"
   },
-  "homepage": "https://github.com/byuitechops/csv-editor#readme"
+  "homepage": "https://github.com/byuitechops/csv-editor#readme",
+  "dependencies": {
+    "uuid": "file:third-party/uuid"
+  }
 }
