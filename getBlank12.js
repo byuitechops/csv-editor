@@ -16,7 +16,7 @@ function getBlank() {
         skill: "",/**/
 
         activitytype: "",/*TODO*/
-        itemtype: "",/*TODO*/
+
         texttype: "",/*TODO*/
 
         questiontype: "",/**/
