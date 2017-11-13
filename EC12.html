@@ -4,21 +4,15 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <style>
-
-
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-dsv/1.0.7/d3-dsv.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"></script>
     <!--    <script src="./tinymce/js/tinymce/tinymce.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.7/download.min.js"></script>
-    <script src="./third-party/uuid/v4-web.js"></script>
-    <script src="./third-party/uuid/v5-web.js"></script>
-    <link rel="stylesheet" href="./ec12.css" />
-
+    <script src="../third-party/uuid/v4-web.js"></script>
+    <script src="../third-party/uuid/v5-web.js"></script>
+    <link rel="stylesheet" href="./default.css" />
 </head>
 
 <body>
@@ -26,103 +20,287 @@
         {{#each this}}
         <div class="row" id="row{{@index}}">
             <div class="remove">x</div>
-            <div class="left-half">
-                <div class="left-half">
-                    <h3>passage text</h3>
+            <div class="passage">
+                <div>
+                    <p data-label="passage text">passage text</p>
                     <textarea class="editor">{{passagetext}}</textarea>
-                    <h3>passage text editor comments</h3>
-                    <textarea>{{passagetexteditorcomments}}</textarea>
-                    <h3>passage audio</h3>
+                </div>
+                <div>
+                    <p>passage text editor comments</p>
+                    <textarea class="editor">{{passagetexteditorcomments}}</textarea>
+                </div>
+                <div>
+                    <p data-label="skill">skill</p>
+                    <select>{{#select skill}}
+                        <option value=""></option>
+                        <option value="reading">reading</option>
+                        <option value="writing">writing</option>
+                        <option value="speaking">speaking</option>
+                        <option value="listening">listening</option>
+                        <option value="pronunciation">pronunciation</option>
+                        <option value="grammar">grammar</option>
+                        {{/select}}</select>
+                </div>
+                <div>
+                    <p data-label="level">level</p>
+                    <select>{{#select level}}
+                        <option value=""></option>
+                        <option value="EC1">1</option>
+                        <option value="EC2">2</option>
+                        {{/select}}</select>
+                </div>
+                <div>
+                    <p>passage audio</p>
                     <input value="{{passageaudio}}" />
-                    <h3>passage image description</h3>
+                </div>
+                <div>
+                    <p>passage image description</p>
                     <input value="{{passageimagedescription}}" />
-                    <hr>
-                    <h3>activity type</h3>
-                    <input value="{{activitytype}}" />
-                    <h3>item type</h3>
-                    <input value="{{itemtype}}" />
-                    <h3>text type</h3>
-                    <input value="{{texttype}}" />
                 </div>
 
-                <div class="right-half">
-                    <h3>question text</h3>
+                <div>
+                    <p>lesson</p>
+
+                    <select>{{#select lesson}}
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+
+                        {{/select}}</select>
+                </div>
+                <div>
+                    <p>section</p>
+                    <select>{{#select section}}
+                        <option value=""></option>
+                        <option value="class">class</option>
+                        <option value="extra mile">extra mile</option>
+                        <option value="story">story</option>
+                        <option value="self check">self check</option>
+                        {{/select}}</select>
+                </div>
+                <div>
+                    <p>references</p>
+                    <input value="{{references}}" />
+                </div>
+
+            </div>
+            <div class="question">
+                <div>
+                    <p>question text</p>
                     <textarea class="editor">{{questiontext}}</textarea>
-                    <h3>question text editor comments</h3>
-                    <textarea>{{questiontexteditorcomments}}</textarea>
-                     <h3>question name</h3>
-                    <input value="{{questionname}}" />
-
-
-                    <h3>question type</h3>
-                    <input value="{{questiontype}}" />
-                    <h3>question audio</h3>
+                </div>
+                <div>
+                    <p>question text editor comments</p>
+                    <textarea class="editor">{{questiontexteditorcomments}}</textarea>
+                </div>
+                <div>
+                    <p data-label="question type">question type</p>
+                    <select>{{#select questiontype}}
+                        <option value=""></option>
+                        <option value="multiple choice">Multiple Choice</option>
+                        <option value="true false">True False</option>
+                        <option value="multi-answer">Multi-Answer</option>
+                        <option value="long ansswer">long answer</option>
+                        {{/select}}</select>
+                </div>
+                <div>
+                    <p>question audio</p>
                     <input value="{{questionaudio}}" />
-                    <h3>question image description</h3>
+                </div>
+                <div>
+                    <p>question image description</p>
                     <input value="{{questionimagedescription}}" />
-                    <h3>question rubric</h3>
+                </div>
+
+
+                <div>
+                    <p>question rubric</p>
                     <input value="{{questionrubric}}" />
                 </div>
+                <div>
+                    <p>question name</p>
+                    <input value="{{questionname}}">
+                </div>
+
+                <div>
+                    <p>activity type</p>
+
+
+                    <select>{{#select activitytype}}
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+
+                        {{/select}}</select>
+
+
+
+                </div>
+
+                <div>
+                    <p>text type</p>
+
+
+                    <select>{{#select texttype}}
+                        <option value=""></option>
+                        <option value="word">word</option>
+                        <option value="sentence">sentence</option>
+                        <option value="paragraph">paragraph</option>
+
+
+                        {{/select}}</select>
+                </div>
+
             </div>
-            <div class="right-half">
-                <div class="left-side">
+            <div class="answer-quarter">
 
-                    <h3>answer1</h3>
+                <div class="answertext">
+                    <p>answer 1</p>
                     <textarea class="answer" rows="3">{{answer1}}</textarea>
-                    <h3>answer 1 feedback</h3>
+                </div>
+                <div>
+                    <p>answer 1 feedback</p>
                     <input value="{{answer1feedback}}" />
-                    <h3>answer 1 audio</h3>
+                </div>
+                <div>
+                    <p>answer 1 audio</p>
                     <input value="{{answer1audio}}" />
-                    <h3>answer 1 image description</h3>
+                </div>
+                <div>
+                    <p>answer 1 image description</p>
                     <input value="{{answer1imagedescription}}" />
-                    <hr>
-                     <h3>answer3</h3>
+                </div>
+
+
+                <div class="answertext">
+                    <p>answer 3</p>
                     <textarea class="answer" rows="3">{{answer3}}</textarea>
-                    <h3>answer 3 feedback</h3>
+                </div>
+                <div>
+                    <p>answer 3 feedback</p>
                     <input value="{{answer3feedback}}" />
-                    <h3>answer 3 audio</h3>
+                </div>
+                <div>
+                    <p>answer 3 audio</p>
                     <input value="{{answer3audio}}" />
-                    <h3>answer 3 image description</h3>
+                </div>
+                <div>
+                    <p>answer 3 image description</p>
                     <input value="{{answer3imagedescription}}" />
-<hr>
-                    <h3>answer editor comments</h3>
-                    <input value="{{answereditorcomments}}" />
-
-                    <h3>skill</h3>
-                    <input value="{{skill}}" />
-                    <h3>level</h3>
-                    <input value="{{level}}" />
-
-                    <h3>section</h3>
-                    <input value="{{section}}" />
-                      <h3>lesson</h3>
-                    <input value="{{lesson}}" />
-
-
                 </div>
-                <div class="right-side">
-                    <h3>answer2</h3>
+            </div>
+            <div class="answer-quarter">
+                <div class="answertext">
+                    <p>answer 2</p>
                     <textarea class="answer" rows="3">{{answer2}}</textarea>
-                    <h3>answer 2 feedback</h3>
-                    <input value="{{answer2feedback}}" />
-                    <h3>answer 2 audio</h3>
-                    <input value="{{answer2audio}}" />
-                    <h3>answer 2 image description</h3>
-                    <input value="{{answer2imagedescription}}" />
-                   <hr>
-                    <h3>answer4</h3>
-                    <textarea class="answer" rows="3">{{answer4}}</textarea>
-                    <h3>answer 4 feedback</h3>
-                    <input value="{{answer4feedback}}" />
-                    <h3>answer 4 audio</h3>
-                    <input value="{{answer4audio}}" />
-                    <h3>answer 4 image description</h3>
-                    <input value="{{answer4imagedescription}}" />
-                    <hr>
-                    <h3>references</h3>
-                    <input value="{{references}}" />
-
                 </div>
+                <div>
+                    <p>answer 2 feedback</p>
+                    <input value="{{answer2feedback}}" />
+                </div>
+                <div>
+                    <p>answer 2 audio</p>
+                    <input value="{{answer2audio}}" />
+                </div>
+                <div>
+                    <p>answer 2 image description</p>
+                    <input value="{{answer2imagedescription}}" />
+                </div>
+                <div class="answertext">
+                    <p>answer 4</p>
+                    <textarea class="answer" rows="3">{{answer4}}</textarea>
+                </div>
+                <div>
+                    <p>answer 4 feedback</p>
+                    <input value="{{answer4feedback}}" />
+                </div>
+                <div>
+                    <p>answer 4 audio</p>
+                    <input value="{{answer4audio}}" />
+                </div>
+                <div>
+                    <p>answer 4 image description</p>
+                    <input value="{{answer4imagedescription}}" />
+                </div>
+
+
+            </div>
+            <div class="answer-half">
+                <div class="answercomments">
+                    <p>answer editor comments</p>
+                    <textarea class="editor">{{answereditorcomments}}</textarea>
+                </div>
+
+
+
+
+
+
+                <div class="uuid" data-uuid="{{id}}"><span>id:</span>
+                    <span>{{id}}</span></div>
+
             </div>
         </div>
         {{/each}}
@@ -147,12 +325,9 @@
             </div>
         </div>
     </div>
-        <script src="./validate12.js"></script>
+    <script src="./validate12.js"></script>
     <script src="./getBlank12.js"></script>
-    <script src="./script.js">
-
-
-    </script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
