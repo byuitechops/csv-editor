@@ -1,0 +1,66 @@
+{
+  "generator": "analyze-css v0.12.5",
+  "metrics": {
+    "base64Length": 0,
+    "redundantBodySelectors": 0,
+    "redundantChildNodesSelectors": 0,
+    "colors": 1,
+    "comments": 2,
+    "commentsLength": 54,
+    "complexSelectors": 0,
+    "duplicatedSelectors": 1,
+    "duplicatedProperties": 2,
+    "emptyRules": 0,
+    "expressions": 0,
+    "oldIEFixes": 0,
+    "imports": 0,
+    "importants": 0,
+    "mediaQueries": 2,
+    "notMinified": 1,
+    "multiClassesSelectors": 0,
+    "parsingErrors": 0,
+    "oldPropertyPrefixes": 0,
+    "propertyResets": 0,
+    "qualifiedSelectors": 6,
+    "specificityIdAvg": 0.1,
+    "specificityIdTotal": 5,
+    "specificityClassAvg": 1.04,
+    "specificityClassTotal": 52,
+    "specificityTagAvg": 0.5,
+    "specificityTagTotal": 25,
+    "selectors": 50,
+    "selectorLengthAvg": 1.38,
+    "selectorsByAttribute": 0,
+    "selectorsByClass": 46,
+    "selectorsById": 5,
+    "selectorsByPseudo": 7,
+    "selectorsByTag": 24,
+    "length": 4089,
+    "rules": 44,
+    "declarations": 155
+  },
+  "offenders": {
+    "mediaQueries": [
+      "@media screen and (max-width: 1599px) (6 rules) @ 2:1",
+      "@media screen and (min-width: 1600px) (5 rules) @ 14:1"
+    ],
+    "duplicatedProperties": [
+      ".row {margin: auto} @ 4:57",
+      ".row {margin: 0 auto} @ 20:26"
+    ],
+    "qualifiedSelectors": [
+      ".answer-quarter > div.answertext @ 33:1",
+      ".answer-half > div.answercomments @ 34:1",
+      "#UI > div.new_row @ 54:1",
+      "#UI > div.new_row p @ 57:1",
+      "#UI > div.new_row:hover @ 59:1",
+      "#UI > div.new_row:hover .plus @ 61:1"
+    ],
+    "colors": [
+      "#777777 (3 times)"
+    ],
+    "duplicatedSelectors": [
+      ".remove (2 times)"
+    ]
+  }
+}
