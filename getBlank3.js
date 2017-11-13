@@ -10,6 +10,7 @@ function getBlank() {
     var tempuuid = uuidv5("EC_POC", uuidv4())
     return {
         id: tempuuid,
+        passagenum:"",
         skill: "",
         level: "",
         topic: "",
