@@ -10,49 +10,40 @@ function getBlank() {
         var tempuuid = uuidv5("EC_POC", uuidv4())
     return {
         id: tempuuid,
-        level: "",/**/
-        lesson: "", /*TODO*/
-        section: "",/*TODO*/
-        skill: "",/**/
-
-        activitytype: "",/*TODO*/
-
-        texttype: "",/*TODO*/
-
-        questiontype: "",/**/
-        questionname: "",/**/
-
-        passagetext: "",/**/
-        passagetexteditorcomments: "",/**/
-        passageaudio: "",/**/
-        passageimagedescription: "",/**/
-
-        questiontext: "",/**/
-        questiontexteditorcomments: "",/**/
-        questionaudio: "",/**/
-        questionimagedescription: "",/**/
-        questionrubric: "",/**/
-
-        answer1: "",/**//**//**//**//**/
-        answer1feedback: "",/**/
-        answer1audio: "",/**/
-        answer1imagedescription: "",/**/
-
-        answer2: "",/**/
-        answer2feedback: "",/**/
-        answer2audio: "",/**/
-        answer2imagedescription: "",/**/
-        answer3: "",/**/
-        answer3feedback: "",/**/
-        answer3audio: "",/**/
-        answer3imagedescription: "",/**/
-        answer4: "",/**/
-        answer4feedback: "",/**/
-        answer4audio: "",/**/
-        answer4imagedescription: "",/**/
-
-        answereditorcomments: "", /**/
-        references: "" /**/
-
+        level: "",
+        lesson: "",
+        section: "",
+        skill: "",
+        activitytype: "",
+        texttype: "",
+        questiontype: "",
+        questionname: "",
+        passagetext: "",
+        passagetexteditorcomments: "",
+        passageaudio: "",
+        passageimagedescription: "",
+        questiontext: "",
+        questiontexteditorcomments: "",
+        questionaudio: "",
+        questionimagedescription: "",
+        questionrubric: "",
+        answer1: "",
+        answer1feedback: "",
+        answer1audio: "",
+        answer1imagedescription: "",
+        answer2: "",
+        answer2feedback: "",
+        answer2audio: "",
+        answer2imagedescription: "",
+        answer3: "",
+        answer3feedback: "",
+        answer3audio: "",
+        answer3imagedescription: "",
+        answer4: "",
+        answer4feedback: "",
+        answer4audio: "",
+        answer4imagedescription: "",
+        answereditorcomments: "",
+        references: ""
     };
 }

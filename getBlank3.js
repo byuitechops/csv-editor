@@ -66,6 +66,5 @@ function getBlank() {
         writername: "",
         peerreviewname: "",
         editorname: ""
-
     };
 }
