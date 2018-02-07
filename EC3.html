@@ -92,6 +92,7 @@
                     <textarea class="editor">{{questiontext}}</textarea>
                 </div>
                 <div><!-- EMPTY DIV DON'T REMOVE I DID DUMB CSS--></div>
+                <!--
                 <div>
                     <p data-label="question type">question type</p>
                     <select>{{#select questiontype}}
@@ -114,63 +115,71 @@
                         <option value="describe">describe</option>
                         <option value="negotiate">negotiate</option>
                         {{/select}}</select>
-                </div>
+                </div>-->
 
                 <div>
                     <p>question name</p>
                     <input value="{{questionname}}">
                 </div>
 
-
+   <!--
                 <div>
                     <p>question level feedback</p>
                     <input value="{{questionlevelfeedback}}">
                 </div>
-
+-->
             </div>
             <div class="answer-quarter">
                 <div class="answertext">
                     <p>answertext1</p>
                     <textarea class="answer" rows="3">{{answertext1}}</textarea>
                 </div>
+                   <!--
                 <div>
                     <p>answer 1 feedback</p>
                     <input value="{{answer1feedback}}" />
                 </div>
-
-
-                <div class="answertext">
-                    <p>answertext2</p>
-                    <textarea class="answer" rows="3">{{answertext2}}</textarea>
-                </div>
-                <div>
-                    <p>answer 2 feedback</p>
-                    <input value="{{answer2feedback}}" />
-                </div>
-
-
-                <div class="answertext">
+-->
+                                                <div class="answertext">
                     <p>answertext3</p>
                     <textarea class="answer" rows="3">{{answertext3}}</textarea>
                 </div>
+                   <!--
                 <div>
                     <p>answer 3 feedback</p>
                     <input value="{{answer3feedback}}" />
                 </div>
+-->
+
+
 
 
             </div>
             <div class="answer-quarter">
                 <div class="answertext">
+                    <p>answertext2</p>
+                    <textarea class="answer" rows="3">{{answertext2}}</textarea>
+                </div>
+                   <!--
+                <div>
+                    <p>answer 2 feedback</p>
+                    <input value="{{answer2feedback}}" />
+                </div>
+-->
+                <div class="answertext">
                     <p>answertext4</p>
                     <textarea class="answer" rows="3">{{answertext4}}</textarea>
                 </div>
+
+
+                <!--
                 <div>
                     <p>answer 4 feedback</p>
                     <input value="{{answer4feedback}}" />
                 </div>
+-->
 
-
+<!--
                 <div class="answertext">
                     <p>answertext5</p>
                     <textarea class="answer" rows="3">{{answertext5}}</textarea>
@@ -191,12 +200,14 @@
 
 
             </div>
+-->
             <div class="answer-half">
 
                 <div class="uuid" data-uuid="{{id}}"><span>id:</span>
                     <span>{{id}}</span></div>
 
             </div>
+
         </div>
         {{/each}}
     </script>

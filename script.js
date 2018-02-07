@@ -8,10 +8,12 @@ document.querySelector('input').addEventListener('change', getFile)
 /*******************************
 internet boi handlebars helper
 *******************************/
-window.Handlebars.registerHelper('select', function( value, options ){
-        var $el = $('<select />').html( options.fn(this) );
-        $el.find('[value="' + value + '"]').attr({'selected':'selected'});
-        return $el.html();
+window.Handlebars.registerHelper('select', function (value, options) {
+    var $el = $('<select />').html(options.fn(this));
+    $el.find('[value="' + value + '"]').attr({
+        'selected': 'selected'
+    });
+    return $el.html();
 });
 
 /**********************************************************
@@ -66,8 +68,8 @@ function addTinyMCE() {
  ***********************************************************/
 function makeUI(data) {
     file = data;
-    for (var i = 0; i < file.length;i++){
-        if (!file[i].id){
+    for (var i = 0; i < file.length; i++) {
+        if (!file[i].id) {
             file[i].id = uuidv5("EC_POC", uuidv4());
         }
     }
@@ -132,7 +134,7 @@ function addListeners() {
     //add change event listener to inputs
     var inputs = document.getElementsByTagName("input");
     var selects = document.getElementsByTagName("select");
-//    var events;
+    //    var events;
     for (var i = 0; i < inputs.length; i++) {
         if (!inputs[i].dataset.listener) {
             inputs[i].addEventListener('keyup', function (event) {
@@ -208,8 +210,8 @@ function getFile() {
         var fileData = e.target.result;
 
         //Map the columns to have a key for each property of the getblank object.
-//      IGNORE FOR NOW
-//        var blankKeys = Object.keys(getBlank());
+        //      IGNORE FOR NOW
+        //        var blankKeys = Object.keys(getBlank());
         //need to fix the spaces in the obj props
         makeUI(d3.csvParse(fileData).map(function (item) {
             spaces = Object.keys(item);
@@ -270,6 +272,10 @@ function saveData(element) {
  ***********************************************************/
 function downloadit() {
     var valid = validate();
+    // Used to specify which specific columns to export in which order
+    // previously used Object.keys(getBlank()) to get ALL columns from
+    // getblank, but these are hardcoded for a temporary solution
+    var cols_to_export = ["skill", "level", "questionname", "function", "topic", "difficultylevel", "passagetext", "questiontext", "answertext1", "answertext2", "answertext3", "answertext4"];
     // filter out the rows that you have deleted.
     if (valid.valid && saves != 0) {
         file = file.filter(function (row) {
@@ -277,27 +283,26 @@ function downloadit() {
         });
         console.log(file);
         /*ADD THE COLUMNS!*/
-        var exported = d3.csvFormat(file, Object.keys(getBlank()));
+
+        var exported = d3.csvFormat(file, cols_to_export);
         download(exported, file_name, "text/plain");
-    }
-    else if (saves === 0){
+    } else if (saves === 0) {
         if (confirm("Warning: No changes have been saved. Prese \"OK\" to ignore and download anyway.")) {
             file = file.filter(function (row) {
                 return typeof row.toDelete === 'undefined';
             });
             console.log(file);
-            var exported = d3.csvFormat(file, Object.keys(getBlank()));
+            var exported = d3.csvFormat(file,cols_to_export);
             download(exported, file_name, "text/plain");
         }
-    }
-    else {
+    } else {
         console.log(valid.issues);
         if (confirm("Warning: Issues have been found. Prese \"OK\" to ignore and download anyway.")) {
             file = file.filter(function (row) {
                 return typeof row.toDelete === 'undefined';
             });
             console.log(file);
-            var exported = d3.csvFormat(file, Object.keys(getBlank()));
+            var exported = d3.csvFormat(file, cols_to_export);
             download(exported, file_name, "text/plain");
         }
     }
