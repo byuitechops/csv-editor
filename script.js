@@ -32,6 +32,7 @@ function addTinyMCE() {
         selector: 'textarea.editor',
         height: 200,
         width: '100%',
+        allow_script_urls: true,
         menubar: false,
         plugins: [
                     'advlist autolink lists link image charmap print preview anchor textcolor',
@@ -272,6 +273,14 @@ function saveData(element) {
  ***********************************************************/
 function downloadit() {
     var valid = validate();
+
+//    console.log(file);
+    /* ADD THE CUSTOM CSS LINKS THAT TINYMCE DOESN'T LIKE TO PASSAGETEXT*/
+    var link_tag_string="<link href='https://byuitechops.github.io/ec3-quiz-design/icons.css' rel='stylesheet'type='text/css'><link href='https://byuitechops.github.io/ec3-quiz-design/new_style.css' rel='stylesheet'type='text/css'><link href='https://byuitechops.github.io/ec3-quiz-design/components/all.css' rel='stylesheet'type='text/css'><link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'rel='stylesheet' type='text/css'><link rel='stylesheet' href='./jquery.fancybox.css?v=2.1.5' type='text/css' media='screen'>";
+    file.forEach(function(item){
+        item.passagetext = link_tag_string + item.passagetext;
+    })
+
     // Used to specify which specific columns to export in which order
     // previously used Object.keys(getBlank()) to get ALL columns from
     // getblank, but these are hardcoded for a temporary solution
