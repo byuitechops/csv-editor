@@ -158,7 +158,7 @@ function addListeners() {
             editors[i].addEventListener('keyup', function (event) {
                 saveData(this);
             }, false);
-            inputs[i].dataset.listener = true;
+            editors[i].dataset.listener = true;
         }
     }
     var closers = document.querySelectorAll(".remove");
