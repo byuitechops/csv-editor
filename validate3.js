@@ -14,7 +14,7 @@ function validate() {
         issues: []
     };
     // Add an issue to the returned object.
-   /* function add_issue(l, f, i) {
+    function add_issue(l, f, i) {
         validity.issues.push({
             issue: i,
             location: l,
@@ -41,10 +41,10 @@ function validate() {
                 add_issue(file[i].id, "skill", "skill cannot be blank.");
             if (file[i].level == "")
                 add_issue(file[i].id, "level", "level cannot be blank.");
-            if (file[i].questiontype == "")
-                add_issue(file[i].id, "question type", "questiontype cannot be blank.");
-            if (file[i].questionfunction == "")
-                add_issue(file[i].id, "question function", "questionfunction cannot be blank.");
+//            if (file[i].questiontype == "")
+//                add_issue(file[i].id, "question type", "questiontype cannot be blank.");
+//            if (file[i].questionfunction == "")
+//                add_issue(file[i].id, "question function", "questionfunction cannot be blank.");
         }
     }
     // Mark any invalid inputs with the "invalid" class.
@@ -63,6 +63,6 @@ function validate() {
     // If there are issues, set "valid" to false.
     if (validity.issues.length > 0) {
         validity.valid = false;
-    }*/
+    }
     return validity;
 }
