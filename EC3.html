@@ -25,7 +25,18 @@
                     <textarea class="editor">{{passagetext}}</textarea>
                 </div>
                 <div><!-- EMPTY DIV DON'T REMOVE I DID DUMB CSS--></div>
-
+                <div>
+                     <p data-label="passage text type">passage text type</p>
+                    <input value="{{passagetexttype}}">
+                </div>
+                                <div>
+                    <p data-label="passage audio file name">passage audio file name</p>
+                    <input value="{{passageaudiofilename}}">
+                </div>
+                                                <div>
+                     <p data-label="passage image name">passage image name</p>
+                    <input value="{{passageimagename}}">
+                </div>
                 <div>
                     <p data-label="function">function</p>
                     <select>{{#select function}}
@@ -86,6 +97,12 @@
                         <option value="4">4</option>
                         {{/select}}</select>
                 </div>
+                <div>
+                     <p data-label="passage core vocabulary used">passage core vocabulary used</p>
+                    <input value="{{passagecorevocabularyused}}">
+
+
+                </div>
 
             </div>
             <div class="question">
@@ -94,7 +111,7 @@
                     <textarea class="editor">{{questiontext}}</textarea>
                 </div>
                 <div><!-- EMPTY DIV DON'T REMOVE I DID DUMB CSS--></div>
-                <!--
+
                 <div>
                     <p data-label="question type">question type</p>
                     <select>{{#select questiontype}}
@@ -117,41 +134,67 @@
                         <option value="describe">describe</option>
                         <option value="negotiate">negotiate</option>
                         {{/select}}</select>
-                </div>-->
+                </div>
 
                 <div>
                     <p>question name</p>
                     <input value="{{questionname}}">
                 </div>
+                                <div>
+                    <p>question can do</p>
+                    <input value="{{questioncando}}">
+                </div>
 
-   <!--
+
                 <div>
                     <p>question level feedback</p>
                     <input value="{{questionlevelfeedback}}">
                 </div>
--->
+                                <div>
+                    <p data-label="question audio file name">question audio file name</p>
+                    <input value="{{passageaudiofilename}}">
+                </div>
+                                                <div>
+                     <p data-label="question image name">question image name</p>
+                    <input value="{{questionimagename}}">
+                </div>
             </div>
             <div class="answer-quarter">
                 <div class="answertext">
                     <p>answertext1</p>
                     <textarea class="answer" rows="3">{{answertext1}}</textarea>
                 </div>
-                   <!--
+
                 <div>
                     <p>answer 1 feedback</p>
                     <input value="{{answer1feedback}}" />
                 </div>
--->
+                                <div>
+                    <p>answer 1 audio file name</p>
+                    <input value="{{answer1audiofilename}}" />
+                </div>
+                                                <div>
+                    <p>answer 1 image name</p>
+                    <input value="{{answer1imagename}}" />
+                </div>
+
                                                 <div class="answertext">
                     <p>answertext3</p>
                     <textarea class="answer" rows="3">{{answertext3}}</textarea>
                 </div>
-                   <!--
+
                 <div>
                     <p>answer 3 feedback</p>
                     <input value="{{answer3feedback}}" />
                 </div>
--->
+                                <div>
+                    <p>answer 3 audio file name</p>
+                    <input value="{{answer3audiofilename}}" />
+                </div>
+                                                <div>
+                    <p>answer 3 image name</p>
+                    <input value="{{answer3imagename}}" />
+                </div>
 
 
 
@@ -162,26 +205,39 @@
                     <p>answertext2</p>
                     <textarea class="answer" rows="3">{{answertext2}}</textarea>
                 </div>
-                   <!--
+
                 <div>
                     <p>answer 2 feedback</p>
                     <input value="{{answer2feedback}}" />
                 </div>
--->
+                                <div>
+                    <p>answer 2 audio file name</p>
+                    <input value="{{answer2audiofilename}}" />
+                </div>
+                                                <div>
+                    <p>answer 2 image name</p>
+                    <input value="{{answer2imagename}}" />
+                </div>
                 <div class="answertext">
                     <p>answertext4</p>
                     <textarea class="answer" rows="3">{{answertext4}}</textarea>
                 </div>
 
 
-                <!--
+
                 <div>
                     <p>answer 4 feedback</p>
                     <input value="{{answer4feedback}}" />
                 </div>
--->
+                                <div>
+                    <p>answer 4 audio file name</p>
+                    <input value="{{answer4audiofilename}}" />
+                </div>
+                                                <div>
+                    <p>answer 4 image name</p>
+                    <input value="{{answer4imagename}}" />
+                </div>
 
-<!--
                 <div class="answertext">
                     <p>answertext5</p>
                     <textarea class="answer" rows="3">{{answertext5}}</textarea>
@@ -190,7 +246,14 @@
                     <p>answer 5 feedback</p>
                     <input value="{{answer5feedback}}" />
                 </div>
-
+                                <div>
+                    <p>answer 5 audio file name</p>
+                    <input value="{{answer5audiofilename}}" />
+                </div>
+                                                <div>
+                    <p>answer 5 image name</p>
+                    <input value="{{answer5imagename}}" />
+                </div>
                 <div class="answertext">
                     <p>answertext6</p>
                     <textarea class="answer" rows="3">{{answertext6}}</textarea>
@@ -199,8 +262,14 @@
                     <p>answer 6 feedback</p>
                     <input value="{{answer6feedback}}" />
                 </div>
-
--->
+                                <div>
+                    <p>answer 6 audio file name</p>
+                    <input value="{{answer6audiofilename}}" />
+                </div>
+                                                <div>
+                    <p>answer 6 image name</p>
+                    <input value="{{answer6imagename}}" />
+                </div>
             </div>
 
 

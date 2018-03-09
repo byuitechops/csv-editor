@@ -14,7 +14,11 @@ function downloadit() {
     // Used to specify which specific columns to export in which order
     // previously used Object.keys(getBlank()) to get ALL columns from
     // getblank, but these are hardcoded for a temporary solution
-    var cols_to_export = ["skill", "level", "questionname", "function", "topic", "difficultylevel", "passagetext", "questiontext", "answertext1", "answertext2", "answertext3", "answertext4"];
+    var cols_to_export = ["id","skill","level","topic","difficulty level","function","passage text","passage core vocabulary used","passage text type","passage audio file name",
+"passage image name","question name","question function","question cando","question text","question level feedback","question type","question audio file name","question image name",
+"question rubric","answertext1","answer 1 feedback","answer 1 audio file name","answer 1 image name","answertext2","answer 2 feedback","answer 2 audio file name","answer 2 image name","answertext3",
+"answer 3 feedback","answer 3 audio file name","answer 3 image name","answertext4","answer 4 feedback","answer 4 audio file name","answer 4 image name","answertext5","answer 5 feedback","answer 5 audio file name",
+"answer 5 image name","answertext6","answer 6 feedback","answer 6 audio file name","answer 6 image name"];
     // filter out the rows that you have deleted.
     if (valid.valid && saves != 0) {
         file = file.filter(function (row) {
