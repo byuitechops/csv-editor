@@ -41,7 +41,7 @@ function addTinyMCE() {
                 ],
         toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code | table | hr | help',
         convert_urls: false,
-        content_css: "./tinymcestyle.css",
+        content_css: "../tinymcestyle.css",
         init_instance_callback: function (editor) {
             function saveit() {
                 //console.log(editor.getContent(), this.id);
