@@ -24,17 +24,25 @@
                     <p data-label="passage text">passage text</p>
                     <textarea class="editor">{{passagetext}}</textarea>
                 </div>
-                <div><!-- EMPTY DIV DON'T REMOVE I DID DUMB CSS--></div>
                 <div>
-                     <p data-label="passage text type">passage text type</p>
-                    <input value="{{passagetexttype}}">
+                    <!-- EMPTY DIV DON'T REMOVE I DID DUMB CSS-->
                 </div>
-                                <div>
+                <div>
+                    <p data-label="passage text type">passage text type</p>
+                    <select>{{#select passagetexttype}}
+                        <option value=""></option>
+                        <option value="c1">c1</option>
+                        <option value="c2">c2</option>
+                        <option value="c3">c3</option>
+                        {{/select}}</select>
+                    <!-- <input value="{{passagetexttype}}"> -->
+                </div>
+                <div>
                     <p data-label="passage audio file name">passage audio file name</p>
                     <input value="{{passageaudiofilename}}">
                 </div>
-                                                <div>
-                     <p data-label="passage image name">passage image name</p>
+                <div>
+                    <p data-label="passage image name">passage image name</p>
                     <input value="{{passageimagename}}">
                 </div>
                 <div>
@@ -98,7 +106,7 @@
                         {{/select}}</select>
                 </div>
                 <div>
-                     <p data-label="passage core vocabulary used">passage core vocabulary used</p>
+                    <p data-label="passage core vocabulary used">passage core vocabulary used</p>
                     <input value="{{passagecorevocabularyused}}">
 
 
@@ -110,7 +118,9 @@
                     <p>question text</p>
                     <textarea class="editor">{{questiontext}}</textarea>
                 </div>
-                <div><!-- EMPTY DIV DON'T REMOVE I DID DUMB CSS--></div>
+                <div>
+                    <!-- EMPTY DIV DON'T REMOVE I DID DUMB CSS-->
+                </div>
 
                 <div>
                     <p data-label="question type">question type</p>
@@ -119,7 +129,7 @@
                         <option value="multiple choice">Multiple Choice</option>
                         <option value="true false">True False</option>
                         <option value="multi-answer">Multi-Answer</option>
-                        <option value="long ansswer">long answer</option>
+                        <option value="long ansswer">Long Answer</option>
                         {{/select}}</select>
                 </div>
 
@@ -140,9 +150,44 @@
                     <p>question name</p>
                     <input value="{{questionname}}">
                 </div>
-                                <div>
+
+                <div>
                     <p>question can do</p>
-                    <input value="{{questioncando}}">
+                    <select>{{#select questioncando}}
+                        <option value=""></option>
+                        <option value="f1">f1</option>
+                        <option value="f2">f2</option>
+                        <option value="f3">f3</option>
+                        <option value="f4">f4</option>
+                        <option value="f5">f5</option>
+                        <option value="f6">f6</option>
+                        <option value="f7">f7</option>
+                        <option value="f8">f8</option>
+                        <option value="f9">f9</option>
+                        <option value="f10">f10</option>
+                        <option value="f11">f11</option>
+                        <option value="f12">f12</option>
+                        <option value="f13">f13</option>
+                        <option value="f14">f14</option>
+                        <option value="f15">f15</option>
+                        <option value="f16">f16</option>
+                        <option value="f17">f17</option>
+                        <option value="f18">f18</option>
+                        <option value="f19">f19</option>
+                        <option value="f20">f20</option>
+                        <option value="f21">f21</option>
+                        <option value="f22">f22</option>
+                        <option value="f23">f23</option>
+                        <option value="f24">f24</option>
+                        <option value="f25">f25</option>
+                        <option value="f26">f26</option>
+                        <option value="f27">f27</option>
+                        <option value="f28">f28</option>
+                        <option value="f29">f29</option>
+                        <option value="f30">f30</option>
+                        <option value="f31">f31</option>
+                        {{/select}}</select>
+                    <!-- <input value="{{questioncando}}"> -->
                 </div>
 
 
@@ -150,12 +195,12 @@
                     <p>question level feedback</p>
                     <input value="{{questionlevelfeedback}}">
                 </div>
-                                <div>
+                <div>
                     <p data-label="question audio file name">question audio file name</p>
                     <input value="{{passageaudiofilename}}">
                 </div>
-                                                <div>
-                     <p data-label="question image name">question image name</p>
+                <div>
+                    <p data-label="question image name">question image name</p>
                     <input value="{{questionimagename}}">
                 </div>
             </div>
@@ -169,15 +214,15 @@
                     <p>answer 1 feedback</p>
                     <input value="{{answer1feedback}}" />
                 </div>
-                                <div>
+                <div>
                     <p>answer 1 audio file name</p>
                     <input value="{{answer1audiofilename}}" />
                 </div>
-                                                <div>
+                <div>
                     <p>answer 1 image name</p>
                     <input value="{{answer1imagename}}" />
                 </div>
-                                <div class="answertext">
+                <div class="answertext">
                     <p>answertext4</p>
                     <textarea class="answer" rows="3">{{answertext4}}</textarea>
                 </div>
@@ -185,11 +230,11 @@
                     <p>answer 4 feedback</p>
                     <input value="{{answer4feedback}}" />
                 </div>
-                                <div>
+                <div>
                     <p>answer 4 audio file name</p>
                     <input value="{{answer4audiofilename}}" />
                 </div>
-                                                <div>
+                <div>
                     <p>answer 4 image name</p>
                     <input value="{{answer4imagename}}" />
                 </div>
@@ -208,18 +253,18 @@
                     <p>answer 2 feedback</p>
                     <input value="{{answer2feedback}}" />
                 </div>
-                                <div>
+                <div>
                     <p>answer 2 audio file name</p>
                     <input value="{{answer2audiofilename}}" />
                 </div>
-                                                <div>
+                <div>
                     <p>answer 2 image name</p>
                     <input value="{{answer2imagename}}" />
                 </div>
 
 
 
- <div class="answertext">
+                <div class="answertext">
                     <p>answertext5</p>
                     <textarea class="answer" rows="3">{{answertext5}}</textarea>
                 </div>
@@ -227,11 +272,11 @@
                     <p>answer 5 feedback</p>
                     <input value="{{answer5feedback}}" />
                 </div>
-                                <div>
+                <div>
                     <p>answer 5 audio file name</p>
                     <input value="{{answer5audiofilename}}" />
                 </div>
-                                                <div>
+                <div>
                     <p>answer 5 image name</p>
                     <input value="{{answer5imagename}}" />
                 </div>
@@ -251,15 +296,15 @@
                     <p>answer 3 feedback</p>
                     <input value="{{answer3feedback}}" />
                 </div>
-                                <div>
+                <div>
                     <p>answer 3 audio file name</p>
                     <input value="{{answer3audiofilename}}" />
                 </div>
-                                                <div>
+                <div>
                     <p>answer 3 image name</p>
                     <input value="{{answer3imagename}}" />
                 </div>
-                                <div class="answertext">
+                <div class="answertext">
                     <p>answertext6</p>
                     <textarea class="answer" rows="3">{{answertext6}}</textarea>
                 </div>
@@ -267,11 +312,11 @@
                     <p>answer 6 feedback</p>
                     <input value="{{answer6feedback}}" />
                 </div>
-                                <div>
+                <div>
                     <p>answer 6 audio file name</p>
                     <input value="{{answer6audiofilename}}" />
                 </div>
-                                                <div>
+                <div>
                     <p>answer 6 image name</p>
                     <input value="{{answer6imagename}}" />
                 </div>
@@ -279,8 +324,10 @@
 
             <div class="answer-half">
 
-                <div class="uuid" data-uuid="{{id}}"><span>id:</span>
-                    <span>{{id}}</span></div>
+                <div class="uuid" data-uuid="{{id}}">
+                    <span>id:</span>
+                    <span>{{id}}</span>
+                </div>
 
             </div>
 
@@ -309,7 +356,7 @@
     </div>
     <script src="./validate3.js"></script>
     <script src="./getBlank3.js"></script>
-     <script src="./download3.js"></script>
+    <script src="./download3.js"></script>
     <script src="./script.js"></script>
 </body>
 
